@@ -1,0 +1,37 @@
+# Carpetas generadas por Visual Studio
+.vscode/
+.vs/
+bin/
+obj/
+
+# Carpeta de paquetes NuGet
+packages/
+
+# Archivos de usuario de Visual Studio
+*.suo
+*.user
+*.userprefs
+
+# Archivos de respaldo y caché
+*~
+*.swp
+*.bak
+*.cache
+
+# Archivos de compilación
+*.dll
+*.pdb
+*.exe
+*.zip
+
+# Archivos de registro y de diagnóstico
+*.log
+
+# Archivos de configuración de usuario
+appsettings.json
+appsettings.Development.json
+launchSettings.json
+
+# Carpeta de archivos temporales
+[Tt]emp/
+[Vv]iews/[Ss]hared/[Tt]emp/[Vv]iews/
