@@ -1,8 +1,12 @@
 # Carpetas generadas por Visual Studio
 .vscode/
 .vs/
-bin/
-obj/
+
+# Ignorar directorio bin/ en todas las ubicaciones del proyecto
+**/bin/
+
+# Ignorar directorio obj/ en todas las ubicaciones del proyecto
+**/obj/
 
 # Carpeta de paquetes NuGet
 packages/
