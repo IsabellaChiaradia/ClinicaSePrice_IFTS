@@ -31,13 +31,13 @@ namespace Dashboard_ClinicaSePrice
         //-------------------------------------------------------------------------//
 
 
-        GestionMiembros uc;
+        GestionTurnos uc;
 
         public Principal(string? nombre, string? apellido)
         {
             InitializeComponent();
             lblNombreUser.Text = $"{nombre} {apellido}";
-            this.uc = new GestionMiembros();
+            this.uc = new GestionTurnos();
             this.BackColor = Color.FromArgb(0x49, 0xA2, 0xCB);
             Region = System.Drawing.Region.FromHrgn(CreateRoundRectRgn(0, 0, Width, Height, 20, 20));
         }
@@ -78,19 +78,19 @@ namespace Dashboard_ClinicaSePrice
 
         private void btnRegistroTurno_Click(object sender, EventArgs e)
         {
-            GestionMiembros uc = new GestionMiembros();
+            GestionTurnos uc = new GestionTurnos();
             agregarPaneles(uc);
         }
 
         private void btnPagoTurno_Click(object sender, EventArgs e)
         {
-            PagoMensualCuota uc = new PagoMensualCuota();
+            PagoAtencionMedica uc = new PagoAtencionMedica();
             agregarPaneles(uc);
         }
 
         private void btnPagoEstudio_Click(object sender, EventArgs e)
         {
-            PagoActividad uc = new PagoActividad();
+            PagoEstudioClinico uc = new PagoEstudioClinico();
             agregarPaneles(uc);
         }
 

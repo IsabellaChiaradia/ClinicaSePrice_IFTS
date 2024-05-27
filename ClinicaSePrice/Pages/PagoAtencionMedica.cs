@@ -15,7 +15,7 @@ using System.Windows.Forms;
 
 namespace Dashboard_ClinicaSePrice.Pages
 {
-    public partial class PagoMensualCuota : UserControl
+    public partial class PagoAtencionMedica : UserControl
     {
 
         private Cuota cuotaDB;
@@ -23,7 +23,7 @@ namespace Dashboard_ClinicaSePrice.Pages
         private double montoEfectivo;
         private frmFactura factura;
 
-        public PagoMensualCuota()
+        public PagoAtencionMedica()
         {
             InitializeComponent();
             this.cuotaDB = new Cuota();

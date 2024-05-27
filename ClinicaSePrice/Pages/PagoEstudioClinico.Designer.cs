@@ -1,6 +1,6 @@
 ﻿namespace ClinicaSePrice.Pages
 {
-    partial class PagoActividad
+    partial class PagoEstudioClinico
     {
         /// <summary> 
         /// Variable del diseñador necesaria.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PagoActividad));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PagoEstudioClinico));
             txtDocumentoPA = new TextBox();
             picDocPA = new PictureBox();
             lblPA = new Label();

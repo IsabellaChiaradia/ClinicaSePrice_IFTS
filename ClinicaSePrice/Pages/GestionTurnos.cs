@@ -23,11 +23,11 @@ namespace Dashboard_ClinicaSePrice.pesañas
  //para ser cargado mediante el sistema a la base de datos.
  //A continuación se detalla en el código:
  //-------------------------------------------------------------------------//
-    public partial class GestionMiembros : UserControl
+    public partial class GestionTurnos : UserControl
     {
         private Miembro miembroDB;
         private FormCarnet carnet;
-        public GestionMiembros()
+        public GestionTurnos()
         {
             InitializeComponent();
             this.miembroDB = new Miembro();

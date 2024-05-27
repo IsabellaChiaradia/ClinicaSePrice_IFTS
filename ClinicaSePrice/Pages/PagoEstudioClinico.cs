@@ -14,7 +14,7 @@ using System.Windows.Forms;
 
 namespace ClinicaSePrice.Pages
 {
-    public partial class PagoActividad : UserControl
+    public partial class PagoEstudioClinico : UserControl
     {
         private Cuota cuotaDB;
         private Actividad actividadBD;
@@ -22,7 +22,7 @@ namespace ClinicaSePrice.Pages
         private List<E_Actividad> actividades;
         private frmFactura factura;
 
-        public PagoActividad()
+        public PagoEstudioClinico()
         {
             InitializeComponent();
             this.cuotaDB = new Cuota();

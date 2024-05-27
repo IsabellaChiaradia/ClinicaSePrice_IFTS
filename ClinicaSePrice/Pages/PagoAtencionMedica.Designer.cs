@@ -1,6 +1,6 @@
 ﻿namespace Dashboard_ClinicaSePrice.Pages
 {
-    partial class PagoMensualCuota
+    partial class PagoAtencionMedica
     {
         /// <summary> 
         /// Variable del diseñador necesaria.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PagoMensualCuota));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PagoAtencionMedica));
             lblPMC = new Label();
             txtMonto = new TextBox();
             picMontoPMC = new PictureBox();

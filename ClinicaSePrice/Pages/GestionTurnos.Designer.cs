@@ -1,6 +1,6 @@
 ﻿namespace Dashboard_ClinicaSePrice.pesañas
 {
-    partial class GestionMiembros
+    partial class GestionTurnos
     {
         /// <summary> 
         /// Variable del diseñador necesaria.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GestionMiembros));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GestionTurnos));
             label1 = new Label();
             pictureBox1 = new PictureBox();
             txtNombre = new TextBox();
