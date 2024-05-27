@@ -38,17 +38,17 @@
             btnMinimize = new Button();
             btnLogin = new CustomBotonDos();
             pictureBox2 = new PictureBox();
-            pictureBox3 = new PictureBox();
+            pictureBox4 = new PictureBox();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             pnlControlPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox4).BeginInit();
             SuspendLayout();
             // 
             // pictureBox1
             // 
             pictureBox1.BackgroundImage = (Image)resources.GetObject("pictureBox1.BackgroundImage");
-            pictureBox1.BackgroundImageLayout = ImageLayout.Stretch;
+            pictureBox1.BackgroundImageLayout = ImageLayout.Center;
             pictureBox1.Location = new Point(-5, -1);
             pictureBox1.Name = "pictureBox1";
             pictureBox1.Size = new Size(340, 525);
@@ -58,7 +58,7 @@
             // lblSingin
             // 
             lblSingin.AutoSize = true;
-            lblSingin.BackColor = Color.FromArgb(74, 102, 174);
+            lblSingin.BackColor = Color.FromArgb(73, 162, 203);
             lblSingin.Font = new Font("Segoe UI", 30F, FontStyle.Bold, GraphicsUnit.Point);
             lblSingin.ForeColor = Color.White;
             lblSingin.Location = new Point(451, 146);
@@ -69,7 +69,7 @@
             // 
             // txtUser
             // 
-            txtUser.BackColor = Color.FromArgb(74, 102, 174);
+            txtUser.BackColor = Color.FromArgb(73, 162, 203);
             txtUser.BorderStyle = BorderStyle.None;
             txtUser.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point);
             txtUser.ForeColor = Color.White;
@@ -83,7 +83,7 @@
             // 
             // txtPassword
             // 
-            txtPassword.BackColor = Color.FromArgb(74, 102, 174);
+            txtPassword.BackColor = Color.FromArgb(73, 162, 203);
             txtPassword.BorderStyle = BorderStyle.None;
             txtPassword.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point);
             txtPassword.ForeColor = Color.White;
@@ -143,7 +143,7 @@
             // 
             // btnLogin
             // 
-            btnLogin.BackColor = Color.FromArgb(96, 61, 140);
+            btnLogin.BackColor = Color.FromArgb(29, 65, 81);
             btnLogin.Cursor = Cursors.Hand;
             btnLogin.FlatAppearance.BorderSize = 0;
             btnLogin.FlatStyle = FlatStyle.Flat;
@@ -161,30 +161,30 @@
             // pictureBox2
             // 
             pictureBox2.Image = (Image)resources.GetObject("pictureBox2.Image");
-            pictureBox2.Location = new Point(379, 232);
+            pictureBox2.Location = new Point(412, 231);
             pictureBox2.Margin = new Padding(3, 2, 3, 2);
             pictureBox2.Name = "pictureBox2";
-            pictureBox2.Size = new Size(304, 43);
-            pictureBox2.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBox2.Size = new Size(242, 43);
+            pictureBox2.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox2.TabIndex = 26;
             pictureBox2.TabStop = false;
             // 
-            // pictureBox3
+            // pictureBox4
             // 
-            pictureBox3.Image = (Image)resources.GetObject("pictureBox3.Image");
-            pictureBox3.Location = new Point(379, 310);
-            pictureBox3.Margin = new Padding(3, 2, 3, 2);
-            pictureBox3.Name = "pictureBox3";
-            pictureBox3.Size = new Size(304, 43);
-            pictureBox3.SizeMode = PictureBoxSizeMode.Zoom;
-            pictureBox3.TabIndex = 27;
-            pictureBox3.TabStop = false;
+            pictureBox4.Image = (Image)resources.GetObject("pictureBox4.Image");
+            pictureBox4.Location = new Point(412, 311);
+            pictureBox4.Margin = new Padding(3, 2, 3, 2);
+            pictureBox4.Name = "pictureBox4";
+            pictureBox4.Size = new Size(242, 43);
+            pictureBox4.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox4.TabIndex = 28;
+            pictureBox4.TabStop = false;
             // 
             // Login
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.FromArgb(74, 102, 174);
+            BackColor = Color.FromArgb(73, 162, 203);
             BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(704, 522);
             Controls.Add(txtUser);
@@ -194,7 +194,7 @@
             Controls.Add(txtPassword);
             Controls.Add(lblSingin);
             Controls.Add(pictureBox1);
-            Controls.Add(pictureBox3);
+            Controls.Add(pictureBox4);
             FormBorderStyle = FormBorderStyle.None;
             Name = "Login";
             StartPosition = FormStartPosition.CenterScreen;
@@ -203,7 +203,7 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             pnlControlPanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox4).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -219,6 +219,6 @@
         private Button btnMinimize;
         private CustomBotonDos btnLogin;
         private PictureBox pictureBox2;
-        private PictureBox pictureBox3;
+        private PictureBox pictureBox4;
     }
 }
