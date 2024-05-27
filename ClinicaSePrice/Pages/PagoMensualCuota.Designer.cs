@@ -59,13 +59,13 @@
             lblPMC.ForeColor = Color.White;
             lblPMC.Location = new Point(32, 26);
             lblPMC.Name = "lblPMC";
-            lblPMC.Size = new Size(229, 26);
+            lblPMC.Size = new Size(134, 26);
             lblPMC.TabIndex = 0;
-            lblPMC.Text = "Pago mensual cuota";
+            lblPMC.Text = "Pago Turno";
             // 
             // txtMonto
             // 
-            txtMonto.BackColor = Color.FromArgb(74, 102, 174);
+            txtMonto.BackColor = Color.FromArgb(73, 162, 203);
             txtMonto.BorderStyle = BorderStyle.None;
             txtMonto.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point);
             txtMonto.ForeColor = Color.White;
@@ -82,18 +82,19 @@
             // 
             // picMontoPMC
             // 
+            picMontoPMC.BackColor = Color.FromArgb(73, 162, 203);
             picMontoPMC.Image = (Image)resources.GetObject("picMontoPMC.Image");
-            picMontoPMC.Location = new Point(6, 143);
+            picMontoPMC.Location = new Point(37, 143);
             picMontoPMC.Margin = new Padding(3, 2, 3, 2);
             picMontoPMC.Name = "picMontoPMC";
-            picMontoPMC.Size = new Size(304, 43);
-            picMontoPMC.SizeMode = PictureBoxSizeMode.Zoom;
+            picMontoPMC.Size = new Size(242, 43);
+            picMontoPMC.SizeMode = PictureBoxSizeMode.StretchImage;
             picMontoPMC.TabIndex = 11;
             picMontoPMC.TabStop = false;
             // 
             // txtDni
             // 
-            txtDni.BackColor = Color.FromArgb(74, 102, 174);
+            txtDni.BackColor = Color.FromArgb(73, 162, 203);
             txtDni.BorderStyle = BorderStyle.None;
             txtDni.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point);
             txtDni.ForeColor = Color.White;
@@ -110,12 +111,13 @@
             // 
             // picDocPMC
             // 
+            picDocPMC.BackColor = Color.FromArgb(73, 162, 203);
             picDocPMC.Image = (Image)resources.GetObject("picDocPMC.Image");
-            picDocPMC.Location = new Point(6, 76);
+            picDocPMC.Location = new Point(37, 76);
             picDocPMC.Margin = new Padding(3, 2, 3, 2);
             picDocPMC.Name = "picDocPMC";
-            picDocPMC.Size = new Size(304, 43);
-            picDocPMC.SizeMode = PictureBoxSizeMode.Zoom;
+            picDocPMC.Size = new Size(242, 43);
+            picDocPMC.SizeMode = PictureBoxSizeMode.StretchImage;
             picDocPMC.TabIndex = 10;
             picDocPMC.TabStop = false;
             // 
@@ -140,9 +142,9 @@
             cbxEfectivo.Location = new Point(49, 293);
             cbxEfectivo.Margin = new Padding(3, 2, 3, 2);
             cbxEfectivo.Name = "cbxEfectivo";
-            cbxEfectivo.Size = new Size(85, 24);
+            cbxEfectivo.Size = new Size(94, 24);
             cbxEfectivo.TabIndex = 23;
-            cbxEfectivo.Text = "Efectivo";
+            cbxEfectivo.Text = "Particular";
             cbxEfectivo.UseVisualStyleBackColor = true;
             cbxEfectivo.CheckedChanged += cbxEfectivo_CheckedChanged;
             // 
@@ -154,9 +156,9 @@
             cbxTarjeta.Location = new Point(49, 338);
             cbxTarjeta.Margin = new Padding(3, 2, 3, 2);
             cbxTarjeta.Name = "cbxTarjeta";
-            cbxTarjeta.Size = new Size(151, 24);
+            cbxTarjeta.Size = new Size(110, 24);
             cbxTarjeta.TabIndex = 24;
-            cbxTarjeta.Text = "Tarjeta de crédito";
+            cbxTarjeta.Text = "Obra Social";
             cbxTarjeta.UseVisualStyleBackColor = true;
             cbxTarjeta.CheckedChanged += cbxTarjeta_CheckedChanged;
             // 
@@ -236,7 +238,7 @@
             // 
             // btnPagar
             // 
-            btnPagar.BackColor = Color.FromArgb(96, 61, 140);
+            btnPagar.BackColor = Color.FromArgb(29, 65, 81);
             btnPagar.Cursor = Cursors.Hand;
             btnPagar.FlatAppearance.BorderSize = 0;
             btnPagar.FlatStyle = FlatStyle.Flat;
@@ -253,7 +255,7 @@
             // 
             // btnComprobante
             // 
-            btnComprobante.BackColor = Color.FromArgb(96, 61, 140);
+            btnComprobante.BackColor = Color.FromArgb(29, 65, 81);
             btnComprobante.Cursor = Cursors.Hand;
             btnComprobante.Enabled = false;
             btnComprobante.FlatAppearance.BorderSize = 0;
@@ -273,7 +275,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.FromArgb(74, 102, 174);
+            BackColor = Color.FromArgb(73, 162, 203);
             Controls.Add(btnComprobante);
             Controls.Add(btnPagar);
             Controls.Add(dgtvPagoRealizado);

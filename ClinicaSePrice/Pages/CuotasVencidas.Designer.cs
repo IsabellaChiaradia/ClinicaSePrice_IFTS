@@ -41,13 +41,13 @@
             lblCuotasVenc.ForeColor = Color.White;
             lblCuotasVenc.Location = new Point(32, 26);
             lblCuotasVenc.Name = "lblCuotasVenc";
-            lblCuotasVenc.Size = new Size(192, 26);
+            lblCuotasVenc.Size = new Size(186, 26);
             lblCuotasVenc.TabIndex = 14;
-            lblCuotasVenc.Text = "Cuotas Vencidas";
+            lblCuotasVenc.Text = "Control Insumos";
             // 
             // btnNotificar
             // 
-            btnNotificar.BackColor = Color.FromArgb(96, 61, 140);
+            btnNotificar.BackColor = Color.FromArgb(29, 65, 81);
             btnNotificar.Cursor = Cursors.Hand;
             btnNotificar.FlatAppearance.BorderSize = 0;
             btnNotificar.FlatStyle = FlatStyle.Flat;
@@ -82,7 +82,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.FromArgb(74, 102, 174);
+            BackColor = Color.FromArgb(73, 162, 203);
             Controls.Add(dtgvCuotasVenc);
             Controls.Add(btnNotificar);
             Controls.Add(lblCuotasVenc);

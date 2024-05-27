@@ -56,7 +56,7 @@
             // 
             // txtDocumentoPA
             // 
-            txtDocumentoPA.BackColor = Color.FromArgb(74, 102, 174);
+            txtDocumentoPA.BackColor = Color.FromArgb(73, 162, 203);
             txtDocumentoPA.BorderStyle = BorderStyle.None;
             txtDocumentoPA.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point);
             txtDocumentoPA.ForeColor = Color.White;
@@ -73,12 +73,13 @@
             // 
             // picDocPA
             // 
+            picDocPA.BackColor = Color.FromArgb(73, 162, 203);
             picDocPA.Image = (Image)resources.GetObject("picDocPA.Image");
-            picDocPA.Location = new Point(6, 76);
+            picDocPA.Location = new Point(37, 75);
             picDocPA.Margin = new Padding(3, 2, 3, 2);
             picDocPA.Name = "picDocPA";
-            picDocPA.Size = new Size(304, 43);
-            picDocPA.SizeMode = PictureBoxSizeMode.Zoom;
+            picDocPA.Size = new Size(247, 43);
+            picDocPA.SizeMode = PictureBoxSizeMode.StretchImage;
             picDocPA.TabIndex = 14;
             picDocPA.TabStop = false;
             // 
@@ -89,9 +90,9 @@
             lblPA.ForeColor = Color.White;
             lblPA.Location = new Point(32, 26);
             lblPA.Name = "lblPA";
-            lblPA.Size = new Size(202, 26);
+            lblPA.Size = new Size(267, 26);
             lblPA.TabIndex = 13;
-            lblPA.Text = "Pago de actividad";
+            lblPA.Text = "Pago de Estudio Clínico";
             // 
             // cboCuotasPA
             // 
@@ -126,9 +127,9 @@
             cbxTarjetaPA.Location = new Point(54, 353);
             cbxTarjetaPA.Margin = new Padding(3, 2, 3, 2);
             cbxTarjetaPA.Name = "cbxTarjetaPA";
-            cbxTarjetaPA.Size = new Size(151, 24);
+            cbxTarjetaPA.Size = new Size(110, 24);
             cbxTarjetaPA.TabIndex = 29;
-            cbxTarjetaPA.Text = "Tarjeta de crédito";
+            cbxTarjetaPA.Text = "Obra Social";
             cbxTarjetaPA.UseVisualStyleBackColor = true;
             cbxTarjetaPA.CheckedChanged += cbxTarjetaPA_CheckedChanged;
             // 
@@ -142,9 +143,9 @@
             cbxEfectivoPA.Location = new Point(54, 308);
             cbxEfectivoPA.Margin = new Padding(3, 2, 3, 2);
             cbxEfectivoPA.Name = "cbxEfectivoPA";
-            cbxEfectivoPA.Size = new Size(85, 24);
+            cbxEfectivoPA.Size = new Size(94, 24);
             cbxEfectivoPA.TabIndex = 28;
-            cbxEfectivoPA.Text = "Efectivo";
+            cbxEfectivoPA.Text = "Particular";
             cbxEfectivoPA.UseVisualStyleBackColor = true;
             cbxEfectivoPA.CheckedChanged += cbxEfectivoPA_CheckedChanged;
             // 
@@ -161,7 +162,7 @@
             // 
             // btnComprobantePA
             // 
-            btnComprobantePA.BackColor = Color.FromArgb(96, 61, 140);
+            btnComprobantePA.BackColor = Color.FromArgb(29, 65, 81);
             btnComprobantePA.Cursor = Cursors.Hand;
             btnComprobantePA.Enabled = false;
             btnComprobantePA.FlatAppearance.BorderSize = 0;
@@ -179,7 +180,7 @@
             // 
             // btnPagarPA
             // 
-            btnPagarPA.BackColor = Color.FromArgb(96, 61, 140);
+            btnPagarPA.BackColor = Color.FromArgb(29, 65, 81);
             btnPagarPA.Cursor = Cursors.Hand;
             btnPagarPA.FlatAppearance.BorderSize = 0;
             btnPagarPA.FlatStyle = FlatStyle.Flat;
@@ -258,7 +259,7 @@
             // 
             // txtMontoPA
             // 
-            txtMontoPA.BackColor = Color.FromArgb(74, 102, 174);
+            txtMontoPA.BackColor = Color.FromArgb(73, 162, 203);
             txtMontoPA.BorderStyle = BorderStyle.None;
             txtMontoPA.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point);
             txtMontoPA.ForeColor = Color.White;
@@ -273,12 +274,13 @@
             // 
             // picMontoPMC
             // 
+            picMontoPMC.BackColor = Color.FromArgb(73, 162, 203);
             picMontoPMC.Image = (Image)resources.GetObject("picMontoPMC.Image");
-            picMontoPMC.Location = new Point(6, 136);
+            picMontoPMC.Location = new Point(37, 135);
             picMontoPMC.Margin = new Padding(3, 2, 3, 2);
             picMontoPMC.Name = "picMontoPMC";
-            picMontoPMC.Size = new Size(304, 43);
-            picMontoPMC.SizeMode = PictureBoxSizeMode.Zoom;
+            picMontoPMC.Size = new Size(247, 43);
+            picMontoPMC.SizeMode = PictureBoxSizeMode.StretchImage;
             picMontoPMC.TabIndex = 41;
             picMontoPMC.TabStop = false;
             // 
@@ -286,7 +288,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.FromArgb(74, 102, 174);
+            BackColor = Color.FromArgb(73, 162, 203);
             Controls.Add(txtMontoPA);
             Controls.Add(picMontoPMC);
             Controls.Add(cboActividad);
