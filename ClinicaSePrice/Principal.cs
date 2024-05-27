@@ -38,7 +38,7 @@ namespace Dashboard_ClinicaSePrice
             InitializeComponent();
             lblNombreUser.Text = $"{nombre} {apellido}";
             this.uc = new GestionMiembros();
-            this.BackColor = Color.FromArgb(0x4A, 0x66, 0xAE);
+            this.BackColor = Color.FromArgb(0x49, 0xA2, 0xCB);
             Region = System.Drawing.Region.FromHrgn(CreateRoundRectRgn(0, 0, Width, Height, 20, 20));
         }
 
