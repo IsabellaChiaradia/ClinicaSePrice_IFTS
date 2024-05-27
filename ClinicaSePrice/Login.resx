@@ -121,7 +121,7 @@
   <data name="pictureBox1.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAuQAAALkCAIAAADIxrcyAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
-        wQAADsEBuJFr7QAA/7JJREFUeF7s/YV3XEe37gvnfznfPffsu89+934Djtmx48RxHAcccpiZHCaHHcds
+        vQAADr0BR/uQrQAA/7JJREFUeF7s/YV3XEe37gvnfznfPffsu89+934Djtmx48RxHAcccpiZHCaHHcds
         mW3JYmZmbBQzM6tJ3S1mqb6nVnVXr64WtG3Jlm2N8Rsare6qWgVzznqqFt1ToJtcnEL9VH7fRL5+SmWa
         jdWRPf4l76V1ZZpIgW5qSfJ1M2rDXFjb1C5P9dcas5RLLF8gXz++EBrDpMI0ld1PUiwkcoj8UDP7X6fS
         38/oDB8icVaSbiZKw1y+HiUshqpnNNtE3oqsOKjRqwZIvm5M2TVYbJoq0I/Pj0sNbw7ocBfkDRE7ZyEw
@@ -4936,7 +4936,7 @@
   <data name="pictureBox2.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAABJwAAAD0CAYAAADexjz4AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAL
-        EgAACxIB0t1+/AAAPTBJREFUeF7t3fljFPeV733+vfsrAhsTE+PEW2I73sc2QzBEwFjjBRx7RnfwHfw8
+        DgAACw4BQL7hQQAAPTBJREFUeF7t3fljFPeV733+vfsrAhsTE+PEW2I73sc2QzBEwFjjBRx7RnfwHfw8
         8Fxmrm2EpJbUiwTO3EnilUX7ymZjJ5nJjAH1Uvt5zvlWt0BQ2Agare8yr67q7qqveqn80J+c76l1/+PQ
         l4K7sz4/Lff/9O/locfflsee2i+PP/2WvLDtH+XZV/bJq6/9g/ztrnZ5bff/lF17D0jr6wed3/zdPzut
         r/8vAEvkN213J2tMLJ6s72QhssYEFkvWObkQWWMCiyXrnFxJst4TcLuyzqmFyBpzJcl6TwuRNeZCZI25
@@ -5203,7 +5203,7 @@
   <data name="pictureBox4.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAABJwAAAD0CAYAAADexjz4AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAL
-        EgAACxIB0t1+/AAAPTBJREFUeF7t3fljFPeV733+vfsrAhsTE+PEW2I73sc2QzBEwFjjBRx7RnfwHfw8
+        DgAACw4BQL7hQQAAPTBJREFUeF7t3fljFPeV733+vfsrAhsTE+PEW2I73sc2QzBEwFjjBRx7RnfwHfw8
         8Fxmrm2EpJbUiwTO3EnilUX7ymZjJ5nJjAH1Uvt5zvlWt0BQ2Agare8yr67q7qqveqn80J+c76l1/+PQ
         l4K7sz4/Lff/9O/locfflsee2i+PP/2WvLDtH+XZV/bJq6/9g/ztrnZ5bff/lF17D0jr6wed3/zdPzut
         r/8vAEvkN213J2tMLJ6s72QhssYEFkvWObkQWWMCiyXrnFxJst4TcLuyzqmFyBpzJcl6TwuRNeZCZI25

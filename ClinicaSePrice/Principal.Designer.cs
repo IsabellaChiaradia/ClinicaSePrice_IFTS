@@ -33,10 +33,10 @@
             btnClose2 = new Button();
             btnClose = new Button();
             panel1 = new Panel();
-            btnCuotasVencidas = new Boton();
-            btnPagoActividad = new Boton();
-            btnPagoMensualCuota = new Boton();
-            btnGestion = new Boton();
+            btnControlinsumos = new Boton();
+            btnPagoEstudio = new Boton();
+            btnPagoTurno = new Boton();
+            btnRegistroTurno = new Boton();
             panel2 = new Panel();
             lblNombreUser = new Label();
             label2 = new Label();
@@ -97,92 +97,92 @@
             // panel1
             // 
             panel1.BackgroundImage = (Image)resources.GetObject("panel1.BackgroundImage");
-            panel1.BackgroundImageLayout = ImageLayout.Stretch;
-            panel1.Controls.Add(btnCuotasVencidas);
-            panel1.Controls.Add(btnPagoActividad);
-            panel1.Controls.Add(btnPagoMensualCuota);
-            panel1.Controls.Add(btnGestion);
+            panel1.BackgroundImageLayout = ImageLayout.Center;
+            panel1.Controls.Add(btnControlinsumos);
+            panel1.Controls.Add(btnPagoEstudio);
+            panel1.Controls.Add(btnPagoTurno);
+            panel1.Controls.Add(btnRegistroTurno);
             panel1.Location = new Point(-3, -1);
             panel1.Margin = new Padding(3, 2, 3, 2);
             panel1.Name = "panel1";
             panel1.Size = new Size(237, 698);
             panel1.TabIndex = 1;
             // 
-            // btnCuotasVencidas
+            // btnControlinsumos
             // 
-            btnCuotasVencidas.BackColor = Color.FromArgb(74, 102, 174);
-            btnCuotasVencidas.BackgroundImageLayout = ImageLayout.None;
-            btnCuotasVencidas.Cursor = Cursors.Hand;
-            btnCuotasVencidas.FlatAppearance.BorderSize = 0;
-            btnCuotasVencidas.FlatStyle = FlatStyle.Flat;
-            btnCuotasVencidas.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            btnCuotasVencidas.ForeColor = Color.White;
-            btnCuotasVencidas.Location = new Point(34, 434);
-            btnCuotasVencidas.Name = "btnCuotasVencidas";
-            btnCuotasVencidas.Padding = new Padding(20, 0, 0, 0);
-            btnCuotasVencidas.Size = new Size(203, 52);
-            btnCuotasVencidas.TabIndex = 5;
-            btnCuotasVencidas.Text = "Cuotas Vencidas";
-            btnCuotasVencidas.TextAlign = ContentAlignment.MiddleLeft;
-            btnCuotasVencidas.UseVisualStyleBackColor = false;
-            btnCuotasVencidas.Click += btnCuotasVencidas_Click;
+            btnControlinsumos.BackColor = Color.FromArgb(73, 162, 203);
+            btnControlinsumos.BackgroundImageLayout = ImageLayout.None;
+            btnControlinsumos.Cursor = Cursors.Hand;
+            btnControlinsumos.FlatAppearance.BorderSize = 0;
+            btnControlinsumos.FlatStyle = FlatStyle.Flat;
+            btnControlinsumos.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            btnControlinsumos.ForeColor = Color.White;
+            btnControlinsumos.Location = new Point(34, 434);
+            btnControlinsumos.Name = "btnControlinsumos";
+            btnControlinsumos.Padding = new Padding(20, 0, 0, 0);
+            btnControlinsumos.Size = new Size(203, 52);
+            btnControlinsumos.TabIndex = 5;
+            btnControlinsumos.Text = "Control de Insumos";
+            btnControlinsumos.TextAlign = ContentAlignment.MiddleLeft;
+            btnControlinsumos.UseVisualStyleBackColor = false;
+            btnControlinsumos.Click += btnControlinsumos_Click;
             // 
-            // btnPagoActividad
+            // btnPagoEstudio
             // 
-            btnPagoActividad.BackColor = Color.FromArgb(74, 102, 174);
-            btnPagoActividad.BackgroundImageLayout = ImageLayout.None;
-            btnPagoActividad.Cursor = Cursors.Hand;
-            btnPagoActividad.FlatAppearance.BorderSize = 0;
-            btnPagoActividad.FlatStyle = FlatStyle.Flat;
-            btnPagoActividad.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            btnPagoActividad.ForeColor = Color.White;
-            btnPagoActividad.Location = new Point(34, 348);
-            btnPagoActividad.Name = "btnPagoActividad";
-            btnPagoActividad.Padding = new Padding(20, 0, 0, 0);
-            btnPagoActividad.Size = new Size(203, 52);
-            btnPagoActividad.TabIndex = 4;
-            btnPagoActividad.Text = "Pago Actividad";
-            btnPagoActividad.TextAlign = ContentAlignment.MiddleLeft;
-            btnPagoActividad.UseVisualStyleBackColor = false;
-            btnPagoActividad.Click += btnPagoActividad_Click;
+            btnPagoEstudio.BackColor = Color.FromArgb(73, 162, 203);
+            btnPagoEstudio.BackgroundImageLayout = ImageLayout.None;
+            btnPagoEstudio.Cursor = Cursors.Hand;
+            btnPagoEstudio.FlatAppearance.BorderSize = 0;
+            btnPagoEstudio.FlatStyle = FlatStyle.Flat;
+            btnPagoEstudio.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            btnPagoEstudio.ForeColor = Color.White;
+            btnPagoEstudio.Location = new Point(34, 348);
+            btnPagoEstudio.Name = "btnPagoEstudio";
+            btnPagoEstudio.Padding = new Padding(20, 0, 0, 0);
+            btnPagoEstudio.Size = new Size(203, 52);
+            btnPagoEstudio.TabIndex = 4;
+            btnPagoEstudio.Text = "Pago Estudio Clínico";
+            btnPagoEstudio.TextAlign = ContentAlignment.MiddleLeft;
+            btnPagoEstudio.UseVisualStyleBackColor = false;
+            btnPagoEstudio.Click += btnPagoEstudio_Click;
             // 
-            // btnPagoMensualCuota
+            // btnPagoTurno
             // 
-            btnPagoMensualCuota.BackColor = Color.FromArgb(74, 102, 174);
-            btnPagoMensualCuota.BackgroundImageLayout = ImageLayout.None;
-            btnPagoMensualCuota.Cursor = Cursors.Hand;
-            btnPagoMensualCuota.FlatAppearance.BorderSize = 0;
-            btnPagoMensualCuota.FlatStyle = FlatStyle.Flat;
-            btnPagoMensualCuota.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            btnPagoMensualCuota.ForeColor = Color.White;
-            btnPagoMensualCuota.Location = new Point(34, 262);
-            btnPagoMensualCuota.Name = "btnPagoMensualCuota";
-            btnPagoMensualCuota.Padding = new Padding(20, 0, 0, 0);
-            btnPagoMensualCuota.Size = new Size(203, 52);
-            btnPagoMensualCuota.TabIndex = 3;
-            btnPagoMensualCuota.Text = "Pagos Mensual Cuota";
-            btnPagoMensualCuota.TextAlign = ContentAlignment.MiddleLeft;
-            btnPagoMensualCuota.UseVisualStyleBackColor = false;
-            btnPagoMensualCuota.Click += btnPagosFactura_Click;
+            btnPagoTurno.BackColor = Color.FromArgb(73, 162, 203);
+            btnPagoTurno.BackgroundImageLayout = ImageLayout.None;
+            btnPagoTurno.Cursor = Cursors.Hand;
+            btnPagoTurno.FlatAppearance.BorderSize = 0;
+            btnPagoTurno.FlatStyle = FlatStyle.Flat;
+            btnPagoTurno.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            btnPagoTurno.ForeColor = Color.White;
+            btnPagoTurno.Location = new Point(34, 262);
+            btnPagoTurno.Name = "btnPagoTurno";
+            btnPagoTurno.Padding = new Padding(20, 0, 0, 0);
+            btnPagoTurno.Size = new Size(203, 52);
+            btnPagoTurno.TabIndex = 3;
+            btnPagoTurno.Text = "Pago de Turnos";
+            btnPagoTurno.TextAlign = ContentAlignment.MiddleLeft;
+            btnPagoTurno.UseVisualStyleBackColor = false;
+            btnPagoTurno.Click += btnPagoTurno_Click;
             // 
-            // btnGestion
+            // btnRegistroTurno
             // 
-            btnGestion.BackColor = Color.FromArgb(74, 102, 174);
-            btnGestion.BackgroundImageLayout = ImageLayout.None;
-            btnGestion.Cursor = Cursors.Hand;
-            btnGestion.FlatAppearance.BorderSize = 0;
-            btnGestion.FlatStyle = FlatStyle.Flat;
-            btnGestion.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            btnGestion.ForeColor = Color.White;
-            btnGestion.Location = new Point(34, 176);
-            btnGestion.Name = "btnGestion";
-            btnGestion.Padding = new Padding(30, 0, 0, 0);
-            btnGestion.Size = new Size(203, 52);
-            btnGestion.TabIndex = 2;
-            btnGestion.Text = "Gestión de miembros";
-            btnGestion.TextAlign = ContentAlignment.MiddleLeft;
-            btnGestion.UseVisualStyleBackColor = false;
-            btnGestion.Click += btnGestion_Click;
+            btnRegistroTurno.BackColor = Color.FromArgb(73, 162, 203);
+            btnRegistroTurno.BackgroundImageLayout = ImageLayout.None;
+            btnRegistroTurno.Cursor = Cursors.Hand;
+            btnRegistroTurno.FlatAppearance.BorderSize = 0;
+            btnRegistroTurno.FlatStyle = FlatStyle.Flat;
+            btnRegistroTurno.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            btnRegistroTurno.ForeColor = Color.White;
+            btnRegistroTurno.Location = new Point(34, 176);
+            btnRegistroTurno.Name = "btnRegistroTurno";
+            btnRegistroTurno.Padding = new Padding(30, 0, 0, 0);
+            btnRegistroTurno.Size = new Size(203, 52);
+            btnRegistroTurno.TabIndex = 2;
+            btnRegistroTurno.Text = "Registro de Turnos";
+            btnRegistroTurno.TextAlign = ContentAlignment.MiddleLeft;
+            btnRegistroTurno.UseVisualStyleBackColor = false;
+            btnRegistroTurno.Click += btnRegistroTurno_Click;
             // 
             // panel2
             // 
@@ -243,7 +243,7 @@
             pnlContainer.Size = new Size(813, 489);
             pnlContainer.TabIndex = 0;
             // 
-            // Form1
+            // Principal
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -256,7 +256,7 @@
             Controls.Add(pnlControlPanel);
             FormBorderStyle = FormBorderStyle.None;
             Margin = new Padding(3, 2, 3, 2);
-            Name = "Form1";
+            Name = "Principal";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Form1";
             Load += Form1_Load;
@@ -273,10 +273,10 @@
         private Button btnClose;
         private Button btnClose2;
         private Panel panel1;
-        private Boton btnGestion;
-        private Boton btnCuotasVencidas;
-        private Boton btnPagoActividad;
-        private Boton btnPagoMensualCuota;
+        private Boton btnRegistroTurno;
+        private Boton btnControlinsumos;
+        private Boton btnPagoEstudio;
+        private Boton btnPagoTurno;
         private Panel panel2;
         private Label label2;
         private Label label1;

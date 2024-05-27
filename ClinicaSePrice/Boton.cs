@@ -21,7 +21,7 @@ namespace Dashboard_ClinicaSePrice
             this.FlatStyle = FlatStyle.Flat;
             this.FlatAppearance.BorderSize = 0;
             this.Size = new Size(150, 40);
-            this.BackColor = Color.FromArgb(0x4A, 0x66, 0xAE);
+            this.BackColor = Color.FromArgb(0x49, 0xA2, 0xCB);
             this.ForeColor = Color.White;
             this.Padding = new Padding(30, 0, 0, 0); 
             this.TextAlign = ContentAlignment.MiddleLeft;
@@ -34,7 +34,7 @@ namespace Dashboard_ClinicaSePrice
             GraphicsPath path = GetFigurePath(ClientRectangle, borderRadius);
             this.Region = new Region(path);
 
-            using (Pen pen = new Pen(Color.FromArgb(0x4A, 0x66, 0xAE)))
+            using (Pen pen = new Pen(Color.FromArgb(0x49, 0xA2, 0xCB)))
             {
                 e.Graphics.DrawPath(pen, path);
             }

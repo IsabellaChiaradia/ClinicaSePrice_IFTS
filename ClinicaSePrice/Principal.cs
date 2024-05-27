@@ -76,25 +76,25 @@ namespace Dashboard_ClinicaSePrice
 
         }
 
-        private void btnGestion_Click(object sender, EventArgs e)
+        private void btnRegistroTurno_Click(object sender, EventArgs e)
         {
             GestionMiembros uc = new GestionMiembros();
             agregarPaneles(uc);
         }
 
-        private void btnPagosFactura_Click(object sender, EventArgs e)
+        private void btnPagoTurno_Click(object sender, EventArgs e)
         {
             PagoMensualCuota uc = new PagoMensualCuota();
             agregarPaneles(uc);
         }
 
-        private void btnPagoActividad_Click(object sender, EventArgs e)
+        private void btnPagoEstudio_Click(object sender, EventArgs e)
         {
             PagoActividad uc = new PagoActividad();
             agregarPaneles(uc);
         }
 
-        private void btnCuotasVencidas_Click(object sender, EventArgs e)
+        private void btnControlinsumos_Click(object sender, EventArgs e)
         {
             CuotasVencidas uc = new CuotasVencidas();
             agregarPaneles(uc);
