@@ -98,6 +98,29 @@ CREATE TABLE practica_insumo (
     FOREIGN KEY (id_insumo) REFERENCES insumo(idInsumo)
 );
 
+-- Creacion de la tabla rol
+DROP TABLE IF EXISTS rol;
+CREATE TABLE rol (
+  idRol int(11) NOT NULL,
+  nomRol varchar(30) NOT NULL,
+  PRIMARY KEY (idRol)
+);
+
+-- Creacion de la tabla usuario
+DROP TABLE IF EXISTS usuario;
+CREATE TABLE usuario (
+  idUsuario int(11) NOT NULL AUTO_INCREMENT,
+  nombre varchar(50) DEFAULT NULL,
+  apellido varchar(50) DEFAULT NULL,
+  id_rol int(11) DEFAULT NULL,
+  email varchar(50) DEFAULT NULL,
+  contrasenia varchar(50) DEFAULT NULL,
+  isActivo tinyint(1) DEFAULT NULL,
+  PRIMARY KEY (idUsuario),
+  FOREIGN KEY (id_rol) REFERENCES rol(idRol)
+) ;
+
+
 -- Insertar pacientes
 INSERT INTO paciente (idPaciente, nombre, apellido, nDocumento, email, telefono, fechaNac, domicilio, obraSocial) VALUES
 (1001,'Juan', 'Perez', '30123456', 'juan.perez@gmail.com', '2641234567', '1985-01-15', 'Av. Libertador 1234', 'OSDE'),
@@ -336,3 +359,11 @@ INSERT INTO practica_insumo (id_practica, id_insumo, id_especialidad, cantidad) 
 (30, 1, 6, 1),   -- Guantes
 (30, 5, 6, 1),   -- Mascarilla
 (30, 10, 6, 4); -- Tiras Reactivas;
+
+
+INSERT INTO rol (idRol, nomRol) VALUES
+(1, 'Administrador');
+
+INSERT INTO usuario (idUsuario, nombre, apellido, id_rol, email, contrasenia, isActivo) VALUES 
+(1, 'Delfina', 'Brea', 1, 'admin@admin', '1234', 1);
+

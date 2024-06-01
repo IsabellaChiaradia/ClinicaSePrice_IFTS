@@ -24,7 +24,7 @@ namespace ClinicaSePrice.Datos
                 // el comando es un elemento que almacena en este caso el nombre
                 // del procedimiento almacenado y la referencia a la conexion para su posterior ejecución
                 //con el fin de poder realizar el inicio de sesión del administrador 
-                MySqlCommand comando = new MySqlCommand("IngresoLogin", sqlCon);
+                MySqlCommand comando = new MySqlCommand("sp_ingreso_login", sqlCon);
                 comando.CommandType = CommandType.StoredProcedure;
                 // definimos los parametros que tiene el procedure
                 comando.Parameters.Add("correo",MySqlDbType.VarChar).Value = User_email;
@@ -35,7 +35,7 @@ namespace ClinicaSePrice.Datos
 
                 if (resultado.HasRows)
                 {
-                    // Asumiendo que DataTable tiene columnas: "Nombre", "Apellido",y  "NomRol"
+                    // Asumiendo que DataTable tiene columnas: "nombre", "apellido",y  "nomRol"
                     tabla.Load(resultado);
                 }
                 return tabla;

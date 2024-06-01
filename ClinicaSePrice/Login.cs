@@ -54,8 +54,8 @@ namespace Dashboard_ClinicaSePrice
             if (tablaLogin.Rows.Count > 0)
             {
                 // quiere decir que el resultado tiene 1 fila por lo que el usuario EXISTE
-                string nombre = tablaLogin.Rows[0]["Nombre"].ToString();
-                string apellido = tablaLogin.Rows[0]["Apellido"].ToString();
+                string nombre = tablaLogin.Rows[0]["nombre"].ToString();
+                string apellido = tablaLogin.Rows[0]["apellido"].ToString();
 
                 MessageBox.Show($"Bienvenido, {nombre} {apellido}", "AVISO DEL SISTEMA",
                 MessageBoxButtons.OK,

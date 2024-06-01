@@ -36,7 +36,7 @@ namespace ClinicaSePrice.Datos
             ciclo
             *
             ___________________________________________________________*/
-            while (correcto != true)
+            while (!correcto)
             {
                 // Armamos los cuadros de dialogo para el ingreso de datos
                 T_servidor = Microsoft.VisualBasic.Interaction.InputBox
@@ -71,7 +71,7 @@ namespace ClinicaSePrice.Datos
                 }
             }
             // reemplazamos los datos concretos que teniamos por las  variables
-            this.baseDatos = "club_deportivo";
+            this.baseDatos = "clinica";
             this.servidor = T_servidor; // "localhost";
             this.puerto = T_puerto; //"3306";
             this.usuario = T_usuario; // "root";
