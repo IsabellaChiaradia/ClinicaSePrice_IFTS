@@ -89,7 +89,7 @@ namespace Dashboard_ClinicaSePrice
 
         private void btnControlinsumos_Click(object sender, EventArgs e)
         {
-            CuotasVencidas uc = new CuotasVencidas();
+            ControlInsumos uc = new ControlInsumos();
             agregarPaneles(uc);
         }
 

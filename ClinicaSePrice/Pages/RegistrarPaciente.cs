@@ -15,22 +15,11 @@ namespace ClinicaSePrice.Pages
 {
     public partial class RegistrarPaciente : UserControl
     {
-        [DllImport("Gdi32.dll", EntryPoint = "CreateRoundRectRgn")]
-        private static extern IntPtr CreateRoundRectRgn
-       (
-           int nLeftRect,
-           int nTopRect,
-           int nRightRect,
-           int nBottomRect,
-           int nWidthEllipse,
-           int nHeightEllipse
-       );
         private Miembro miembroDB;
         public RegistrarPaciente()
         {
             InitializeComponent();
             this.miembroDB = new Miembro();
-            Region = System.Drawing.Region.FromHrgn(CreateRoundRectRgn(0, 0, Width, Height, 20, 20));
         }
 
 
@@ -88,20 +77,20 @@ namespace ClinicaSePrice.Pages
             {
                 if (codigo == 1)
                 {
-                    MessageBox.Show("EL MIEMBRO YA EXISTE", "AVISO DEL SISTEMA",
+                    MessageBox.Show("EL PACIENTE YA EXISTE", "AVISO DEL SISTEMA",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
                 }
                 else
                 {
-                    MessageBox.Show("Se dió de alta con éxito el miembro con el codigo Nro " + respuesta, "AVISO DEL SISTEMA",
+                    MessageBox.Show("Se dió de alta con éxito el paciente con el codigo Nro " + respuesta, "AVISO DEL SISTEMA",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Information);
                 }
             }
             else
             {
-                MessageBox.Show("Ups! Hubo un error con la alta del miembro", "AVISO DEL SISTEMA",
+                MessageBox.Show("Ups! Hubo un error con la alta del paciente", "AVISO DEL SISTEMA",
                 MessageBoxButtons.OK,
                 MessageBoxIcon.Error);
             }
@@ -218,7 +207,7 @@ namespace ClinicaSePrice.Pages
             if (txtFechaNacimiento.Text == "")
             {
                 txtFechaNacimiento.Text = "dd/mm/aaaa";
-            }
+            }       
         }
 
         private void bntLimpiarRP_Click(object sender, EventArgs e)

@@ -14,9 +14,9 @@ using System.Net.Mail;
 
 namespace ClinicaSePrice.Pages
 {
-    public partial class CuotasVencidas : UserControl
+    public partial class ControlInsumos : UserControl
     {
-        public CuotasVencidas()
+        public ControlInsumos()
         {
             InitializeComponent();
         }

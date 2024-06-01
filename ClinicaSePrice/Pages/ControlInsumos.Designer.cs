@@ -1,6 +1,6 @@
 ﻿namespace ClinicaSePrice.Pages
 {
-    partial class CuotasVencidas
+    partial class ControlInsumos
     {
         /// <summary> 
         /// Variable del diseñador necesaria.

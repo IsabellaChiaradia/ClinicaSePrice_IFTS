@@ -44,12 +44,15 @@
             pictureBox4 = new PictureBox();
             pictureBox5 = new PictureBox();
             bntLimpiarRP = new Dashboard_ClinicaSePrice.CustomBotonDos();
+            dgtvDatosPaciente = new DataGridView();
+            btnRegistrar = new Dashboard_ClinicaSePrice.CustomBotonDos();
             ((System.ComponentModel.ISupportInitialize)picDocPA).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox4).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox5).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dgtvDatosPaciente).BeginInit();
             SuspendLayout();
             // 
             // lblFechaNac
@@ -253,7 +256,7 @@
             bntLimpiarRP.FlatStyle = FlatStyle.Flat;
             bntLimpiarRP.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Bold, GraphicsUnit.Point);
             bntLimpiarRP.ForeColor = Color.White;
-            bntLimpiarRP.Location = new Point(93, 428);
+            bntLimpiarRP.Location = new Point(27, 428);
             bntLimpiarRP.Margin = new Padding(3, 2, 3, 2);
             bntLimpiarRP.Name = "bntLimpiarRP";
             bntLimpiarRP.Size = new Size(181, 39);
@@ -262,11 +265,44 @@
             bntLimpiarRP.UseVisualStyleBackColor = false;
             bntLimpiarRP.Click += bntLimpiarRP_Click;
             // 
+            // dgtvDatosPaciente
+            // 
+            dgtvDatosPaciente.AllowUserToAddRows = false;
+            dgtvDatosPaciente.AllowUserToDeleteRows = false;
+            dgtvDatosPaciente.BackgroundColor = Color.White;
+            dgtvDatosPaciente.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgtvDatosPaciente.Location = new Point(319, 68);
+            dgtvDatosPaciente.Margin = new Padding(3, 2, 3, 2);
+            dgtvDatosPaciente.Name = "dgtvDatosPaciente";
+            dgtvDatosPaciente.ReadOnly = true;
+            dgtvDatosPaciente.RowHeadersWidth = 51;
+            dgtvDatosPaciente.RowTemplate.Height = 29;
+            dgtvDatosPaciente.Size = new Size(448, 339);
+            dgtvDatosPaciente.TabIndex = 53;
+            // 
+            // btnRegistrar
+            // 
+            btnRegistrar.BackColor = Color.FromArgb(29, 65, 81);
+            btnRegistrar.Cursor = Cursors.Hand;
+            btnRegistrar.FlatAppearance.BorderSize = 0;
+            btnRegistrar.FlatStyle = FlatStyle.Flat;
+            btnRegistrar.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            btnRegistrar.ForeColor = Color.White;
+            btnRegistrar.Location = new Point(586, 428);
+            btnRegistrar.Margin = new Padding(3, 2, 3, 2);
+            btnRegistrar.Name = "btnRegistrar";
+            btnRegistrar.Size = new Size(181, 39);
+            btnRegistrar.TabIndex = 55;
+            btnRegistrar.Text = "REGISTRAR";
+            btnRegistrar.UseVisualStyleBackColor = false;
+            // 
             // RegistrarPaciente
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(73, 162, 203);
+            Controls.Add(btnRegistrar);
+            Controls.Add(dgtvDatosPaciente);
             Controls.Add(bntLimpiarRP);
             Controls.Add(lblFechaNac);
             Controls.Add(txtFechaNacimiento);
@@ -290,6 +326,7 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox4).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox5).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dgtvDatosPaciente).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -310,5 +347,7 @@
         private PictureBox pictureBox4;
         private PictureBox pictureBox5;
         private Dashboard_ClinicaSePrice.CustomBotonDos bntLimpiarRP;
+        private DataGridView dgtvDatosPaciente;
+        private Dashboard_ClinicaSePrice.CustomBotonDos btnRegistrar;
     }
 }

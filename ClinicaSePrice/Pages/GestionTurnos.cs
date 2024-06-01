@@ -32,38 +32,7 @@ namespace Dashboard_ClinicaSePrice.pesañas
         {
             InitializeComponent();
         }
-
-
-        private void btnPrintCarnet_Click(object sender, EventArgs e)
-        {
-            if (dgtvListaSocios.SelectedRows.Count > 0)
-            {
-                string nombreSocio = Convert.ToString(dgtvListaSocios.SelectedRows[0].Cells["Nombre"].Value);
-                string apellidoSocio = Convert.ToString(dgtvListaSocios.SelectedRows[0].Cells["Apellido"].Value);
-                string dniSocio = Convert.ToString(dgtvListaSocios.SelectedRows[0].Cells["DNI"].Value);
-                string idSocio = Convert.ToString(dgtvListaSocios.SelectedRows[0].Cells["IDMiembro"].Value);
-                string correoSocio = Convert.ToString(dgtvListaSocios.SelectedRows[0].Cells["Correo"].Value);
-                string fechaInscripcion = DateTime.Now.ToString("dd/MM/yyyy");
-
-                bool esSocio = Convert.ToBoolean(dgtvListaSocios.SelectedRows[0].Cells["EsSocio"].Value);
-
-                if (esSocio)
-                {
-                    FormCarnet carnet = new FormCarnet(nombreSocio, apellidoSocio, dniSocio, idSocio, correoSocio, fechaInscripcion);
-                    carnet.ShowDialog();
-                }
-                else
-                {
-                    MessageBox.Show("El miembro seleccionado no es un socio, solo los socios pueden tener carnet.", "AVISO DEL SISTEMA",
-                        MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                }
-            }
-            else
-            {
-                MessageBox.Show("Por favor, seleccione un miembro antes de imprimir el carnet.", "AVISO DEL SISTEMA",
-                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
-        }
+                      
 
         private void txtDniGestion_Enter(object sender, EventArgs e)
         {
@@ -95,6 +64,24 @@ namespace Dashboard_ClinicaSePrice.pesañas
         private void btnBuscarPaciente_Click(object sender, EventArgs e)
         {
             RegistrarPaciente uc = new RegistrarPaciente();
+        }
+
+        private void btnRegistrarTurno_Click(object sender, EventArgs e)
+        {
+            if (dgtvListaSocios.SelectedRows.Count > 0)
+            {
+                string nombreSocio = Convert.ToString(dgtvListaSocios.SelectedRows[0].Cells["Nombre"].Value);
+                string apellidoSocio = Convert.ToString(dgtvListaSocios.SelectedRows[0].Cells["Apellido"].Value);
+                string dniSocio = Convert.ToString(dgtvListaSocios.SelectedRows[0].Cells["DNI"].Value);
+                string idSocio = Convert.ToString(dgtvListaSocios.SelectedRows[0].Cells["IDMiembro"].Value);
+                string correoSocio = Convert.ToString(dgtvListaSocios.SelectedRows[0].Cells["Correo"].Value);
+                string fechaInscripcion = DateTime.Now.ToString("dd/MM/yyyy");
+
+                bool esSocio = Convert.ToBoolean(dgtvListaSocios.SelectedRows[0].Cells["EsSocio"].Value);
+
+                FormCarnet carnet = new FormCarnet(nombreSocio, apellidoSocio, dniSocio, idSocio, correoSocio, fechaInscripcion);
+                carnet.ShowDialog();
+            }
         }
     }
 }

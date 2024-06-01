@@ -30,10 +30,8 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GestionTurnos));
             dgtvListaSocios = new DataGridView();
-            btnPrintCarnet = new CustomBotonDos();
             dtpTurno = new DateTimePicker();
             picActividad = new PictureBox();
-            cmbHora = new ComboBox();
             picCantCuotasPA = new PictureBox();
             cmbEspecialidad = new ComboBox();
             pictureBox4 = new PictureBox();
@@ -49,6 +47,11 @@
             lblTurnosDisp = new Label();
             cmbConsulta = new ComboBox();
             pictureBox1 = new PictureBox();
+            btnBuscarTurno = new CustomBotonDos();
+            dateTimePicker1 = new DateTimePicker();
+            lblFechaDesde = new Label();
+            lblFechaHasta = new Label();
+            lblPractica = new Label();
             ((System.ComponentModel.ISupportInitialize)dgtvListaSocios).BeginInit();
             ((System.ComponentModel.ISupportInitialize)picActividad).BeginInit();
             ((System.ComponentModel.ISupportInitialize)picCantCuotasPA).BeginInit();
@@ -73,23 +76,6 @@
             dgtvListaSocios.Size = new Size(761, 221);
             dgtvListaSocios.TabIndex = 23;
             // 
-            // btnPrintCarnet
-            // 
-            btnPrintCarnet.BackColor = Color.FromArgb(29, 65, 81);
-            btnPrintCarnet.Cursor = Cursors.Hand;
-            btnPrintCarnet.FlatAppearance.BorderSize = 0;
-            btnPrintCarnet.FlatStyle = FlatStyle.Flat;
-            btnPrintCarnet.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            btnPrintCarnet.ForeColor = Color.White;
-            btnPrintCarnet.Location = new Point(339, 445);
-            btnPrintCarnet.Margin = new Padding(3, 2, 3, 2);
-            btnPrintCarnet.Name = "btnPrintCarnet";
-            btnPrintCarnet.Size = new Size(181, 39);
-            btnPrintCarnet.TabIndex = 26;
-            btnPrintCarnet.Text = "COMPROBANTE";
-            btnPrintCarnet.UseVisualStyleBackColor = false;
-            btnPrintCarnet.Click += btnPrintCarnet_Click;
-            // 
             // dtpTurno
             // 
             dtpTurno.CalendarForeColor = Color.Black;
@@ -97,7 +83,7 @@
             dtpTurno.Cursor = Cursors.Hand;
             dtpTurno.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point);
             dtpTurno.Format = DateTimePickerFormat.Short;
-            dtpTurno.Location = new Point(514, 134);
+            dtpTurno.Location = new Point(514, 147);
             dtpTurno.MaxDate = new DateTime(2025, 12, 31, 0, 0, 0, 0);
             dtpTurno.MinDate = new DateTime(2020, 1, 1, 0, 0, 0, 0);
             dtpTurno.Name = "dtpTurno";
@@ -108,31 +94,17 @@
             // 
             picActividad.BackgroundImage = (Image)resources.GetObject("picActividad.BackgroundImage");
             picActividad.BackgroundImageLayout = ImageLayout.Stretch;
-            picActividad.Location = new Point(497, 126);
+            picActividad.Location = new Point(497, 139);
             picActividad.Name = "picActividad";
             picActividad.Size = new Size(126, 43);
             picActividad.TabIndex = 37;
             picActividad.TabStop = false;
             // 
-            // cmbHora
-            // 
-            cmbHora.Cursor = Cursors.Hand;
-            cmbHora.DropDownStyle = ComboBoxStyle.DropDownList;
-            cmbHora.Enabled = false;
-            cmbHora.FlatStyle = FlatStyle.Popup;
-            cmbHora.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            cmbHora.ForeColor = Color.FromArgb(74, 102, 174);
-            cmbHora.FormattingEnabled = true;
-            cmbHora.Location = new Point(656, 134);
-            cmbHora.Name = "cmbHora";
-            cmbHora.Size = new Size(96, 28);
-            cmbHora.TabIndex = 36;
-            // 
             // picCantCuotasPA
             // 
             picCantCuotasPA.BackgroundImage = (Image)resources.GetObject("picCantCuotasPA.BackgroundImage");
             picCantCuotasPA.BackgroundImageLayout = ImageLayout.Stretch;
-            picCantCuotasPA.Location = new Point(642, 126);
+            picCantCuotasPA.Location = new Point(642, 139);
             picCantCuotasPA.Name = "picCantCuotasPA";
             picCantCuotasPA.Size = new Size(126, 43);
             picCantCuotasPA.TabIndex = 35;
@@ -167,7 +139,7 @@
             label2.AutoSize = true;
             label2.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point);
             label2.ForeColor = Color.White;
-            label2.Location = new Point(333, 48);
+            label2.Location = new Point(326, 48);
             label2.Name = "label2";
             label2.Size = new Size(99, 20);
             label2.TabIndex = 41;
@@ -202,7 +174,7 @@
             label3.AutoSize = true;
             label3.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point);
             label3.ForeColor = Color.White;
-            label3.Location = new Point(563, 48);
+            label3.Location = new Point(558, 48);
             label3.Name = "label3";
             label3.Size = new Size(60, 20);
             label3.TabIndex = 44;
@@ -257,10 +229,10 @@
             btnBuscarPaciente.FlatStyle = FlatStyle.Flat;
             btnBuscarPaciente.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Bold, GraphicsUnit.Point);
             btnBuscarPaciente.ForeColor = Color.White;
-            btnBuscarPaciente.Location = new Point(70, 128);
+            btnBuscarPaciente.Location = new Point(17, 119);
             btnBuscarPaciente.Margin = new Padding(3, 2, 3, 2);
             btnBuscarPaciente.Name = "btnBuscarPaciente";
-            btnBuscarPaciente.Size = new Size(202, 39);
+            btnBuscarPaciente.Size = new Size(255, 39);
             btnBuscarPaciente.TabIndex = 48;
             btnBuscarPaciente.Text = "BUSCAR PACIENTE";
             btnBuscarPaciente.UseVisualStyleBackColor = false;
@@ -274,13 +246,14 @@
             btnRegistrarTurno.FlatStyle = FlatStyle.Flat;
             btnRegistrarTurno.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Bold, GraphicsUnit.Point);
             btnRegistrarTurno.ForeColor = Color.White;
-            btnRegistrarTurno.Location = new Point(576, 445);
+            btnRegistrarTurno.Location = new Point(361, 440);
             btnRegistrarTurno.Margin = new Padding(3, 2, 3, 2);
             btnRegistrarTurno.Name = "btnRegistrarTurno";
             btnRegistrarTurno.Size = new Size(192, 39);
             btnRegistrarTurno.TabIndex = 49;
             btnRegistrarTurno.Text = "REGISTRAR TURNO";
             btnRegistrarTurno.UseVisualStyleBackColor = false;
+            btnRegistrarTurno.Click += btnRegistrarTurno_Click;
             // 
             // lblTurnosDisp
             // 
@@ -303,7 +276,7 @@
             cmbConsulta.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point);
             cmbConsulta.ForeColor = Color.FromArgb(74, 102, 174);
             cmbConsulta.FormattingEnabled = true;
-            cmbConsulta.Location = new Point(329, 134);
+            cmbConsulta.Location = new Point(329, 147);
             cmbConsulta.Name = "cmbConsulta";
             cmbConsulta.Size = new Size(133, 28);
             cmbConsulta.TabIndex = 52;
@@ -312,17 +285,85 @@
             // 
             pictureBox1.BackgroundImage = (Image)resources.GetObject("pictureBox1.BackgroundImage");
             pictureBox1.BackgroundImageLayout = ImageLayout.Stretch;
-            pictureBox1.Location = new Point(315, 126);
+            pictureBox1.Location = new Point(315, 139);
             pictureBox1.Name = "pictureBox1";
             pictureBox1.Size = new Size(163, 43);
             pictureBox1.TabIndex = 51;
             pictureBox1.TabStop = false;
+            // 
+            // btnBuscarTurno
+            // 
+            btnBuscarTurno.BackColor = Color.FromArgb(29, 65, 81);
+            btnBuscarTurno.Cursor = Cursors.Hand;
+            btnBuscarTurno.FlatAppearance.BorderSize = 0;
+            btnBuscarTurno.FlatStyle = FlatStyle.Flat;
+            btnBuscarTurno.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            btnBuscarTurno.ForeColor = Color.White;
+            btnBuscarTurno.Location = new Point(576, 440);
+            btnBuscarTurno.Margin = new Padding(3, 2, 3, 2);
+            btnBuscarTurno.Name = "btnBuscarTurno";
+            btnBuscarTurno.Size = new Size(202, 39);
+            btnBuscarTurno.TabIndex = 53;
+            btnBuscarTurno.Text = "BUSCAR TURNO";
+            btnBuscarTurno.UseVisualStyleBackColor = false;
+            // 
+            // dateTimePicker1
+            // 
+            dateTimePicker1.CalendarForeColor = Color.Black;
+            dateTimePicker1.CalendarTitleForeColor = Color.FromArgb(74, 102, 174);
+            dateTimePicker1.Cursor = Cursors.Hand;
+            dateTimePicker1.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            dateTimePicker1.Format = DateTimePickerFormat.Short;
+            dateTimePicker1.Location = new Point(658, 147);
+            dateTimePicker1.MaxDate = new DateTime(2025, 12, 31, 0, 0, 0, 0);
+            dateTimePicker1.MinDate = new DateTime(2020, 1, 1, 0, 0, 0, 0);
+            dateTimePicker1.Name = "dateTimePicker1";
+            dateTimePicker1.Size = new Size(94, 26);
+            dateTimePicker1.TabIndex = 54;
+            // 
+            // lblFechaDesde
+            // 
+            lblFechaDesde.AutoSize = true;
+            lblFechaDesde.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            lblFechaDesde.ForeColor = Color.White;
+            lblFechaDesde.Location = new Point(497, 119);
+            lblFechaDesde.Name = "lblFechaDesde";
+            lblFechaDesde.Size = new Size(102, 20);
+            lblFechaDesde.TabIndex = 55;
+            lblFechaDesde.Text = "Fecha desde";
+            // 
+            // lblFechaHasta
+            // 
+            lblFechaHasta.AutoSize = true;
+            lblFechaHasta.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            lblFechaHasta.ForeColor = Color.White;
+            lblFechaHasta.Location = new Point(642, 119);
+            lblFechaHasta.Name = "lblFechaHasta";
+            lblFechaHasta.Size = new Size(98, 20);
+            lblFechaHasta.TabIndex = 56;
+            lblFechaHasta.Text = "Fecha hasta";
+            // 
+            // lblPractica
+            // 
+            lblPractica.AutoSize = true;
+            lblPractica.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            lblPractica.ForeColor = Color.White;
+            lblPractica.Location = new Point(321, 119);
+            lblPractica.Name = "lblPractica";
+            lblPractica.Size = new Size(66, 20);
+            lblPractica.TabIndex = 57;
+            lblPractica.Text = "Práctica";
             // 
             // GestionTurnos
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(73, 162, 203);
+            Controls.Add(lblPractica);
+            Controls.Add(lblFechaHasta);
+            Controls.Add(lblFechaDesde);
+            Controls.Add(dateTimePicker1);
+            Controls.Add(btnBuscarTurno);
             Controls.Add(cmbConsulta);
             Controls.Add(pictureBox1);
             Controls.Add(lblTurnosDisp);
@@ -339,9 +380,7 @@
             Controls.Add(pictureBox4);
             Controls.Add(dtpTurno);
             Controls.Add(picActividad);
-            Controls.Add(cmbHora);
             Controls.Add(picCantCuotasPA);
-            Controls.Add(btnPrintCarnet);
             Controls.Add(dgtvListaSocios);
             Margin = new Padding(3, 2, 3, 2);
             Name = "GestionTurnos";
@@ -359,10 +398,8 @@
 
         #endregion
         private DataGridView dgtvListaSocios;
-        private CustomBotonDos btnPrintCarnet;
         private DateTimePicker dtpTurno;
         private PictureBox picActividad;
-        private ComboBox cmbHora;
         private PictureBox picCantCuotasPA;
         private ComboBox cmbEspecialidad;
         private PictureBox pictureBox4;
@@ -378,5 +415,10 @@
         private Label lblTurnosDisp;
         private ComboBox cmbConsulta;
         private PictureBox pictureBox1;
+        private CustomBotonDos btnBuscarTurno;
+        private DateTimePicker dateTimePicker1;
+        private Label lblFechaDesde;
+        private Label lblFechaHasta;
+        private Label lblPractica;
     }
 }
