@@ -33,9 +33,9 @@
             btnClose2 = new Button();
             btnClose = new Button();
             panel1 = new Panel();
+            btnRegistroPaciente = new Boton();
             btnControlinsumos = new Boton();
             btnPagoEstudio = new Boton();
-            btnPagoTurno = new Boton();
             btnRegistroTurno = new Boton();
             panel2 = new Panel();
             lblNombreUser = new Label();
@@ -98,15 +98,34 @@
             // 
             panel1.BackgroundImage = (Image)resources.GetObject("panel1.BackgroundImage");
             panel1.BackgroundImageLayout = ImageLayout.Center;
+            panel1.Controls.Add(btnRegistroPaciente);
             panel1.Controls.Add(btnControlinsumos);
             panel1.Controls.Add(btnPagoEstudio);
-            panel1.Controls.Add(btnPagoTurno);
             panel1.Controls.Add(btnRegistroTurno);
             panel1.Location = new Point(-3, -1);
             panel1.Margin = new Padding(3, 2, 3, 2);
             panel1.Name = "panel1";
             panel1.Size = new Size(237, 698);
             panel1.TabIndex = 1;
+            // 
+            // btnRegistroPaciente
+            // 
+            btnRegistroPaciente.BackColor = Color.FromArgb(73, 162, 203);
+            btnRegistroPaciente.BackgroundImageLayout = ImageLayout.None;
+            btnRegistroPaciente.Cursor = Cursors.Hand;
+            btnRegistroPaciente.FlatAppearance.BorderSize = 0;
+            btnRegistroPaciente.FlatStyle = FlatStyle.Flat;
+            btnRegistroPaciente.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            btnRegistroPaciente.ForeColor = Color.White;
+            btnRegistroPaciente.Location = new Point(34, 177);
+            btnRegistroPaciente.Name = "btnRegistroPaciente";
+            btnRegistroPaciente.Padding = new Padding(30, 0, 0, 0);
+            btnRegistroPaciente.Size = new Size(203, 52);
+            btnRegistroPaciente.TabIndex = 6;
+            btnRegistroPaciente.Text = "Registrar Paciente";
+            btnRegistroPaciente.TextAlign = ContentAlignment.MiddleLeft;
+            btnRegistroPaciente.UseVisualStyleBackColor = false;
+            btnRegistroPaciente.Click += btnRegistroPaciente_Click;
             // 
             // btnControlinsumos
             // 
@@ -117,7 +136,7 @@
             btnControlinsumos.FlatStyle = FlatStyle.Flat;
             btnControlinsumos.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
             btnControlinsumos.ForeColor = Color.White;
-            btnControlinsumos.Location = new Point(34, 434);
+            btnControlinsumos.Location = new Point(34, 435);
             btnControlinsumos.Name = "btnControlinsumos";
             btnControlinsumos.Padding = new Padding(20, 0, 0, 0);
             btnControlinsumos.Size = new Size(203, 52);
@@ -136,34 +155,15 @@
             btnPagoEstudio.FlatStyle = FlatStyle.Flat;
             btnPagoEstudio.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
             btnPagoEstudio.ForeColor = Color.White;
-            btnPagoEstudio.Location = new Point(34, 348);
+            btnPagoEstudio.Location = new Point(34, 349);
             btnPagoEstudio.Name = "btnPagoEstudio";
             btnPagoEstudio.Padding = new Padding(20, 0, 0, 0);
             btnPagoEstudio.Size = new Size(203, 52);
             btnPagoEstudio.TabIndex = 4;
-            btnPagoEstudio.Text = "Pago Estudio Clínico";
+            btnPagoEstudio.Text = "Pago de Turnos";
             btnPagoEstudio.TextAlign = ContentAlignment.MiddleLeft;
             btnPagoEstudio.UseVisualStyleBackColor = false;
             btnPagoEstudio.Click += btnPagoEstudio_Click;
-            // 
-            // btnPagoTurno
-            // 
-            btnPagoTurno.BackColor = Color.FromArgb(73, 162, 203);
-            btnPagoTurno.BackgroundImageLayout = ImageLayout.None;
-            btnPagoTurno.Cursor = Cursors.Hand;
-            btnPagoTurno.FlatAppearance.BorderSize = 0;
-            btnPagoTurno.FlatStyle = FlatStyle.Flat;
-            btnPagoTurno.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            btnPagoTurno.ForeColor = Color.White;
-            btnPagoTurno.Location = new Point(34, 262);
-            btnPagoTurno.Name = "btnPagoTurno";
-            btnPagoTurno.Padding = new Padding(20, 0, 0, 0);
-            btnPagoTurno.Size = new Size(203, 52);
-            btnPagoTurno.TabIndex = 3;
-            btnPagoTurno.Text = "Pago de Turnos";
-            btnPagoTurno.TextAlign = ContentAlignment.MiddleLeft;
-            btnPagoTurno.UseVisualStyleBackColor = false;
-            btnPagoTurno.Click += btnPagoTurno_Click;
             // 
             // btnRegistroTurno
             // 
@@ -174,12 +174,12 @@
             btnRegistroTurno.FlatStyle = FlatStyle.Flat;
             btnRegistroTurno.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
             btnRegistroTurno.ForeColor = Color.White;
-            btnRegistroTurno.Location = new Point(34, 176);
+            btnRegistroTurno.Location = new Point(34, 262);
             btnRegistroTurno.Name = "btnRegistroTurno";
             btnRegistroTurno.Padding = new Padding(30, 0, 0, 0);
             btnRegistroTurno.Size = new Size(203, 52);
             btnRegistroTurno.TabIndex = 2;
-            btnRegistroTurno.Text = "Registro de Turnos";
+            btnRegistroTurno.Text = "Gestion Turnos";
             btnRegistroTurno.TextAlign = ContentAlignment.MiddleLeft;
             btnRegistroTurno.UseVisualStyleBackColor = false;
             btnRegistroTurno.Click += btnRegistroTurno_Click;
@@ -276,12 +276,12 @@
         private Boton btnRegistroTurno;
         private Boton btnControlinsumos;
         private Boton btnPagoEstudio;
-        private Boton btnPagoTurno;
         private Panel panel2;
         private Label label2;
         private Label label1;
         private Label lblNombreUser;
         private CustomPanel customPanel1;
         private Panel pnlContainer;
+        private Boton btnRegistroPaciente;
     }
 }

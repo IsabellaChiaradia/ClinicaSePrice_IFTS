@@ -94,8 +94,7 @@ namespace Dashboard_ClinicaSePrice.pesañas
 
         private void btnBuscarPaciente_Click(object sender, EventArgs e)
         {
-            Form RegistroPaciente = new RegistroPaciente();
-            RegistroPaciente.Show();
+            RegistrarPaciente uc = new RegistrarPaciente();
         }
     }
 }

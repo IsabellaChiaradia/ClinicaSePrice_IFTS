@@ -2,7 +2,6 @@ using System;
 using System.Windows.Forms;
 using System.Runtime.InteropServices;
 using Dashboard_ClinicaSePrice.pesañas;
-using Dashboard_ClinicaSePrice.Pages;
 using ClinicaSePrice.Datos;
 using ClinicaSePrice.Pages;
 
@@ -82,21 +81,21 @@ namespace Dashboard_ClinicaSePrice
             agregarPaneles(uc);
         }
 
-        private void btnPagoTurno_Click(object sender, EventArgs e)
-        {
-            PagoAtencionMedica uc = new PagoAtencionMedica();
-            agregarPaneles(uc);
-        }
-
         private void btnPagoEstudio_Click(object sender, EventArgs e)
         {
-            PagoEstudioClinico uc = new PagoEstudioClinico();
+            PagoTurnos uc = new PagoTurnos();
             agregarPaneles(uc);
         }
 
         private void btnControlinsumos_Click(object sender, EventArgs e)
         {
             CuotasVencidas uc = new CuotasVencidas();
+            agregarPaneles(uc);
+        }
+
+        private void btnRegistroPaciente_Click(object sender, EventArgs e)
+        {
+            RegistrarPaciente uc = new RegistrarPaciente();
             agregarPaneles(uc);
         }
     }

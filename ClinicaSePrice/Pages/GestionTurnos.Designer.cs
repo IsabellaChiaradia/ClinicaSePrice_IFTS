@@ -47,12 +47,15 @@
             btnBuscarPaciente = new CustomBotonDos();
             btnRegistrarTurno = new CustomBotonDos();
             lblTurnosDisp = new Label();
+            cmbConsulta = new ComboBox();
+            pictureBox1 = new PictureBox();
             ((System.ComponentModel.ISupportInitialize)dgtvListaSocios).BeginInit();
             ((System.ComponentModel.ISupportInitialize)picActividad).BeginInit();
             ((System.ComponentModel.ISupportInitialize)picCantCuotasPA).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox4).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox8).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
             // dgtvListaSocios
@@ -94,20 +97,20 @@
             dtpTurno.Cursor = Cursors.Hand;
             dtpTurno.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point);
             dtpTurno.Format = DateTimePickerFormat.Short;
-            dtpTurno.Location = new Point(333, 134);
+            dtpTurno.Location = new Point(514, 134);
             dtpTurno.MaxDate = new DateTime(2025, 12, 31, 0, 0, 0, 0);
             dtpTurno.MinDate = new DateTime(2020, 1, 1, 0, 0, 0, 0);
             dtpTurno.Name = "dtpTurno";
-            dtpTurno.Size = new Size(187, 26);
+            dtpTurno.Size = new Size(94, 26);
             dtpTurno.TabIndex = 38;
             // 
             // picActividad
             // 
             picActividad.BackgroundImage = (Image)resources.GetObject("picActividad.BackgroundImage");
             picActividad.BackgroundImageLayout = ImageLayout.Stretch;
-            picActividad.Location = new Point(316, 126);
+            picActividad.Location = new Point(497, 126);
             picActividad.Name = "picActividad";
-            picActividad.Size = new Size(219, 43);
+            picActividad.Size = new Size(126, 43);
             picActividad.TabIndex = 37;
             picActividad.TabStop = false;
             // 
@@ -120,18 +123,18 @@
             cmbHora.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point);
             cmbHora.ForeColor = Color.FromArgb(74, 102, 174);
             cmbHora.FormattingEnabled = true;
-            cmbHora.Location = new Point(563, 134);
+            cmbHora.Location = new Point(656, 134);
             cmbHora.Name = "cmbHora";
-            cmbHora.Size = new Size(189, 28);
+            cmbHora.Size = new Size(96, 28);
             cmbHora.TabIndex = 36;
             // 
             // picCantCuotasPA
             // 
             picCantCuotasPA.BackgroundImage = (Image)resources.GetObject("picCantCuotasPA.BackgroundImage");
             picCantCuotasPA.BackgroundImageLayout = ImageLayout.Stretch;
-            picCantCuotasPA.Location = new Point(549, 126);
+            picCantCuotasPA.Location = new Point(642, 126);
             picCantCuotasPA.Name = "picCantCuotasPA";
-            picCantCuotasPA.Size = new Size(219, 43);
+            picCantCuotasPA.Size = new Size(126, 43);
             picCantCuotasPA.TabIndex = 35;
             picCantCuotasPA.TabStop = false;
             // 
@@ -291,11 +294,37 @@
             lblTurnosDisp.TabIndex = 50;
             lblTurnosDisp.Text = "Turnos Disponibles";
             // 
+            // cmbConsulta
+            // 
+            cmbConsulta.Cursor = Cursors.Hand;
+            cmbConsulta.DropDownStyle = ComboBoxStyle.DropDownList;
+            cmbConsulta.Enabled = false;
+            cmbConsulta.FlatStyle = FlatStyle.Popup;
+            cmbConsulta.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            cmbConsulta.ForeColor = Color.FromArgb(74, 102, 174);
+            cmbConsulta.FormattingEnabled = true;
+            cmbConsulta.Location = new Point(329, 134);
+            cmbConsulta.Name = "cmbConsulta";
+            cmbConsulta.Size = new Size(133, 28);
+            cmbConsulta.TabIndex = 52;
+            // 
+            // pictureBox1
+            // 
+            pictureBox1.BackgroundImage = (Image)resources.GetObject("pictureBox1.BackgroundImage");
+            pictureBox1.BackgroundImageLayout = ImageLayout.Stretch;
+            pictureBox1.Location = new Point(315, 126);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(163, 43);
+            pictureBox1.TabIndex = 51;
+            pictureBox1.TabStop = false;
+            // 
             // GestionTurnos
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(73, 162, 203);
+            Controls.Add(cmbConsulta);
+            Controls.Add(pictureBox1);
             Controls.Add(lblTurnosDisp);
             Controls.Add(btnRegistrarTurno);
             Controls.Add(btnBuscarPaciente);
@@ -323,6 +352,7 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox4).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox8).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -346,5 +376,7 @@
         private CustomBotonDos btnBuscarPaciente;
         private CustomBotonDos btnRegistrarTurno;
         private Label lblTurnosDisp;
+        private ComboBox cmbConsulta;
+        private PictureBox pictureBox1;
     }
 }
