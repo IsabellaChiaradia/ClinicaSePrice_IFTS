@@ -1,5 +1,4 @@
-﻿using ClinicaSePrice.Comprobantes;
-using ClinicaSePrice.Datos;
+﻿using ClinicaSePrice.Datos;
 using ClinicaSePrice.Entidades;
 using System;
 using System.Collections.Generic;
@@ -14,7 +13,7 @@ using System.Windows.Forms;
 
 namespace ClinicaSePrice.Pages
 {
-    public partial class RegistroPaciente : Form
+    public partial class RegistrarPaciente : UserControl
     {
         [DllImport("Gdi32.dll", EntryPoint = "CreateRoundRectRgn")]
         private static extern IntPtr CreateRoundRectRgn
@@ -27,7 +26,7 @@ namespace ClinicaSePrice.Pages
            int nHeightEllipse
        );
         private Miembro miembroDB;
-        public RegistroPaciente()
+        public RegistrarPaciente()
         {
             InitializeComponent();
             this.miembroDB = new Miembro();
@@ -222,14 +221,9 @@ namespace ClinicaSePrice.Pages
             }
         }
 
-        private void btnClose_Click(object sender, EventArgs e)
+        private void bntLimpiarRP_Click(object sender, EventArgs e)
         {
-            this.Close();
-        }
-
-        private void btnMinimize_Click(object sender, EventArgs e)
-        {
-            this.WindowState = FormWindowState.Minimized;
+            limpiarCampos();
         }
     }
 }

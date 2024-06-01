@@ -8,7 +8,6 @@ namespace ClinicaSePrice.Enum
 {
     public enum InteresesCuotasEnum
     {
-        tresCuotas = 18,
-        seisCuotas = 40
+        obraSocial = 50
     }
 }
