@@ -10,7 +10,7 @@ CREATE TABLE paciente (
     apellido VARCHAR(20) NOT NULL,
     nDocumento VARCHAR(20) NOT NULL,
 	email VARCHAR(45),
-    fechaNac VARCHAR(10),
+    fechaNac DATE NOT NULL,
 	telefono VARCHAR(20) NOT NULL,
 	domicilio VARCHAR(45) NOT NULL,
 	obraSocial VARCHAR(20)

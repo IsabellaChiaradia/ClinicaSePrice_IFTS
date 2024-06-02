@@ -6,11 +6,10 @@ using System.Threading.Tasks;
 
 namespace ClinicaSePrice.Entidades
 {
-    public class E_Actividad
+    public class E_Insumo
     {
-        public int IDMiembro { get; set; }
+        public int IdInsumo { get; set; }
         public string? Nombre { get; set; }
-        public int CupoMax { get; set; }
-        public double Costo { get; set; }
+        public int Cantidad { get; set; }
     }
 }
