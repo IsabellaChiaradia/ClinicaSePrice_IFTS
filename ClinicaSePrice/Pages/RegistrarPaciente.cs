@@ -58,19 +58,20 @@ namespace ClinicaSePrice.Pages
             }
 
             string respuesta;
-            E_Miembro miembro = new E_Miembro();
+            //E_Miembro miembro = new E_Miembro();
 
-            miembro.Nombre = txtNombre.Text;
-            miembro.Apellido = txtApellido.Text;
-            miembro.DNI = txtDni.Text;
-            miembro.Correo = txtCorreo.Text;
-            miembro.Direccion = txtDomicilio.Text;
-            miembro.FechaNac = txtFechaNacimiento.Text;
+            //miembro.Nombre = txtNombre.Text;
+            //miembro.Apellido = txtApellido.Text;
+            //miembro.DNI = txtDni.Text;
+            //miembro.Correo = txtCorreo.Text;
+            //miembro.Direccion = txtDomicilio.Text;
+            //miembro.FechaNac = txtFechaNacimiento.Text;
 
 
             //Tener en cuenta que, en base a la respuesta que ejecuta el procedimiento almacenado posteriormente evocado dentro
             //de la clase Miembro, serán las siguientes lineas de código mostrando si fue o no exitosa la carga.
-            respuesta = this.miembroDB.Nuevo_Miembro(miembro);
+            //respuesta = this.miembroDB.Nuevo_Miembro(miembro);
+            respuesta = "1"; // hice esto para que compile
 
             bool esnumero = int.TryParse(respuesta, out int codigo);
             if (esnumero)

@@ -19,35 +19,35 @@ namespace ClinicaSePrice.Datos
             this.sqlCon = Conexion.getInstancia().CrearConexion();
         }
 
-        public List<E_Actividad> traerActividades()
-        {
-                List<E_Actividad> listaActividades = new List<E_Actividad>();
-            try
-            {
-                string query = "SELECT IDActiv, Nombre, CupoMax, Costo "
-                    + " FROM actividad ";
-                MySqlDataAdapter adapter = new MySqlDataAdapter(query, sqlCon);
-                DataTable dt = new DataTable();
-                adapter.Fill(dt);
+        //public List<E_Actividad> traerActividades()
+        //{
+        //        List<E_Actividad> listaActividades = new List<E_Actividad>();
+        //    try
+        //    {
+        //        string query = "SELECT IDActiv, Nombre, CupoMax, Costo "
+        //            + " FROM actividad ";
+        //        MySqlDataAdapter adapter = new MySqlDataAdapter(query, sqlCon);
+        //        DataTable dt = new DataTable();
+        //        adapter.Fill(dt);
 
-                foreach (DataRow row in dt.Rows)
-                {                  
-                    E_Actividad actividad = new E_Actividad();
+        //        foreach (DataRow row in dt.Rows)
+        //        {                  
+        //            E_Actividad actividad = new E_Actividad();
 
-                    actividad.IDMiembro = Convert.ToInt32(row["IDActiv"].ToString());
-                    actividad.Nombre = row["Nombre"].ToString();
-                    actividad.CupoMax = Convert.ToInt32(row["CupoMax"].ToString());
-                    actividad.Costo = Convert.ToDouble(row["Costo"].ToString());
+        //            actividad.IDMiembro = Convert.ToInt32(row["IDActiv"].ToString());
+        //            actividad.Nombre = row["Nombre"].ToString();
+        //            actividad.CupoMax = Convert.ToInt32(row["CupoMax"].ToString());
+        //            actividad.Costo = Convert.ToDouble(row["Costo"].ToString());
 
-                    listaActividades.Add(actividad);
-                }
-            }
-            catch (Exception error)
-            {
-                MessageBox.Show("Ups! Hubo un error al traer las actividades del club " + error);
-            }
+        //            listaActividades.Add(actividad);
+        //        }
+        //    }
+        //    catch (Exception error)
+        //    {
+        //        MessageBox.Show("Ups! Hubo un error al traer las actividades del club " + error);
+        //    }
 
-            return listaActividades;
-        }
+        //    return listaActividades;
+        //}
     }
 }

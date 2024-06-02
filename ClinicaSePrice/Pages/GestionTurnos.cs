@@ -14,20 +14,10 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Dashboard_ClinicaSePrice.pesañas
-{//----------------------------TERCERA PANTALLA (PAGINA)-----------------------------//
- //-------------------------------------------------------------------------//
- // En este sector se encontrara con el codigo de la tercera parte, siendo una pagina de navegación en la cual prodrá visualizar
- // un formulario de carga de datos del futuro miembro y los botones que ejecutan la accion de carga, en el sector derecho se visualiza 
- //una ventana correspondiente a un data grid, el mismo sera desarrollado a futuro para visualizar la lista de miembros activos
- //Aqui se podra observar ademas, eventos de limpieza de textbox.
- //Es importante tener en cuenta que, antes de seguir en esta sección del codigo se DEBE observar dentro de la carpeta "Datos"
- //El codigo de Miembro para visualizar la logica de la carga a su vez en la carpeta "Entidades" los atributos que posee el futuro miembro
- //para ser cargado mediante el sistema a la base de datos.
- //A continuación se detalla en el código:
- //-------------------------------------------------------------------------//
+{
     public partial class GestionTurnos : UserControl
     {
-        private FormCarnet carnet;
+        private FormCarnet? comprobanteTurno;
         public GestionTurnos()
         {
             InitializeComponent();
@@ -70,17 +60,17 @@ namespace Dashboard_ClinicaSePrice.pesañas
         {
             if (dgtvListaSocios.SelectedRows.Count > 0)
             {
-                string nombreSocio = Convert.ToString(dgtvListaSocios.SelectedRows[0].Cells["Nombre"].Value);
-                string apellidoSocio = Convert.ToString(dgtvListaSocios.SelectedRows[0].Cells["Apellido"].Value);
-                string dniSocio = Convert.ToString(dgtvListaSocios.SelectedRows[0].Cells["DNI"].Value);
-                string idSocio = Convert.ToString(dgtvListaSocios.SelectedRows[0].Cells["IDMiembro"].Value);
-                string correoSocio = Convert.ToString(dgtvListaSocios.SelectedRows[0].Cells["Correo"].Value);
-                string fechaInscripcion = DateTime.Now.ToString("dd/MM/yyyy");
+                string? nombreSocio = Convert.ToString(dgtvListaSocios.SelectedRows[0].Cells["Nombre"].Value);
+                string? apellidoSocio = Convert.ToString(dgtvListaSocios.SelectedRows[0].Cells["Apellido"].Value);
+                string? dniSocio = Convert.ToString(dgtvListaSocios.SelectedRows[0].Cells["DNI"].Value);
+                string? idSocio = Convert.ToString(dgtvListaSocios.SelectedRows[0].Cells["IDMiembro"].Value);
+                string?  correoSocio = Convert.ToString(dgtvListaSocios.SelectedRows[0].Cells["Correo"].Value);
+                string? fechaInscripcion = DateTime.Now.ToString("dd/MM/yyyy");
 
                 bool esSocio = Convert.ToBoolean(dgtvListaSocios.SelectedRows[0].Cells["EsSocio"].Value);
 
-                FormCarnet carnet = new FormCarnet(nombreSocio, apellidoSocio, dniSocio, idSocio, correoSocio, fechaInscripcion);
-                carnet.ShowDialog();
+                FormCarnet comprobanteTurno = new FormCarnet(nombreSocio, apellidoSocio, dniSocio, idSocio, correoSocio, fechaInscripcion);
+                comprobanteTurno.ShowDialog();
             }
         }
     }

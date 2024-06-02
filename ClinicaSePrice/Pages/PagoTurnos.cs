@@ -19,7 +19,7 @@ namespace ClinicaSePrice.Pages
         private Cuota cuotaDB;
         private Actividad actividadBD;
         private string dniMiembro;
-        private List<E_Actividad> actividades;
+        //private List<E_Actividad> actividades;
         private frmFactura factura;
 
         public PagoTurnos()
@@ -32,17 +32,17 @@ namespace ClinicaSePrice.Pages
 
         // ---------------------------- FUNCIONES ----------------------------
 
-        private void cargarActividades()
-        {
-            this.actividades = actividadBD.traerActividades();
+        //private void cargarActividades()
+        //{
+        //    this.actividades = actividadBD.traerActividades();
 
-            cboActividad.Items.Add("Seleccionar Forma de Pago");
-            foreach (E_Actividad a in actividades)
-            {
-                cboActividad.Items.Add(a.Nombre);
-            }
-            cboActividad.SelectedIndex = 0;
-        }
+        //    cboActividad.Items.Add("Seleccionar Forma de Pago");
+        //    foreach (E_Actividad a in actividades)
+        //    {
+        //        cboActividad.Items.Add(a.Nombre);
+        //    }
+        //    cboActividad.SelectedIndex = 0;
+        //}
 
 
         private void cargarCuotas()
@@ -84,19 +84,19 @@ namespace ClinicaSePrice.Pages
             string actSeleccionada = cboActividad.SelectedItem.ToString();
             double costo = 0;
 
-            foreach (E_Actividad a in actividades)
-            {
-                if (actSeleccionada == "Seleccionar Actividad")
-                {
-                    costo = -1;
-                    break;
-                }
-                else if (actSeleccionada == a.Nombre)
-                {
-                    costo = a.Costo;
-                    break;
-                }
-            }
+            //foreach (E_Actividad a in actividades)
+            //{
+            //    if (actSeleccionada == "Seleccionar Actividad")
+            //    {
+            //        costo = -1;
+            //        break;
+            //    }
+            //    else if (actSeleccionada == a.Nombre)
+            //    {
+            //        costo = a.Costo;
+            //        break;
+            //    }
+            //}
 
             return costo;
         }
@@ -115,7 +115,7 @@ namespace ClinicaSePrice.Pages
 
         private void PagoActividad_Load(object sender, EventArgs e)
         {
-            cargarActividades();
+            //cargarActividades();
             cargarCuotas();
         }
 
@@ -133,15 +133,16 @@ namespace ClinicaSePrice.Pages
             }
 
             string respuesta;
-            E_Cuota cuota = new E_Cuota();
+            E_Practica cuota = new E_Practica();
 
             string monto = txtMontoPA.Text;
-            cuota.Monto = Math.Round(double.Parse(monto), 2);
+            //cuota.Monto = Math.Round(double.Parse(monto), 2);
             /*cuota.FechaPago = dtpPA.Value*/;
             dniMiembro = txtDocumentoPA.Text;
 
 
-            respuesta = cuotaDB.Pagar(cuota, dniMiembro, 2); // el parametro 2 indica que el pago es de tipo actividad
+            // respuesta = cuotaDB.Pagar(cuota, dniMiembro, 2);  el parametro 2 indica que el pago es de tipo actividad
+            respuesta = "1"; // hice esto solo para que compile
 
             bool esnumero = int.TryParse(respuesta, out int codigo);
             if (esnumero)
