@@ -78,7 +78,7 @@
             dtgvCuotasVenc.Size = new Size(710, 282);
             dtgvCuotasVenc.TabIndex = 41;
             // 
-            // CuotasVencidas
+            // ControlInsumos
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -86,7 +86,7 @@
             Controls.Add(dtgvCuotasVenc);
             Controls.Add(btnNotificar);
             Controls.Add(lblCuotasVenc);
-            Name = "CuotasVencidas";
+            Name = "ControlInsumos";
             Size = new Size(789, 513);
             Load += CuotasVencidas_Load;
             ((System.ComponentModel.ISupportInitialize)dtgvCuotasVenc).EndInit();

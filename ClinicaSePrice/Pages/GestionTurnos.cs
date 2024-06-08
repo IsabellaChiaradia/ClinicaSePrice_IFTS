@@ -18,11 +18,13 @@ namespace Dashboard_ClinicaSePrice.pesañas
     public partial class GestionTurnos : UserControl
     {
         private FormCarnet? comprobanteTurno;
+        private Turno turnoDB;
         public GestionTurnos()
         {
             InitializeComponent();
+            this.turnoDB = new Turno();
         }
-                      
+
 
         private void txtDniGestion_Enter(object sender, EventArgs e)
         {
@@ -58,20 +60,25 @@ namespace Dashboard_ClinicaSePrice.pesañas
 
         private void btnRegistrarTurno_Click(object sender, EventArgs e)
         {
-            if (dgtvListaSocios.SelectedRows.Count > 0)
+            if (dgtvTurnos.SelectedRows.Count > 0)
             {
-                string? nombreSocio = Convert.ToString(dgtvListaSocios.SelectedRows[0].Cells["Nombre"].Value);
-                string? apellidoSocio = Convert.ToString(dgtvListaSocios.SelectedRows[0].Cells["Apellido"].Value);
-                string? dniSocio = Convert.ToString(dgtvListaSocios.SelectedRows[0].Cells["DNI"].Value);
-                string? idSocio = Convert.ToString(dgtvListaSocios.SelectedRows[0].Cells["IDMiembro"].Value);
-                string?  correoSocio = Convert.ToString(dgtvListaSocios.SelectedRows[0].Cells["Correo"].Value);
+                string? nombreSocio = Convert.ToString(dgtvTurnos.SelectedRows[0].Cells["Nombre"].Value);
+                string? apellidoSocio = Convert.ToString(dgtvTurnos.SelectedRows[0].Cells["Apellido"].Value);
+                string? dniSocio = Convert.ToString(dgtvTurnos.SelectedRows[0].Cells["DNI"].Value);
+                string? idSocio = Convert.ToString(dgtvTurnos.SelectedRows[0].Cells["IDMiembro"].Value);
+                string? correoSocio = Convert.ToString(dgtvTurnos.SelectedRows[0].Cells["Correo"].Value);
                 string? fechaInscripcion = DateTime.Now.ToString("dd/MM/yyyy");
 
-                bool esSocio = Convert.ToBoolean(dgtvListaSocios.SelectedRows[0].Cells["EsSocio"].Value);
+                bool esSocio = Convert.ToBoolean(dgtvTurnos.SelectedRows[0].Cells["EsSocio"].Value);
 
                 FormCarnet comprobanteTurno = new FormCarnet(nombreSocio, apellidoSocio, dniSocio, idSocio, correoSocio, fechaInscripcion);
                 comprobanteTurno.ShowDialog();
             }
+        }
+
+        private void btnBuscarTurno_Click(object sender, EventArgs e)
+        {
+            turnoDB.obtenerTurnosDisponibles(dgtvTurnos);
         }
     }
 }

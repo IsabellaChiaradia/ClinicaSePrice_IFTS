@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GestionTurnos));
-            dgtvListaSocios = new DataGridView();
+            dgtvTurnos = new DataGridView();
             dtpTurno = new DateTimePicker();
             picActividad = new PictureBox();
             picCantCuotasPA = new PictureBox();
@@ -52,7 +52,7 @@
             lblFechaDesde = new Label();
             lblFechaHasta = new Label();
             lblPractica = new Label();
-            ((System.ComponentModel.ISupportInitialize)dgtvListaSocios).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dgtvTurnos).BeginInit();
             ((System.ComponentModel.ISupportInitialize)picActividad).BeginInit();
             ((System.ComponentModel.ISupportInitialize)picCantCuotasPA).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox4).BeginInit();
@@ -61,20 +61,20 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
-            // dgtvListaSocios
+            // dgtvTurnos
             // 
-            dgtvListaSocios.AllowUserToAddRows = false;
-            dgtvListaSocios.AllowUserToDeleteRows = false;
-            dgtvListaSocios.BackgroundColor = Color.White;
-            dgtvListaSocios.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgtvListaSocios.Location = new Point(17, 210);
-            dgtvListaSocios.Margin = new Padding(3, 2, 3, 2);
-            dgtvListaSocios.Name = "dgtvListaSocios";
-            dgtvListaSocios.ReadOnly = true;
-            dgtvListaSocios.RowHeadersWidth = 51;
-            dgtvListaSocios.RowTemplate.Height = 29;
-            dgtvListaSocios.Size = new Size(761, 221);
-            dgtvListaSocios.TabIndex = 23;
+            dgtvTurnos.AllowUserToAddRows = false;
+            dgtvTurnos.AllowUserToDeleteRows = false;
+            dgtvTurnos.BackgroundColor = Color.White;
+            dgtvTurnos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgtvTurnos.Location = new Point(17, 210);
+            dgtvTurnos.Margin = new Padding(3, 2, 3, 2);
+            dgtvTurnos.Name = "dgtvTurnos";
+            dgtvTurnos.ReadOnly = true;
+            dgtvTurnos.RowHeadersWidth = 51;
+            dgtvTurnos.RowTemplate.Height = 29;
+            dgtvTurnos.Size = new Size(761, 221);
+            dgtvTurnos.TabIndex = 23;
             // 
             // dtpTurno
             // 
@@ -306,6 +306,7 @@
             btnBuscarTurno.TabIndex = 53;
             btnBuscarTurno.Text = "BUSCAR TURNO";
             btnBuscarTurno.UseVisualStyleBackColor = false;
+            btnBuscarTurno.Click += btnBuscarTurno_Click;
             // 
             // dateTimePicker1
             // 
@@ -381,11 +382,11 @@
             Controls.Add(dtpTurno);
             Controls.Add(picActividad);
             Controls.Add(picCantCuotasPA);
-            Controls.Add(dgtvListaSocios);
+            Controls.Add(dgtvTurnos);
             Margin = new Padding(3, 2, 3, 2);
             Name = "GestionTurnos";
             Size = new Size(789, 513);
-            ((System.ComponentModel.ISupportInitialize)dgtvListaSocios).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dgtvTurnos).EndInit();
             ((System.ComponentModel.ISupportInitialize)picActividad).EndInit();
             ((System.ComponentModel.ISupportInitialize)picCantCuotasPA).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox4).EndInit();
@@ -397,7 +398,7 @@
         }
 
         #endregion
-        private DataGridView dgtvListaSocios;
+        private DataGridView dgtvTurnos;
         private DateTimePicker dtpTurno;
         private PictureBox picActividad;
         private PictureBox picCantCuotasPA;

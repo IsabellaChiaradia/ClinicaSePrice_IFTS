@@ -72,9 +72,12 @@ BEGIN
     CLOSE cur_horarios;
 
     -- Mostrar los turnos generados
-    SELECT * 
+    SELECT pt.*, t.idTurno
     FROM Temp_Turnos pt  -- posibles turnos
-    LEFT JOIN (SELECT * FROM turno tu WHERE tu.fechaAtencion BETWEEN i_fecha_desde AND i_fecha_hasta) t
+    LEFT JOIN (SELECT * 
+				FROM turno tu 
+                WHERE tu.fechaBaja IS NULL
+					AND tu.fechaAtencion BETWEEN i_fecha_desde AND i_fecha_hasta) t
 		ON t.id_medico = pt.id_medico
         AND t.horaInicio = pt.hora_inicio
         AND pt.fecha = t.fechaAtencion
@@ -84,3 +87,5 @@ BEGIN
 END //
 
 DELIMITER ;
+
+call sp_consulta_turnos_posibles_x_medico('2024-06-03', '2024-06-07',1);
