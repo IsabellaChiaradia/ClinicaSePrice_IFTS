@@ -21,16 +21,31 @@ BEGIN
     INTO v_duracion_turno
     FROM medico m
     WHERE m.idMedico = i_id_medico;
-    -- Borrar los registros de la tabla de turnos temporal si existe
-    DROP TEMPORARY TABLE IF EXISTS Temp_Turnos;
     
-    -- Crear tabla de turnos temporal
-    CREATE TEMPORARY TABLE Temp_Turnos (
+    -- Borrar los registros de la tabla Temp_Turnos_Posibles si existe
+    DROP TEMPORARY TABLE IF EXISTS Temp_Turnos_Posibles;
+    
+    -- Crear tabla Temp_Turnos_Posibles
+    CREATE TEMPORARY TABLE Temp_Turnos_Posibles (
 		dia INT,
         fecha DATE,
         hora_inicio TIME,
         hora_fin TIME,
         id_medico INT
+    );
+    
+    -- Borrar los registros de la tabla Temp_Turnos_Disponibles_Y_Ocupados si existe
+    DROP TEMPORARY TABLE IF EXISTS Temp_Turnos_Disponibles_Y_Ocupados;
+    
+    -- Crear tabla Temp_Turnos_Disponibles_Y_Ocupados
+    CREATE TEMPORARY TABLE Temp_Turnos_Disponibles_Y_Ocupados (
+		dia INT,
+        fecha DATE,
+        hora_inicio TIME,
+        hora_fin TIME,
+        id_medico INT,
+        nombre_completo VARCHAR(100), 
+        idTurno INT
     );
 
     -- Abrir el cursor
@@ -56,7 +71,7 @@ BEGIN
 				IF (v_dia_semana = DAYOFWEEK(v_inicio_periodo)) THEN
 					SET v_inicioAux = v_inicio;
 					WHILE v_inicioAux < v_fin DO
-						INSERT INTO Temp_Turnos (dia, fecha, hora_inicio, hora_fin, id_medico)
+						INSERT INTO Temp_Turnos_Posibles (dia, fecha, hora_inicio, hora_fin, id_medico)
 						VALUES (v_dia_semana, v_inicio_periodo, v_inicioAux, ADDTIME(v_inicioAux, SEC_TO_TIME(v_duracion_turno * 60)), i_id_medico);
 						
 						SET v_inicioAux = ADDTIME(v_inicioAux, SEC_TO_TIME(v_duracion_turno * 60));
@@ -72,20 +87,23 @@ BEGIN
     CLOSE cur_horarios;
 
     -- Mostrar los turnos generados
-    SELECT pt.*, t.idTurno
-    FROM Temp_Turnos pt  -- posibles turnos
-    LEFT JOIN (SELECT * 
-				FROM turno tu 
-                WHERE tu.fechaBaja IS NULL
-					AND tu.fechaAtencion BETWEEN i_fecha_desde AND i_fecha_hasta) t
-		ON t.id_medico = pt.id_medico
-        AND t.horaInicio = pt.hora_inicio
-        AND pt.fecha = t.fechaAtencion
-	ORDER BY pt.fecha, pt.hora_inicio;
-        
-    
+    INSERT INTO Temp_Turnos_Disponibles_Y_Ocupados (dia, fecha, hora_inicio, hora_fin, id_medico, nombre_completo, idTurno)
+		SELECT ttp.dia, ttp.fecha, ttp.hora_inicio, ttp.hora_fin, ttp.id_medico, CONCAT(m.nombre, ' ', m.apellido) as nombre_completo, t.idTurno
+		FROM Temp_Turnos_Posibles ttp
+		LEFT JOIN (SELECT * 
+				   FROM turno tu 
+				   WHERE tu.fechaBaja IS NULL
+					 AND tu.fechaAtencion BETWEEN i_fecha_desde AND i_fecha_hasta) t
+			ON t.id_medico = ttp.id_medico
+			AND t.horaInicio = ttp.hora_inicio
+			AND t.fechaAtencion = ttp.fecha
+		INNER JOIN medico m ON m.idMedico = ttp.id_medico
+		ORDER BY ttp.fecha, ttp.hora_inicio;
+
+    SELECT * FROM Temp_Turnos_Disponibles_Y_Ocupados;
+   
 END //
 
 DELIMITER ;
 
-call sp_consulta_turnos_posibles_x_medico('2024-06-03', '2024-06-07',1);
+call sp_consulta_turnos_posibles_x_medico('2024-06-03', '2024-06-07',2);
