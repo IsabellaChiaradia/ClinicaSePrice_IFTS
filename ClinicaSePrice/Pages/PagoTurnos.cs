@@ -16,8 +16,7 @@ namespace ClinicaSePrice.Pages
 {
     public partial class PagoTurnos : UserControl
     {
-        private Cuota cuotaDB;
-        private Actividad actividadBD;
+
         private string dniMiembro;
         //private List<E_Actividad> actividades;
         private frmFactura factura;
@@ -25,8 +24,6 @@ namespace ClinicaSePrice.Pages
         public PagoTurnos()
         {
             InitializeComponent();
-            this.cuotaDB = new Cuota();
-            this.actividadBD = new Actividad();
         }
 
 
@@ -76,7 +73,7 @@ namespace ClinicaSePrice.Pages
             factura.formaDePago = cboActividad.SelectedItem.ToString();
                        
 
-            cuotaDB.emitirFactura(dniMiembro, factura);
+            //cuotaDB.emitirFactura(dniMiembro, factura);
         }
 
         private double capturarCostoActivSeleccionada()
@@ -153,7 +150,7 @@ namespace ClinicaSePrice.Pages
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Information);
                     //Cargamos los datos del pago en la grilla
-                    cuotaDB.mostrarPagoExitoso(dtgvActividad, dniMiembro);
+                    //cuotaDB.mostrarPagoExitoso(dtgvActividad, dniMiembro);
                     this.factura = new frmFactura(); // cada vez que pagamos generamos una nueva factura
                     cargarFactura();
                     btnComprobantePA.Enabled = true;

@@ -15,11 +15,11 @@ namespace ClinicaSePrice.Pages
 {
     public partial class RegistrarPaciente : UserControl
     {
-        private Miembro miembroDB;
+        //private Miembro miembroDB;
         public RegistrarPaciente()
         {
             InitializeComponent();
-            this.miembroDB = new Miembro();
+            //this.miembroDB = new Miembro();
         }
 
 

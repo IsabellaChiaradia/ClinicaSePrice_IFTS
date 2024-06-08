@@ -26,8 +26,8 @@ namespace ClinicaSePrice.Pages
 
         private void CuotasVencidas_Load(object sender, EventArgs e)
         {
-            Cuota cuotaDB = new Cuota();
-            cuotaDB.mostrarSociosMorosos(dtgvCuotasVenc);
+            //Cuota cuotaDB = new Cuota();
+            //cuotaDB.mostrarSociosMorosos(dtgvCuotasVenc);
 
 
         }
