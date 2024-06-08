@@ -10,5 +10,17 @@ namespace ClinicaSePrice.Entidades
     {
         public int IdEspecialidad { get; set; }
         public string? Tipo { get; set; }
+
+        public E_Especialidad()
+        {
+
+        }
+
+        public E_Especialidad(int idEspecialidad, string? tipo)
+        {
+            IdEspecialidad = idEspecialidad;
+            Tipo = tipo;
+        }
+
     }
 }

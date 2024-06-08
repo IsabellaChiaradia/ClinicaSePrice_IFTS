@@ -33,7 +33,7 @@
             dtpTurno = new DateTimePicker();
             picActividad = new PictureBox();
             picCantCuotasPA = new PictureBox();
-            cmbEspecialidad = new ComboBox();
+            cboEspecialidad = new ComboBox();
             pictureBox4 = new PictureBox();
             label2 = new Label();
             cmbMedico = new ComboBox();
@@ -110,19 +110,19 @@
             picCantCuotasPA.TabIndex = 35;
             picCantCuotasPA.TabStop = false;
             // 
-            // cmbEspecialidad
+            // cboEspecialidad
             // 
-            cmbEspecialidad.Cursor = Cursors.Hand;
-            cmbEspecialidad.DropDownStyle = ComboBoxStyle.DropDownList;
-            cmbEspecialidad.Enabled = false;
-            cmbEspecialidad.FlatStyle = FlatStyle.Popup;
-            cmbEspecialidad.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            cmbEspecialidad.ForeColor = Color.FromArgb(74, 102, 174);
-            cmbEspecialidad.FormattingEnabled = true;
-            cmbEspecialidad.Location = new Point(329, 76);
-            cmbEspecialidad.Name = "cmbEspecialidad";
-            cmbEspecialidad.Size = new Size(189, 28);
-            cmbEspecialidad.TabIndex = 40;
+            cboEspecialidad.Cursor = Cursors.Hand;
+            cboEspecialidad.DropDownStyle = ComboBoxStyle.DropDownList;
+            cboEspecialidad.FlatStyle = FlatStyle.Popup;
+            cboEspecialidad.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            cboEspecialidad.ForeColor = Color.FromArgb(74, 102, 174);
+            cboEspecialidad.FormattingEnabled = true;
+            cboEspecialidad.Location = new Point(329, 76);
+            cboEspecialidad.Name = "cboEspecialidad";
+            cboEspecialidad.Size = new Size(189, 28);
+            cboEspecialidad.TabIndex = 40;
+            cboEspecialidad.SelectedIndexChanged += cboEspecialidad_SelectedIndexChanged;
             // 
             // pictureBox4
             // 
@@ -377,7 +377,7 @@
             Controls.Add(cmbMedico);
             Controls.Add(pictureBox8);
             Controls.Add(label2);
-            Controls.Add(cmbEspecialidad);
+            Controls.Add(cboEspecialidad);
             Controls.Add(pictureBox4);
             Controls.Add(dtpTurno);
             Controls.Add(picActividad);
@@ -386,6 +386,7 @@
             Margin = new Padding(3, 2, 3, 2);
             Name = "GestionTurnos";
             Size = new Size(789, 513);
+            Load += GestionTurnos_Load;
             ((System.ComponentModel.ISupportInitialize)dgtvTurnos).EndInit();
             ((System.ComponentModel.ISupportInitialize)picActividad).EndInit();
             ((System.ComponentModel.ISupportInitialize)picCantCuotasPA).EndInit();
@@ -402,7 +403,7 @@
         private DateTimePicker dtpTurno;
         private PictureBox picActividad;
         private PictureBox picCantCuotasPA;
-        private ComboBox cmbEspecialidad;
+        private ComboBox cboEspecialidad;
         private PictureBox pictureBox4;
         private Label label2;
         private ComboBox cmbMedico;

@@ -19,10 +19,44 @@ namespace Dashboard_ClinicaSePrice.pesañas
     {
         private FormCarnet? comprobanteTurno;
         private Turno turnoDB;
+        private Especialidad especialidadDB;
+        private E_Especialidad especialidadSeleccionada;
+
         public GestionTurnos()
         {
             InitializeComponent();
             this.turnoDB = new Turno();
+            this.especialidadDB = new Especialidad();
+        }
+
+        private void GestionTurnos_Load(object sender, EventArgs e)
+        {
+            cargarEspecialidades();
+        }
+
+        private void cargarEspecialidades()
+        {
+            var especialidades = new List<E_Especialidad>();
+
+            especialidades.Add(new E_Especialidad(0, "Seleccionar Especialidad"));
+
+            especialidades.AddRange(this.especialidadDB.getEspecialidades());
+
+            cboEspecialidad.DisplayMember = "Tipo";
+            cboEspecialidad.ValueMember = "IdEspecialidad";
+            cboEspecialidad.DataSource = especialidades;
+
+            cboEspecialidad.SelectedIndex = 0;
+
+        }
+
+        private void cboEspecialidad_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cboEspecialidad.SelectedItem != null)
+            {
+                this.especialidadSeleccionada = (E_Especialidad)cboEspecialidad.SelectedItem;
+
+            }
         }
 
 
@@ -80,5 +114,7 @@ namespace Dashboard_ClinicaSePrice.pesañas
         {
             turnoDB.obtenerTurnosDisponibles(dgtvTurnos);
         }
+
+        
     }
 }
