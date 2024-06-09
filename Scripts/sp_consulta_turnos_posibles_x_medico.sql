@@ -3,7 +3,8 @@ DROP PROCEDURE IF EXISTS sp_consulta_turnos_posibles_x_medico//
 CREATE PROCEDURE sp_consulta_turnos_posibles_x_medico(
 	IN i_fecha_desde DATE,
     IN i_fecha_hasta DATE,
-    IN i_id_medico INT
+    IN i_id_medico INT,
+    IN i_show_results BOOLEAN
 )
 BEGIN
     DECLARE v_dia_semana INT;
@@ -100,10 +101,12 @@ BEGIN
 		INNER JOIN medico m ON m.idMedico = ttp.id_medico
 		ORDER BY ttp.fecha, ttp.hora_inicio;
 
-    SELECT * FROM Temp_Turnos_Disponibles_Y_Ocupados;
+	IF i_show_results THEN
+        SELECT * FROM Temp_Turnos_Disponibles_Y_Ocupados;
+    END IF;
    
 END //
 
 DELIMITER ;
 
-call sp_consulta_turnos_posibles_x_medico('2024-06-03', '2024-06-07',2);
+call sp_consulta_turnos_posibles_x_medico('2024-06-03', '2024-06-07', 2, true);

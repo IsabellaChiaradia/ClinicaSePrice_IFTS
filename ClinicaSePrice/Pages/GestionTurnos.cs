@@ -64,6 +64,7 @@ namespace Dashboard_ClinicaSePrice.pesañas
             else
             {
                 this.especialidadSeleccionada = null;
+                cargarMedicosXEspecialidad(-1); // reiniciamos el combo de medicos
             }
         }
 
@@ -73,7 +74,7 @@ namespace Dashboard_ClinicaSePrice.pesañas
 
             medicos.Add(new E_Medico(0, "Seleccionar", "Medico"));
 
-            if(idEspecialidad > 0)
+            if (idEspecialidad > 0)
             {
                 medicos.AddRange(this.medicoDB.getMedicosXEspecialidad(idEspecialidad));
             }
@@ -81,7 +82,8 @@ namespace Dashboard_ClinicaSePrice.pesañas
             if (medicos.Count > 1)
             {
                 cboMedico.Enabled = true;
-            } else
+            }
+            else
             {
                 cboMedico.Enabled = false;
             }
@@ -99,7 +101,7 @@ namespace Dashboard_ClinicaSePrice.pesañas
             if (cboMedico.SelectedIndex > 0)
             {
                 this.medicoSeleccionado = (E_Medico)cboMedico.SelectedItem;
-            } 
+            }
             else
             {
                 this.medicoSeleccionado = null;
@@ -161,9 +163,47 @@ namespace Dashboard_ClinicaSePrice.pesañas
 
         private void btnBuscarTurno_Click(object sender, EventArgs e)
         {
-            turnoDB.obtenerTurnosDisponibles(dgtvTurnos);
+            var fechaActual = DateTime.Now.Date;
+            var fechaDesde = dtpFechaDesde.Value.Date;
+            var fechaHasta = dtpFechaHasta.Value.Date;
+            var idMedico = this.medicoSeleccionado?.Id;
+            var idEspecialidad = this.especialidadSeleccionada?.IdEspecialidad;
+
+            if(fechaDesde < fechaActual)
+            {
+                MessageBox.Show("La fecha desde no puede ser menor al dia de hoy",
+                                "AVISO DEL SISTEMA",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Warning);
+                return;
+            }
+
+            if (fechaHasta < fechaDesde)
+            {
+                MessageBox.Show("La fecha hasta debe ser mayor o igual a la fecha desde",
+                                "AVISO DEL SISTEMA",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Warning);
+                return;
+            }
+
+            if (idMedico != null && idMedico > 0)
+            {
+                turnoDB.obtenerTurnosDisponiblesXMedico(dgtvTurnos, fechaDesde, fechaHasta, (int)idMedico);
+            } 
+            else if (idEspecialidad != null && idEspecialidad > 0)
+            {
+                turnoDB.obtenerTurnosDisponiblesXEspecialidad(dgtvTurnos, fechaDesde, fechaHasta, (int)idEspecialidad);
+            } 
+            else
+            {
+                MessageBox.Show("Debes seleccionar una especialidad y/o un médico para realizar la consulta",
+                                "AVISO DEL SISTEMA", 
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Warning);
+            }
         }
 
-        
+
     }
 }

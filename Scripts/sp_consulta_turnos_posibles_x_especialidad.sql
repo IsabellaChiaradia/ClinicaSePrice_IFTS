@@ -38,12 +38,8 @@ BEGIN
             LEAVE medico_loop;
         END IF;
 
-        
-        DROP TEMPORARY TABLE IF EXISTS Temp_Turnos_Posibles;
-        DROP TEMPORARY TABLE IF EXISTS Temp_Turnos_Disponibles_Y_Ocupados;
-
         -- Llamar al procedimiento existente para obtener los turnos del médico
-        CALL sp_consulta_turnos_posibles_x_medico(i_fecha_desde, i_fecha_hasta, v_id_medico);
+        CALL sp_consulta_turnos_posibles_x_medico(i_fecha_desde, i_fecha_hasta, v_id_medico, false);
 
         -- Insertar los turnos del médico actual en la tabla temporal general
         INSERT INTO Temp_All_Turnos (dia, fecha, hora_inicio, hora_fin, id_medico, nombre_completo, idTurno)

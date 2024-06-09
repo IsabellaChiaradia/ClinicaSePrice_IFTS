@@ -30,7 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GestionTurnos));
             dgtvTurnos = new DataGridView();
-            dtpTurno = new DateTimePicker();
+            dtpFechaDesde = new DateTimePicker();
             picActividad = new PictureBox();
             picCantCuotasPA = new PictureBox();
             cboEspecialidad = new ComboBox();
@@ -48,7 +48,7 @@
             cmbConsulta = new ComboBox();
             pictureBox1 = new PictureBox();
             btnBuscarTurno = new CustomBotonDos();
-            dateTimePicker1 = new DateTimePicker();
+            dtpFechaHasta = new DateTimePicker();
             lblFechaDesde = new Label();
             lblFechaHasta = new Label();
             lblPractica = new Label();
@@ -76,19 +76,19 @@
             dgtvTurnos.Size = new Size(761, 221);
             dgtvTurnos.TabIndex = 23;
             // 
-            // dtpTurno
+            // dtpFechaDesde
             // 
-            dtpTurno.CalendarForeColor = Color.Black;
-            dtpTurno.CalendarTitleForeColor = Color.FromArgb(74, 102, 174);
-            dtpTurno.Cursor = Cursors.Hand;
-            dtpTurno.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            dtpTurno.Format = DateTimePickerFormat.Short;
-            dtpTurno.Location = new Point(514, 147);
-            dtpTurno.MaxDate = new DateTime(2025, 12, 31, 0, 0, 0, 0);
-            dtpTurno.MinDate = new DateTime(2020, 1, 1, 0, 0, 0, 0);
-            dtpTurno.Name = "dtpTurno";
-            dtpTurno.Size = new Size(94, 26);
-            dtpTurno.TabIndex = 38;
+            dtpFechaDesde.CalendarForeColor = Color.Black;
+            dtpFechaDesde.CalendarTitleForeColor = Color.FromArgb(74, 102, 174);
+            dtpFechaDesde.Cursor = Cursors.Hand;
+            dtpFechaDesde.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            dtpFechaDesde.Format = DateTimePickerFormat.Short;
+            dtpFechaDesde.Location = new Point(514, 147);
+            dtpFechaDesde.MaxDate = new DateTime(2025, 12, 31, 0, 0, 0, 0);
+            dtpFechaDesde.MinDate = new DateTime(2020, 1, 1, 0, 0, 0, 0);
+            dtpFechaDesde.Name = "dtpFechaDesde";
+            dtpFechaDesde.Size = new Size(94, 26);
+            dtpFechaDesde.TabIndex = 38;
             // 
             // picActividad
             // 
@@ -308,19 +308,19 @@
             btnBuscarTurno.UseVisualStyleBackColor = false;
             btnBuscarTurno.Click += btnBuscarTurno_Click;
             // 
-            // dateTimePicker1
+            // dtpFechaHasta
             // 
-            dateTimePicker1.CalendarForeColor = Color.Black;
-            dateTimePicker1.CalendarTitleForeColor = Color.FromArgb(74, 102, 174);
-            dateTimePicker1.Cursor = Cursors.Hand;
-            dateTimePicker1.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            dateTimePicker1.Format = DateTimePickerFormat.Short;
-            dateTimePicker1.Location = new Point(658, 147);
-            dateTimePicker1.MaxDate = new DateTime(2025, 12, 31, 0, 0, 0, 0);
-            dateTimePicker1.MinDate = new DateTime(2020, 1, 1, 0, 0, 0, 0);
-            dateTimePicker1.Name = "dateTimePicker1";
-            dateTimePicker1.Size = new Size(94, 26);
-            dateTimePicker1.TabIndex = 54;
+            dtpFechaHasta.CalendarForeColor = Color.Black;
+            dtpFechaHasta.CalendarTitleForeColor = Color.FromArgb(74, 102, 174);
+            dtpFechaHasta.Cursor = Cursors.Hand;
+            dtpFechaHasta.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            dtpFechaHasta.Format = DateTimePickerFormat.Short;
+            dtpFechaHasta.Location = new Point(658, 147);
+            dtpFechaHasta.MaxDate = new DateTime(2025, 12, 31, 0, 0, 0, 0);
+            dtpFechaHasta.MinDate = new DateTime(2020, 1, 1, 0, 0, 0, 0);
+            dtpFechaHasta.Name = "dtpFechaHasta";
+            dtpFechaHasta.Size = new Size(94, 26);
+            dtpFechaHasta.TabIndex = 54;
             // 
             // lblFechaDesde
             // 
@@ -363,7 +363,7 @@
             Controls.Add(lblPractica);
             Controls.Add(lblFechaHasta);
             Controls.Add(lblFechaDesde);
-            Controls.Add(dateTimePicker1);
+            Controls.Add(dtpFechaHasta);
             Controls.Add(btnBuscarTurno);
             Controls.Add(cmbConsulta);
             Controls.Add(pictureBox1);
@@ -379,7 +379,7 @@
             Controls.Add(label2);
             Controls.Add(cboEspecialidad);
             Controls.Add(pictureBox4);
-            Controls.Add(dtpTurno);
+            Controls.Add(dtpFechaDesde);
             Controls.Add(picActividad);
             Controls.Add(picCantCuotasPA);
             Controls.Add(dgtvTurnos);
@@ -400,7 +400,7 @@
 
         #endregion
         private DataGridView dgtvTurnos;
-        private DateTimePicker dtpTurno;
+        private DateTimePicker dtpFechaDesde;
         private PictureBox picActividad;
         private PictureBox picCantCuotasPA;
         private ComboBox cboEspecialidad;
@@ -418,7 +418,7 @@
         private ComboBox cmbConsulta;
         private PictureBox pictureBox1;
         private CustomBotonDos btnBuscarTurno;
-        private DateTimePicker dateTimePicker1;
+        private DateTimePicker dtpFechaHasta;
         private Label lblFechaDesde;
         private Label lblFechaHasta;
         private Label lblPractica;

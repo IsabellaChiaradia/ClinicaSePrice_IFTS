@@ -19,59 +19,55 @@ namespace ClinicaSePrice.Datos
             this.sqlCon = Conexion.getInstancia().CrearConexion();
         }
 
-        public void obtenerTurnosDisponibles(DataGridView tablaTurno)
+        public void obtenerTurnosDisponiblesXEspecialidad(DataGridView tablaTurno, DateTime fechaDesde, DateTime fechaHasta, int idEspecialidad)
+        {
+            ejecutarProcedimientoTurnos(tablaTurno, "sp_consulta_turnos_posibles_x_especialidad", fechaDesde, fechaHasta, idEspecialidad, null);
+        }
+
+        public void obtenerTurnosDisponiblesXMedico(DataGridView tablaTurno, DateTime fechaDesde, DateTime fechaHasta, int idMedico)
+        {
+            ejecutarProcedimientoTurnos(tablaTurno, "sp_consulta_turnos_posibles_x_medico", fechaDesde, fechaHasta, null, idMedico);
+        }
+
+        private void ejecutarProcedimientoTurnos(DataGridView tablaTurno, string procedimiento, DateTime fechaDesde, DateTime fechaHasta, int? idEspecialidad, int? idMedico)
         {
             try
             {
                 tablaTurno.DataSource = null;
-                MySqlDataReader resultado;
-                DataTable dt = new DataTable();
-                MySqlCommand comando = new MySqlCommand("sp_consulta_turnos_posibles_x_medico", sqlCon);
+                var dt = new DataTable();
+
+                // using se utiliza con los objetos MySqlConnection, MySqlCommand y MySqlDataReader. Esto garantiza que estos objetos se liberen correctamente y que se cierren las conexiones de base de datos una vez que ya no se necesiten, incluso si ocurren excepciones durante la ejecución del código. Esto ayuda a prevenir pérdidas de recursos y posibles problemas de conexión con la base de datos.
+
+                using MySqlCommand comando = new MySqlCommand(procedimiento, sqlCon);
                 comando.CommandType = CommandType.StoredProcedure;
+                comando.Parameters.Add("i_fecha_desde", MySqlDbType.Date).Value = fechaDesde;
+                comando.Parameters.Add("i_fecha_hasta", MySqlDbType.Date).Value = fechaHasta;
 
-                comando.Parameters.Add("i_fecha_desde", MySqlDbType.Date).Value = new DateTime(2024, 6, 3);
-                comando.Parameters.Add("i_fecha_hasta", MySqlDbType.Date).Value = new DateTime(2024, 6, 7);
-                comando.Parameters.Add("i_id_medico", MySqlDbType.Int32).Value = 1;
-
-                sqlCon.Open();
-                resultado = comando.ExecuteReader();
-
-                if (resultado.HasRows)
+                if (idEspecialidad.HasValue)
                 {
-                    dt.Load(resultado);
-                    DataTable turnosPosiblesDt = new DataTable();
-
-                    // Añadir las columnas que te interesan
-                    turnosPosiblesDt.Columns.Add("Día", typeof(string)); // Tipo según el tipo de dato
-                    turnosPosiblesDt.Columns.Add("Fecha Atencion", typeof(DateTime));
-                    turnosPosiblesDt.Columns.Add("Inicio", typeof(TimeSpan));
-                    turnosPosiblesDt.Columns.Add("Fin", typeof(TimeSpan));
-                    turnosPosiblesDt.Columns.Add("Medico", typeof(string));
-                    turnosPosiblesDt.Columns.Add("Disponible", typeof(Boolean));
-                    // Agrega más columnas según sea necesario
-
-                    // Copiar datos filtrados
-                    foreach (DataRow row in dt.Rows)
-                    {
-                        DataRow newRow = turnosPosiblesDt.NewRow();
-                        newRow["Día"] = obtenerNombreDia(Convert.ToInt32(row["dia"]));
-                        newRow["Fecha Atencion"] = row["fecha"];
-                        newRow["Inicio"] = row["hora_inicio"];
-                        newRow["Fin"] = row["hora_fin"];
-                        newRow["Medico"] = row["nombre_completo"];
-                        newRow["Disponible"] = row["idTurno"] == DBNull.Value;
-                        // Asigna más columnas según sea necesario
-                        turnosPosiblesDt.Rows.Add(newRow);
-                    }
-
-                    tablaTurno.DataSource = turnosPosiblesDt;
-
-                    // Opcionalmente, configurar la apariencia del DataGridView
-                    tablaTurno.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-
+                    comando.Parameters.Add("i_id_especialidad", MySqlDbType.Int32).Value = idEspecialidad.Value;
                 }
 
-                
+                if (idMedico.HasValue)
+                {
+                    comando.Parameters.Add("i_id_medico", MySqlDbType.Int32).Value = idMedico.Value;
+                    comando.Parameters.Add("i_show_results", MySqlDbType.Bit).Value = true;
+                }
+
+                sqlCon.Open();
+
+                using MySqlDataReader resultado = comando.ExecuteReader();
+                if (resultado.HasRows)
+                {
+                    procesarConsultaTurnos(tablaTurno, resultado, dt);
+                }
+                else
+                {
+                    MessageBox.Show("No existen turnos disponibles para esta selección",
+                                    "AVISO DEL SISTEMA",
+                                    MessageBoxButtons.OK,
+                                    MessageBoxIcon.Information);
+                }
             }
             catch (Exception error)
             {
@@ -80,8 +76,45 @@ namespace ClinicaSePrice.Datos
             finally
             {
                 if (sqlCon.State == ConnectionState.Open)
-                { sqlCon.Close(); };
+                {
+                    sqlCon.Close();
+                }
             }
+        }
+
+
+        private void procesarConsultaTurnos(DataGridView tablaTurno, MySqlDataReader resultado, DataTable dt)
+        {
+            dt.Load(resultado);
+            DataTable turnosPosiblesDt = new DataTable();
+
+            // Añadir las columnas que te interesan
+            turnosPosiblesDt.Columns.Add("Día", typeof(string)); // Tipo según el tipo de dato
+            turnosPosiblesDt.Columns.Add("Fecha Atencion", typeof(DateTime));
+            turnosPosiblesDt.Columns.Add("Inicio", typeof(TimeSpan));
+            turnosPosiblesDt.Columns.Add("Fin", typeof(TimeSpan));
+            turnosPosiblesDt.Columns.Add("Medico", typeof(string));
+            turnosPosiblesDt.Columns.Add("Disponible", typeof(Boolean));
+            // Agrega más columnas según sea necesario
+
+            // Copiar datos filtrados
+            foreach (DataRow row in dt.Rows)
+            {
+                DataRow newRow = turnosPosiblesDt.NewRow();
+                newRow["Día"] = obtenerNombreDia(Convert.ToInt32(row["dia"]));
+                newRow["Fecha Atencion"] = row["fecha"];
+                newRow["Inicio"] = row["hora_inicio"];
+                newRow["Fin"] = row["hora_fin"];
+                newRow["Medico"] = row["nombre_completo"];
+                newRow["Disponible"] = row["idTurno"] == DBNull.Value;
+                // Asigna más columnas según sea necesario
+                turnosPosiblesDt.Rows.Add(newRow);
+            }
+
+            tablaTurno.DataSource = turnosPosiblesDt;
+
+            // Opcionalmente, configurar la apariencia del DataGridView
+            tablaTurno.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
         }
 
 
