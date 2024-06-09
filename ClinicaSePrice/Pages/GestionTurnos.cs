@@ -20,18 +20,22 @@ namespace Dashboard_ClinicaSePrice.pesañas
         private FormCarnet? comprobanteTurno;
         private Turno turnoDB;
         private Especialidad especialidadDB;
-        private E_Especialidad especialidadSeleccionada;
+        private Medico medicoDB;
+        private E_Especialidad? especialidadSeleccionada;
+        private E_Medico? medicoSeleccionado;
 
         public GestionTurnos()
         {
             InitializeComponent();
             this.turnoDB = new Turno();
             this.especialidadDB = new Especialidad();
+            this.medicoDB = new Medico();
         }
 
         private void GestionTurnos_Load(object sender, EventArgs e)
         {
             cargarEspecialidades();
+            cargarMedicosXEspecialidad(-1);
         }
 
         private void cargarEspecialidades()
@@ -52,12 +56,57 @@ namespace Dashboard_ClinicaSePrice.pesañas
 
         private void cboEspecialidad_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (cboEspecialidad.SelectedItem != null)
+            if (cboEspecialidad.SelectedIndex > 0)
             {
                 this.especialidadSeleccionada = (E_Especialidad)cboEspecialidad.SelectedItem;
-
+                cargarMedicosXEspecialidad(this.especialidadSeleccionada.IdEspecialidad);
+            }
+            else
+            {
+                this.especialidadSeleccionada = null;
             }
         }
+
+        private void cargarMedicosXEspecialidad(int idEspecialidad)
+        {
+            var medicos = new List<E_Medico>();
+
+            medicos.Add(new E_Medico(0, "Seleccionar", "Medico"));
+
+            if(idEspecialidad > 0)
+            {
+                medicos.AddRange(this.medicoDB.getMedicosXEspecialidad(idEspecialidad));
+            }
+
+            if (medicos.Count > 1)
+            {
+                cboMedico.Enabled = true;
+            } else
+            {
+                cboMedico.Enabled = false;
+            }
+
+            cboMedico.DisplayMember = "NombreCompleto";
+            cboMedico.ValueMember = "Id";
+            cboMedico.DataSource = medicos;
+
+            cboMedico.SelectedIndex = 0;
+
+        }
+
+        private void cboMedico_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cboMedico.SelectedIndex > 0)
+            {
+                this.medicoSeleccionado = (E_Medico)cboMedico.SelectedItem;
+            } 
+            else
+            {
+                this.medicoSeleccionado = null;
+            }
+        }
+
+
 
 
         private void txtDniGestion_Enter(object sender, EventArgs e)

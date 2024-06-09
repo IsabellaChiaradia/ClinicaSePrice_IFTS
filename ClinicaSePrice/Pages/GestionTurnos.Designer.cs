@@ -36,7 +36,7 @@
             cboEspecialidad = new ComboBox();
             pictureBox4 = new PictureBox();
             label2 = new Label();
-            cmbMedico = new ComboBox();
+            cboMedico = new ComboBox();
             pictureBox8 = new PictureBox();
             label3 = new Label();
             txtDniGestion = new TextBox();
@@ -145,19 +145,19 @@
             label2.TabIndex = 41;
             label2.Text = "Especialidad";
             // 
-            // cmbMedico
+            // cboMedico
             // 
-            cmbMedico.Cursor = Cursors.Hand;
-            cmbMedico.DropDownStyle = ComboBoxStyle.DropDownList;
-            cmbMedico.Enabled = false;
-            cmbMedico.FlatStyle = FlatStyle.Popup;
-            cmbMedico.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            cmbMedico.ForeColor = Color.FromArgb(74, 102, 174);
-            cmbMedico.FormattingEnabled = true;
-            cmbMedico.Location = new Point(563, 76);
-            cmbMedico.Name = "cmbMedico";
-            cmbMedico.Size = new Size(189, 28);
-            cmbMedico.TabIndex = 43;
+            cboMedico.Cursor = Cursors.Hand;
+            cboMedico.DropDownStyle = ComboBoxStyle.DropDownList;
+            cboMedico.FlatStyle = FlatStyle.Popup;
+            cboMedico.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            cboMedico.ForeColor = Color.FromArgb(74, 102, 174);
+            cboMedico.FormattingEnabled = true;
+            cboMedico.Location = new Point(563, 76);
+            cboMedico.Name = "cboMedico";
+            cboMedico.Size = new Size(189, 28);
+            cboMedico.TabIndex = 43;
+            cboMedico.SelectedIndexChanged += cboMedico_SelectedIndexChanged;
             // 
             // pictureBox8
             // 
@@ -374,7 +374,7 @@
             Controls.Add(txtDniGestion);
             Controls.Add(pictureBox3);
             Controls.Add(label3);
-            Controls.Add(cmbMedico);
+            Controls.Add(cboMedico);
             Controls.Add(pictureBox8);
             Controls.Add(label2);
             Controls.Add(cboEspecialidad);
@@ -406,7 +406,7 @@
         private ComboBox cboEspecialidad;
         private PictureBox pictureBox4;
         private Label label2;
-        private ComboBox cmbMedico;
+        private ComboBox cboMedico;
         private PictureBox pictureBox8;
         private Label label3;
         private TextBox txtDniGestion;
