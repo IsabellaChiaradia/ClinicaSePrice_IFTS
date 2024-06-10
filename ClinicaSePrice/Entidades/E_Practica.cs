@@ -10,9 +10,19 @@ namespace ClinicaSePrice.Entidades
     {
         public int IdPractica { get; set; }
         public string? Codigo { get; set; }
-        public double Costo { get; set; }
+        public double? Costo { get; set; }
         public string? Descripcion { get; set; }
         public E_Especialidad? Especialidad { get; set; }
- 
+
+        public E_Practica()
+        {
+        }
+
+        public E_Practica(int idPractica, string? descripcion)
+        {
+            IdPractica = idPractica;
+            Descripcion = descripcion;
+        }
+
     }
 }

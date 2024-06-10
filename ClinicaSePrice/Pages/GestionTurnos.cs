@@ -21,8 +21,11 @@ namespace Dashboard_ClinicaSePrice.pesañas
         private Turno turnoDB;
         private Especialidad especialidadDB;
         private Medico medicoDB;
+        private Practica practicaDB;
         private E_Especialidad? especialidadSeleccionada;
         private E_Medico? medicoSeleccionado;
+        private E_Paciente? pacienteSeleccionado;
+        private E_Practica? practicaSeleccionada;
 
         public GestionTurnos()
         {
@@ -30,12 +33,14 @@ namespace Dashboard_ClinicaSePrice.pesañas
             this.turnoDB = new Turno();
             this.especialidadDB = new Especialidad();
             this.medicoDB = new Medico();
+            this.practicaDB = new Practica();
         }
 
         private void GestionTurnos_Load(object sender, EventArgs e)
         {
             cargarEspecialidades();
             cargarMedicosXEspecialidad(-1);
+            cargarPracticasXEspecialidad(-1);
         }
 
         private void cargarEspecialidades()
@@ -60,11 +65,13 @@ namespace Dashboard_ClinicaSePrice.pesañas
             {
                 this.especialidadSeleccionada = (E_Especialidad)cboEspecialidad.SelectedItem;
                 cargarMedicosXEspecialidad(this.especialidadSeleccionada.IdEspecialidad);
+                cargarPracticasXEspecialidad(this.especialidadSeleccionada.IdEspecialidad);
             }
             else
             {
                 this.especialidadSeleccionada = null;
                 cargarMedicosXEspecialidad(-1); // reiniciamos el combo de medicos
+                cargarPracticasXEspecialidad(-1); // reiniciamos el combo de practicas
             }
         }
 
@@ -108,8 +115,45 @@ namespace Dashboard_ClinicaSePrice.pesañas
             }
         }
 
+        private void cargarPracticasXEspecialidad(int idEspecialidad)
+        {
+            var practicas = new List<E_Practica>();
 
+            practicas.Add(new E_Practica(0, "Seleccionar Practica"));
 
+            if (idEspecialidad > 0)
+            {
+                practicas.AddRange(this.practicaDB.getPracticasXEspecialidad(idEspecialidad));
+            }
+
+            if (practicas.Count > 1)
+            {
+                cboPractica.Enabled = true;
+            }
+            else
+            {
+                cboPractica.Enabled = false;
+            }
+
+            cboPractica.DisplayMember = "Descripcion";
+            cboPractica.ValueMember = "IdPractica";
+            cboPractica.DataSource = practicas;
+
+            cboPractica.SelectedIndex = 0;
+
+        }
+
+        private void cboPractica_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cboPractica.SelectedIndex > 0)
+            {
+                this.practicaSeleccionada = (E_Practica)cboPractica.SelectedItem;
+            }
+            else
+            {
+                this.practicaSeleccionada = null;
+            }
+        }
 
         private void txtDniGestion_Enter(object sender, EventArgs e)
         {
@@ -140,7 +184,7 @@ namespace Dashboard_ClinicaSePrice.pesañas
 
         private void btnBuscarPaciente_Click(object sender, EventArgs e)
         {
-            RegistrarPaciente uc = new RegistrarPaciente();
+            //RegistrarPaciente uc = new RegistrarPaciente();
         }
 
         private void btnRegistrarTurno_Click(object sender, EventArgs e)
@@ -169,7 +213,7 @@ namespace Dashboard_ClinicaSePrice.pesañas
             var idMedico = this.medicoSeleccionado?.Id;
             var idEspecialidad = this.especialidadSeleccionada?.IdEspecialidad;
 
-            if(fechaDesde < fechaActual)
+            if (fechaDesde < fechaActual)
             {
                 MessageBox.Show("La fecha desde no puede ser menor al dia de hoy",
                                 "AVISO DEL SISTEMA",
@@ -190,15 +234,15 @@ namespace Dashboard_ClinicaSePrice.pesañas
             if (idMedico != null && idMedico > 0)
             {
                 turnoDB.obtenerTurnosDisponiblesXMedico(dgtvTurnos, fechaDesde, fechaHasta, (int)idMedico);
-            } 
+            }
             else if (idEspecialidad != null && idEspecialidad > 0)
             {
                 turnoDB.obtenerTurnosDisponiblesXEspecialidad(dgtvTurnos, fechaDesde, fechaHasta, (int)idEspecialidad);
-            } 
+            }
             else
             {
                 MessageBox.Show("Debes seleccionar una especialidad y/o un médico para realizar la consulta",
-                                "AVISO DEL SISTEMA", 
+                                "AVISO DEL SISTEMA",
                                 MessageBoxButtons.OK,
                                 MessageBoxIcon.Warning);
             }

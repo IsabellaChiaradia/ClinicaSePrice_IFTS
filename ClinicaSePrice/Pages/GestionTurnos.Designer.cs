@@ -45,7 +45,7 @@
             btnBuscarPaciente = new CustomBotonDos();
             btnRegistrarTurno = new CustomBotonDos();
             lblTurnosDisp = new Label();
-            cmbConsulta = new ComboBox();
+            cboPractica = new ComboBox();
             pictureBox1 = new PictureBox();
             btnBuscarTurno = new CustomBotonDos();
             dtpFechaHasta = new DateTimePicker();
@@ -267,19 +267,20 @@
             lblTurnosDisp.TabIndex = 50;
             lblTurnosDisp.Text = "Turnos Disponibles";
             // 
-            // cmbConsulta
+            // cboPractica
             // 
-            cmbConsulta.Cursor = Cursors.Hand;
-            cmbConsulta.DropDownStyle = ComboBoxStyle.DropDownList;
-            cmbConsulta.Enabled = false;
-            cmbConsulta.FlatStyle = FlatStyle.Popup;
-            cmbConsulta.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            cmbConsulta.ForeColor = Color.FromArgb(74, 102, 174);
-            cmbConsulta.FormattingEnabled = true;
-            cmbConsulta.Location = new Point(329, 147);
-            cmbConsulta.Name = "cmbConsulta";
-            cmbConsulta.Size = new Size(133, 28);
-            cmbConsulta.TabIndex = 52;
+            cboPractica.Cursor = Cursors.Hand;
+            cboPractica.DropDownStyle = ComboBoxStyle.DropDownList;
+            cboPractica.Enabled = false;
+            cboPractica.FlatStyle = FlatStyle.Popup;
+            cboPractica.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            cboPractica.ForeColor = Color.FromArgb(74, 102, 174);
+            cboPractica.FormattingEnabled = true;
+            cboPractica.Location = new Point(329, 147);
+            cboPractica.Name = "cboPractica";
+            cboPractica.Size = new Size(133, 28);
+            cboPractica.TabIndex = 52;
+            cboPractica.SelectedIndexChanged += cboPractica_SelectedIndexChanged;
             // 
             // pictureBox1
             // 
@@ -365,7 +366,7 @@
             Controls.Add(lblFechaDesde);
             Controls.Add(dtpFechaHasta);
             Controls.Add(btnBuscarTurno);
-            Controls.Add(cmbConsulta);
+            Controls.Add(cboPractica);
             Controls.Add(pictureBox1);
             Controls.Add(lblTurnosDisp);
             Controls.Add(btnRegistrarTurno);
@@ -415,7 +416,7 @@
         private CustomBotonDos btnBuscarPaciente;
         private CustomBotonDos btnRegistrarTurno;
         private Label lblTurnosDisp;
-        private ComboBox cmbConsulta;
+        private ComboBox cboPractica;
         private PictureBox pictureBox1;
         private CustomBotonDos btnBuscarTurno;
         private DateTimePicker dtpFechaHasta;
