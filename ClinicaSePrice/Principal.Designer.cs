@@ -255,6 +255,7 @@
             Controls.Add(panel1);
             Controls.Add(pnlControlPanel);
             FormBorderStyle = FormBorderStyle.None;
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Margin = new Padding(3, 2, 3, 2);
             Name = "Principal";
             StartPosition = FormStartPosition.CenterScreen;

@@ -52,6 +52,8 @@
             lblMonto = new Label();
             btnImprimirFactura = new Dashboard_ClinicaSePrice.CustomBotonDos();
             btnVolver = new Dashboard_ClinicaSePrice.CustomBotonDos();
+            pictureBox1 = new PictureBox();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
             // lblClinicaSePrice
@@ -59,19 +61,19 @@
             lblClinicaSePrice.AutoSize = true;
             lblClinicaSePrice.Enabled = false;
             lblClinicaSePrice.FlatStyle = FlatStyle.Flat;
-            lblClinicaSePrice.Font = new Font("Microsoft Sans Serif", 24F, FontStyle.Bold, GraphicsUnit.Point);
-            lblClinicaSePrice.ForeColor = Color.FromArgb(74, 102, 174);
+            lblClinicaSePrice.Font = new Font("Microsoft Sans Serif", 20F, FontStyle.Bold, GraphicsUnit.Point);
+            lblClinicaSePrice.ForeColor = Color.FromArgb(73, 162, 203);
             lblClinicaSePrice.Location = new Point(156, 47);
             lblClinicaSePrice.Name = "lblClinicaSePrice";
-            lblClinicaSePrice.Size = new Size(237, 37);
+            lblClinicaSePrice.Size = new Size(314, 31);
             lblClinicaSePrice.TabIndex = 0;
-            lblClinicaSePrice.Text = "Club deportivo";
+            lblClinicaSePrice.Text = "Clínica Médica SePrice";
             // 
             // lblClinicaSePrice2
             // 
             lblClinicaSePrice2.AutoSize = true;
             lblClinicaSePrice2.Font = new Font("Microsoft Sans Serif", 24F, FontStyle.Bold, GraphicsUnit.Point);
-            lblClinicaSePrice2.ForeColor = Color.FromArgb(74, 102, 174);
+            lblClinicaSePrice2.ForeColor = Color.FromArgb(73, 162, 203);
             lblClinicaSePrice2.Location = new Point(156, 79);
             lblClinicaSePrice2.Name = "lblClinicaSePrice2";
             lblClinicaSePrice2.Size = new Size(138, 37);
@@ -82,7 +84,7 @@
             // 
             lblFactura.AutoSize = true;
             lblFactura.Font = new Font("Microsoft Sans Serif", 20F, FontStyle.Regular, GraphicsUnit.Point);
-            lblFactura.ForeColor = Color.FromArgb(74, 102, 174);
+            lblFactura.ForeColor = Color.FromArgb(73, 162, 203);
             lblFactura.Location = new Point(31, 128);
             lblFactura.Name = "lblFactura";
             lblFactura.Size = new Size(107, 31);
@@ -93,7 +95,7 @@
             // 
             lblTituloNombreApe.AutoSize = true;
             lblTituloNombreApe.Font = new Font("Microsoft Sans Serif", 13F, FontStyle.Regular, GraphicsUnit.Point);
-            lblTituloNombreApe.ForeColor = Color.FromArgb(74, 102, 174);
+            lblTituloNombreApe.ForeColor = Color.FromArgb(73, 162, 203);
             lblTituloNombreApe.Location = new Point(31, 167);
             lblTituloNombreApe.Name = "lblTituloNombreApe";
             lblTituloNombreApe.Size = new Size(164, 22);
@@ -104,7 +106,7 @@
             // 
             lblTituloDNI.AutoSize = true;
             lblTituloDNI.Font = new Font("Microsoft Sans Serif", 13F, FontStyle.Regular, GraphicsUnit.Point);
-            lblTituloDNI.ForeColor = Color.FromArgb(74, 102, 174);
+            lblTituloDNI.ForeColor = Color.FromArgb(73, 162, 203);
             lblTituloDNI.Location = new Point(31, 191);
             lblTituloDNI.Name = "lblTituloDNI";
             lblTituloDNI.Size = new Size(45, 22);
@@ -115,7 +117,7 @@
             // 
             lblTituloCaracter.AutoSize = true;
             lblTituloCaracter.Font = new Font("Microsoft Sans Serif", 13F, FontStyle.Regular, GraphicsUnit.Point);
-            lblTituloCaracter.ForeColor = Color.FromArgb(74, 102, 174);
+            lblTituloCaracter.ForeColor = Color.FromArgb(73, 162, 203);
             lblTituloCaracter.Location = new Point(31, 215);
             lblTituloCaracter.Name = "lblTituloCaracter";
             lblTituloCaracter.Size = new Size(132, 22);
@@ -126,7 +128,7 @@
             // 
             lblTituloActividad.AutoSize = true;
             lblTituloActividad.Font = new Font("Microsoft Sans Serif", 13F, FontStyle.Regular, GraphicsUnit.Point);
-            lblTituloActividad.ForeColor = Color.FromArgb(74, 102, 174);
+            lblTituloActividad.ForeColor = Color.FromArgb(73, 162, 203);
             lblTituloActividad.Location = new Point(31, 239);
             lblTituloActividad.Name = "lblTituloActividad";
             lblTituloActividad.Size = new Size(88, 22);
@@ -137,7 +139,7 @@
             // 
             lblTituloFechaPago.AutoSize = true;
             lblTituloFechaPago.Font = new Font("Microsoft Sans Serif", 13F, FontStyle.Regular, GraphicsUnit.Point);
-            lblTituloFechaPago.ForeColor = Color.FromArgb(74, 102, 174);
+            lblTituloFechaPago.ForeColor = Color.FromArgb(73, 162, 203);
             lblTituloFechaPago.Location = new Point(31, 290);
             lblTituloFechaPago.Name = "lblTituloFechaPago";
             lblTituloFechaPago.Size = new Size(135, 22);
@@ -148,7 +150,7 @@
             // 
             lblTituloDescuento.AutoSize = true;
             lblTituloDescuento.Font = new Font("Microsoft Sans Serif", 13F, FontStyle.Regular, GraphicsUnit.Point);
-            lblTituloDescuento.ForeColor = Color.FromArgb(74, 102, 174);
+            lblTituloDescuento.ForeColor = Color.FromArgb(73, 162, 203);
             lblTituloDescuento.Location = new Point(31, 396);
             lblTituloDescuento.Name = "lblTituloDescuento";
             lblTituloDescuento.Size = new Size(69, 22);
@@ -159,7 +161,7 @@
             // 
             lblTituloFechaVenc.AutoSize = true;
             lblTituloFechaVenc.Font = new Font("Microsoft Sans Serif", 13F, FontStyle.Regular, GraphicsUnit.Point);
-            lblTituloFechaVenc.ForeColor = Color.FromArgb(74, 102, 174);
+            lblTituloFechaVenc.ForeColor = Color.FromArgb(73, 162, 203);
             lblTituloFechaVenc.Location = new Point(31, 314);
             lblTituloFechaVenc.Name = "lblTituloFechaVenc";
             lblTituloFechaVenc.Size = new Size(190, 22);
@@ -170,7 +172,7 @@
             // 
             lblTituloFormaPago.AutoSize = true;
             lblTituloFormaPago.Font = new Font("Microsoft Sans Serif", 13F, FontStyle.Regular, GraphicsUnit.Point);
-            lblTituloFormaPago.ForeColor = Color.FromArgb(74, 102, 174);
+            lblTituloFormaPago.ForeColor = Color.FromArgb(73, 162, 203);
             lblTituloFormaPago.Location = new Point(31, 371);
             lblTituloFormaPago.Name = "lblTituloFormaPago";
             lblTituloFormaPago.Size = new Size(136, 22);
@@ -181,7 +183,7 @@
             // 
             lblTituloMonto.AutoSize = true;
             lblTituloMonto.Font = new Font("Microsoft Sans Serif", 13F, FontStyle.Regular, GraphicsUnit.Point);
-            lblTituloMonto.ForeColor = Color.FromArgb(74, 102, 174);
+            lblTituloMonto.ForeColor = Color.FromArgb(73, 162, 203);
             lblTituloMonto.Location = new Point(276, 425);
             lblTituloMonto.Name = "lblTituloMonto";
             lblTituloMonto.Size = new Size(64, 22);
@@ -280,7 +282,7 @@
             // 
             // btnImprimirFactura
             // 
-            btnImprimirFactura.BackColor = Color.FromArgb(96, 61, 140);
+            btnImprimirFactura.BackColor = Color.FromArgb(29, 65, 81);
             btnImprimirFactura.Cursor = Cursors.Hand;
             btnImprimirFactura.FlatAppearance.BorderSize = 0;
             btnImprimirFactura.FlatStyle = FlatStyle.Flat;
@@ -297,7 +299,7 @@
             // 
             // btnVolver
             // 
-            btnVolver.BackColor = Color.FromArgb(96, 61, 140);
+            btnVolver.BackColor = Color.FromArgb(29, 65, 81);
             btnVolver.Cursor = Cursors.Hand;
             btnVolver.FlatAppearance.BorderSize = 0;
             btnVolver.FlatStyle = FlatStyle.Flat;
@@ -312,6 +314,18 @@
             btnVolver.UseVisualStyleBackColor = false;
             btnVolver.Click += btnVolver_Click;
             // 
+            // pictureBox1
+            // 
+            pictureBox1.BackgroundImageLayout = ImageLayout.Stretch;
+            pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
+            pictureBox1.Location = new Point(31, 37);
+            pictureBox1.Margin = new Padding(3, 2, 3, 2);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(93, 79);
+            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox1.TabIndex = 39;
+            pictureBox1.TabStop = false;
+            // 
             // frmFactura
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -319,6 +333,7 @@
             BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
             BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(501, 544);
+            Controls.Add(pictureBox1);
             Controls.Add(btnVolver);
             Controls.Add(btnImprimirFactura);
             Controls.Add(lblMonto);
@@ -348,6 +363,7 @@
             StartPosition = FormStartPosition.CenterScreen;
             Text = "frmFactura";
             Load += frmFactura_Load;
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -377,5 +393,6 @@
         private Label lblMonto;
         private Dashboard_ClinicaSePrice.CustomBotonDos btnImprimirFactura;
         private Dashboard_ClinicaSePrice.CustomBotonDos btnVolver;
+        private PictureBox pictureBox1;
     }
 }

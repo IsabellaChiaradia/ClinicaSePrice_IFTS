@@ -17,7 +17,7 @@ namespace Dashboard_ClinicaSePrice.pesañas
 {
     public partial class GestionTurnos : UserControl
     {
-        private FormCarnet? comprobanteTurno;
+        private FormComprobanteTurno? comprobanteTurno;
         private Turno turnoDB;
         private Especialidad especialidadDB;
         private Medico medicoDB;
@@ -156,7 +156,7 @@ namespace Dashboard_ClinicaSePrice.pesañas
 
                 bool esSocio = Convert.ToBoolean(dgtvTurnos.SelectedRows[0].Cells["EsSocio"].Value);
 
-                FormCarnet comprobanteTurno = new FormCarnet(nombreSocio, apellidoSocio, dniSocio, idSocio, correoSocio, fechaInscripcion);
+                FormComprobanteTurno comprobanteTurno = new FormComprobanteTurno(nombreSocio, apellidoSocio, dniSocio, idSocio, correoSocio, fechaInscripcion);
                 comprobanteTurno.ShowDialog();
             }
         }

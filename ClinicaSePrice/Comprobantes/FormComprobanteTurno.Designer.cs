@@ -1,6 +1,6 @@
 ﻿namespace ClinicaSePrice.Comprobantes
 {
-    partial class FormCarnet
+    partial class FormComprobanteTurno
     {
         /// <summary>
         /// Required designer variable.
@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormComprobanteTurno));
             lblNombre = new Label();
             lblDni = new Label();
-            lblClinicaSePrice = new Label();
             lblClinicaSePrice2 = new Label();
             lblNombreSocio = new Label();
             label1 = new Label();
@@ -45,8 +45,10 @@
             pictureQr = new PictureBox();
             btnImprimirCarnet = new Dashboard_ClinicaSePrice.CustomBotonDos();
             btnVolver = new Dashboard_ClinicaSePrice.CustomBotonDos();
+            pictureBox1 = new PictureBox();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureQr).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
             // lblNombre
@@ -65,33 +67,22 @@
             lblDni.Size = new Size(0, 15);
             lblDni.TabIndex = 1;
             // 
-            // lblClinicaSePrice
-            // 
-            lblClinicaSePrice.AutoSize = true;
-            lblClinicaSePrice.Font = new Font("Microsoft Sans Serif", 24F, FontStyle.Bold, GraphicsUnit.Point);
-            lblClinicaSePrice.ForeColor = Color.FromArgb(74, 102, 174);
-            lblClinicaSePrice.Location = new Point(186, 39);
-            lblClinicaSePrice.Name = "lblClinicaSePrice";
-            lblClinicaSePrice.Size = new Size(176, 37);
-            lblClinicaSePrice.TabIndex = 6;
-            lblClinicaSePrice.Text = "Fitnet club";
-            // 
             // lblClinicaSePrice2
             // 
             lblClinicaSePrice2.AutoSize = true;
-            lblClinicaSePrice2.Font = new Font("Microsoft Sans Serif", 24F, FontStyle.Bold, GraphicsUnit.Point);
-            lblClinicaSePrice2.ForeColor = Color.FromArgb(74, 102, 174);
+            lblClinicaSePrice2.Font = new Font("Microsoft Sans Serif", 20F, FontStyle.Bold, GraphicsUnit.Point);
+            lblClinicaSePrice2.ForeColor = Color.FromArgb(73, 162, 203);
             lblClinicaSePrice2.Location = new Point(186, 74);
             lblClinicaSePrice2.Name = "lblClinicaSePrice2";
-            lblClinicaSePrice2.Size = new Size(209, 37);
+            lblClinicaSePrice2.Size = new Size(313, 31);
             lblClinicaSePrice2.TabIndex = 6;
-            lblClinicaSePrice2.Text = "Carnet socio";
+            lblClinicaSePrice2.Text = "Comprobante de Turno";
             // 
             // lblNombreSocio
             // 
             lblNombreSocio.AutoSize = true;
             lblNombreSocio.Font = new Font("Microsoft Sans Serif", 20F, FontStyle.Regular, GraphicsUnit.Point);
-            lblNombreSocio.ForeColor = Color.FromArgb(74, 102, 174);
+            lblNombreSocio.ForeColor = Color.FromArgb(73, 162, 203);
             lblNombreSocio.Location = new Point(15, 130);
             lblNombreSocio.Name = "lblNombreSocio";
             lblNombreSocio.Size = new Size(110, 31);
@@ -102,7 +93,7 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Microsoft Sans Serif", 13F, FontStyle.Regular, GraphicsUnit.Point);
-            label1.ForeColor = Color.FromArgb(74, 102, 174);
+            label1.ForeColor = Color.FromArgb(73, 162, 203);
             label1.Location = new Point(20, 211);
             label1.Name = "label1";
             label1.Size = new Size(45, 22);
@@ -113,18 +104,18 @@
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Microsoft Sans Serif", 13F, FontStyle.Regular, GraphicsUnit.Point);
-            label2.ForeColor = Color.FromArgb(74, 102, 174);
+            label2.ForeColor = Color.FromArgb(73, 162, 203);
             label2.Location = new Point(20, 241);
             label2.Name = "label2";
-            label2.Size = new Size(150, 22);
+            label2.Size = new Size(72, 22);
             label2.TabIndex = 9;
-            label2.Text = "Número de socio:";
+            label2.Text = "Médico:";
             // 
             // label3
             // 
             label3.AutoSize = true;
             label3.Font = new Font("Microsoft Sans Serif", 13F, FontStyle.Regular, GraphicsUnit.Point);
-            label3.ForeColor = Color.FromArgb(74, 102, 174);
+            label3.ForeColor = Color.FromArgb(73, 162, 203);
             label3.Location = new Point(20, 268);
             label3.Name = "label3";
             label3.Size = new Size(70, 22);
@@ -135,12 +126,12 @@
             // 
             label4.AutoSize = true;
             label4.Font = new Font("Microsoft Sans Serif", 13F, FontStyle.Regular, GraphicsUnit.Point);
-            label4.ForeColor = Color.FromArgb(74, 102, 174);
+            label4.ForeColor = Color.FromArgb(73, 162, 203);
             label4.Location = new Point(20, 296);
             label4.Name = "label4";
-            label4.Size = new Size(180, 22);
+            label4.Size = new Size(123, 22);
             label4.TabIndex = 11;
-            label4.Text = "Fecha de inscripción:";
+            label4.Text = "Fecha y Hora:";
             // 
             // lblDniSocio
             // 
@@ -186,6 +177,7 @@
             // 
             panel1.BackColor = Color.Transparent;
             panel1.BorderStyle = BorderStyle.FixedSingle;
+            panel1.Controls.Add(pictureBox1);
             panel1.Controls.Add(pictureQr);
             panel1.Controls.Add(btnImprimirCarnet);
             panel1.Controls.Add(btnVolver);
@@ -199,7 +191,6 @@
             panel1.Controls.Add(label1);
             panel1.Controls.Add(lblNombreSocio);
             panel1.Controls.Add(lblClinicaSePrice2);
-            panel1.Controls.Add(lblClinicaSePrice);
             panel1.Controls.Add(lblDni);
             panel1.Controls.Add(lblNombre);
             panel1.Location = new Point(23, 25);
@@ -221,7 +212,7 @@
             // 
             // btnImprimirCarnet
             // 
-            btnImprimirCarnet.BackColor = Color.FromArgb(96, 61, 140);
+            btnImprimirCarnet.BackColor = Color.FromArgb(29, 65, 81);
             btnImprimirCarnet.Cursor = Cursors.Hand;
             btnImprimirCarnet.FlatAppearance.BorderSize = 0;
             btnImprimirCarnet.FlatStyle = FlatStyle.Flat;
@@ -238,7 +229,7 @@
             // 
             // btnVolver
             // 
-            btnVolver.BackColor = Color.FromArgb(96, 61, 140);
+            btnVolver.BackColor = Color.FromArgb(29, 65, 81);
             btnVolver.Cursor = Cursors.Hand;
             btnVolver.FlatAppearance.BorderSize = 0;
             btnVolver.FlatStyle = FlatStyle.Flat;
@@ -252,6 +243,18 @@
             btnVolver.Text = "VOLVER";
             btnVolver.UseVisualStyleBackColor = false;
             btnVolver.Click += btnVolver_Click;
+            // 
+            // pictureBox1
+            // 
+            pictureBox1.BackgroundImageLayout = ImageLayout.Stretch;
+            pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
+            pictureBox1.Location = new Point(15, 16);
+            pictureBox1.Margin = new Padding(3, 2, 3, 2);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(131, 112);
+            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox1.TabIndex = 38;
+            pictureBox1.TabStop = false;
             // 
             // FormCarnet
             // 
@@ -267,6 +270,7 @@
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureQr).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
         }
 
@@ -274,7 +278,6 @@
 
         private Label lblNombre;
         private Label lblDni;
-        private Label lblClinicaSePrice;
         private Label lblClinicaSePrice2;
         private Label lblNombreSocio;
         private Label label1;
@@ -289,5 +292,6 @@
         private Dashboard_ClinicaSePrice.CustomBotonDos btnVolver;
         private Dashboard_ClinicaSePrice.CustomBotonDos btnImprimirCarnet;
         private PictureBox pictureQr;
+        private PictureBox pictureBox1;
     }
 }

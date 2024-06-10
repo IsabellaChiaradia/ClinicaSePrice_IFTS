@@ -18,7 +18,7 @@ using System.Windows.Forms;
 
 namespace ClinicaSePrice.Comprobantes
 {
-    public partial class FormCarnet : Form
+    public partial class FormComprobanteTurno : Form
     {
         public string Nombre { get; set; }
 
@@ -29,7 +29,7 @@ namespace ClinicaSePrice.Comprobantes
         public string FechaInscripcion { get; set; }
         //qr
 
-        public FormCarnet(string nombre, string apellido, string dni, string numSocio, string correo, string fechaInscripcion)
+        public FormComprobanteTurno(string nombre, string apellido, string dni, string numSocio, string correo, string fechaInscripcion)
 
         {
             InitializeComponent();

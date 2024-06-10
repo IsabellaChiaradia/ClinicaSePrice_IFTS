@@ -196,6 +196,7 @@
             Controls.Add(pictureBox1);
             Controls.Add(pictureBox4);
             FormBorderStyle = FormBorderStyle.None;
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "Login";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Form1";
