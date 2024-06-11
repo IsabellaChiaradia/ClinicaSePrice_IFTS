@@ -11,5 +11,6 @@ namespace ClinicaSePrice.Entidades
         public int IdInsumo { get; set; }
         public string? Nombre { get; set; }
         public int Cantidad { get; set; }
+        public int StockMinimo { get; set; }
     }
 }

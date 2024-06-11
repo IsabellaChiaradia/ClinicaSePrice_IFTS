@@ -83,7 +83,8 @@ DROP TABLE IF EXISTS insumo;
 CREATE TABLE insumo (
     idInsumo INT AUTO_INCREMENT PRIMARY KEY,
     nombre VARCHAR(50) NOT NULL,
-	cantidad INT NOT NULL
+	cantidad INT NOT NULL,    
+    stock_minimo INT NOT NULL DEFAULT 0
 );
 
 -- Creacion de la tabla practica_insumo
@@ -182,17 +183,17 @@ INSERT INTO Horario_atencion (dia, horaInicio, horaFin, id_medico) VALUES
 
 
 -- Insertar insumos
-INSERT INTO insumo (nombre, cantidad) VALUES
-('Guantes', 500),
-('Jeringas', 1000),
-('Algodón', 200),
-('Gasas', 300),
-('Mascarillas', 600),
-('Analgésicos', 400),
-('Antibióticos', 300),
-('Electrodos', 150),
-('Tensiómetros', 50),
-('Tiras Reactivas', 800);
+INSERT INTO insumo (nombre, cantidad, stock_minimo) VALUES
+('Guantes', 500, 100),
+('Jeringas', 1000, 200),
+('Algodón', 200, 50),
+('Gasas', 300, 60),
+('Mascarillas', 600, 100),
+('Analgésicos', 400, 50),
+('Antibióticos', 300, 50),
+('Electrodos', 150, 30),
+('Tensiómetros', 50, 10),
+('Tiras Reactivas', 800, 150);
 
 -- Insertar prácticas
 INSERT INTO practica (codigo, costo, descripcion, id_especialidad) VALUES

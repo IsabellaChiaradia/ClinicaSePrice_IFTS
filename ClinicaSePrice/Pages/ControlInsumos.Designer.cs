@@ -29,9 +29,8 @@
         private void InitializeComponent()
         {
             lblCuotasVenc = new Label();
-            btnNotificar = new Dashboard_ClinicaSePrice.CustomBotonDos();
-            dtgvCuotasVenc = new DataGridView();
-            ((System.ComponentModel.ISupportInitialize)dtgvCuotasVenc).BeginInit();
+            dtgvControlInsumos = new DataGridView();
+            ((System.ComponentModel.ISupportInitialize)dtgvControlInsumos).BeginInit();
             SuspendLayout();
             // 
             // lblCuotasVenc
@@ -45,51 +44,36 @@
             lblCuotasVenc.TabIndex = 14;
             lblCuotasVenc.Text = "Control Insumos";
             // 
-            // btnNotificar
+            // dtgvControlInsumos
             // 
-            btnNotificar.BackColor = Color.FromArgb(29, 65, 81);
-            btnNotificar.Cursor = Cursors.Hand;
-            btnNotificar.FlatAppearance.BorderSize = 0;
-            btnNotificar.FlatStyle = FlatStyle.Flat;
-            btnNotificar.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            btnNotificar.ForeColor = Color.White;
-            btnNotificar.Location = new Point(581, 419);
-            btnNotificar.Margin = new Padding(3, 2, 3, 2);
-            btnNotificar.Name = "btnNotificar";
-            btnNotificar.Size = new Size(181, 39);
-            btnNotificar.TabIndex = 39;
-            btnNotificar.Text = "NOTIFICAR";
-            btnNotificar.UseVisualStyleBackColor = false;
-            btnNotificar.Click += btnNotificar_Click;
-            // 
-            // dtgvCuotasVenc
-            // 
-            dtgvCuotasVenc.AllowUserToAddRows = false;
-            dtgvCuotasVenc.AllowUserToDeleteRows = false;
-            dtgvCuotasVenc.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            dtgvCuotasVenc.BackgroundColor = Color.White;
-            dtgvCuotasVenc.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dtgvCuotasVenc.Location = new Point(52, 103);
-            dtgvCuotasVenc.Margin = new Padding(3, 2, 3, 2);
-            dtgvCuotasVenc.Name = "dtgvCuotasVenc";
-            dtgvCuotasVenc.ReadOnly = true;
-            dtgvCuotasVenc.RowHeadersWidth = 51;
-            dtgvCuotasVenc.RowTemplate.Height = 25;
-            dtgvCuotasVenc.Size = new Size(710, 282);
-            dtgvCuotasVenc.TabIndex = 41;
+            dtgvControlInsumos.AllowUserToAddRows = false;
+            dtgvControlInsumos.AllowUserToDeleteRows = false;
+            dtgvControlInsumos.AllowUserToResizeColumns = false;
+            dtgvControlInsumos.AllowUserToResizeRows = false;
+            dtgvControlInsumos.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dtgvControlInsumos.BackgroundColor = Color.White;
+            dtgvControlInsumos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dtgvControlInsumos.EditMode = DataGridViewEditMode.EditOnKeystroke;
+            dtgvControlInsumos.Location = new Point(52, 103);
+            dtgvControlInsumos.Margin = new Padding(3, 2, 3, 2);
+            dtgvControlInsumos.Name = "dtgvControlInsumos";
+            dtgvControlInsumos.ReadOnly = true;
+            dtgvControlInsumos.RowHeadersWidth = 51;
+            dtgvControlInsumos.RowTemplate.Height = 25;
+            dtgvControlInsumos.Size = new Size(710, 282);
+            dtgvControlInsumos.TabIndex = 41;
             // 
             // ControlInsumos
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(73, 162, 203);
-            Controls.Add(dtgvCuotasVenc);
-            Controls.Add(btnNotificar);
+            Controls.Add(dtgvControlInsumos);
             Controls.Add(lblCuotasVenc);
             Name = "ControlInsumos";
             Size = new Size(789, 513);
-            Load += CuotasVencidas_Load;
-            ((System.ComponentModel.ISupportInitialize)dtgvCuotasVenc).EndInit();
+            Load += ControlInsumos_Load;
+            ((System.ComponentModel.ISupportInitialize)dtgvControlInsumos).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -97,7 +81,6 @@
         #endregion
 
         private Label lblCuotasVenc;
-        private Dashboard_ClinicaSePrice.CustomBotonDos btnNotificar;
-        private DataGridView dtgvCuotasVenc;
+        private DataGridView dtgvControlInsumos;
     }
 }

@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Net;
 using System.Net.Mail;
+using ClinicaSePrice.Entidades;
 
 namespace ClinicaSePrice.Pages
 {
@@ -24,24 +25,37 @@ namespace ClinicaSePrice.Pages
 
         // ---------------------------- EVENTOS DEL FORMULARIO ----------------------------
 
-        private void CuotasVencidas_Load(object sender, EventArgs e)
+        private void ControlInsumos_Load(object sender, EventArgs e)
         {
-            //Cuota cuotaDB = new Cuota();
-            //cuotaDB.mostrarSociosMorosos(dtgvCuotasVenc);
+            var insumoDatos = new Insumo();
+            List<E_Insumo> insumos = insumoDatos.GetInsumosOrdenados();
 
+            DataTable dt = new DataTable();
+            dt.Columns.Add("Id");
+            dt.Columns.Add("Nombre");
+            dt.Columns.Add("Cantidad");
+            dt.Columns.Add("StockMinimo");
 
+            foreach (var insumo in insumos)
+            {
+                dt.Rows.Add(insumo.IdInsumo, insumo.Nombre, insumo.Cantidad, insumo.StockMinimo);
+            }
+
+            dtgvControlInsumos.DataSource = dt;
         }
+
+
         // ---------------------------- EVENTOS DEL BOTON DEL FORM ----------------------------
         private void btnNotificar_Click(object sender, EventArgs e)
         {
 
-            if (dtgvCuotasVenc.SelectedRows.Count > 0)
+            if (dtgvControlInsumos.SelectedRows.Count > 0)
             {
-                string nombreSocio = Convert.ToString(dtgvCuotasVenc.SelectedRows[0].Cells["Nombre"].Value);
-                string apellidoSocio = Convert.ToString(dtgvCuotasVenc.SelectedRows[0].Cells["Apellido"].Value);
-                string dniSocio = Convert.ToString(dtgvCuotasVenc.SelectedRows[0].Cells["DNI"].Value);
-                string correoSocio = Convert.ToString(dtgvCuotasVenc.SelectedRows[0].Cells["Correo"].Value);
-                string fechaVencimiento = Convert.ToString(dtgvCuotasVenc.SelectedRows[0].Cells["Fecha de Vencimiento"].Value);
+                string nombreSocio = Convert.ToString(dtgvControlInsumos.SelectedRows[0].Cells["Nombre"].Value);
+                string apellidoSocio = Convert.ToString(dtgvControlInsumos.SelectedRows[0].Cells["Apellido"].Value);
+                string dniSocio = Convert.ToString(dtgvControlInsumos.SelectedRows[0].Cells["DNI"].Value);
+                string correoSocio = Convert.ToString(dtgvControlInsumos.SelectedRows[0].Cells["Correo"].Value);
+                string fechaVencimiento = Convert.ToString(dtgvControlInsumos.SelectedRows[0].Cells["Fecha de Vencimiento"].Value);
 
 
                 string mensaje = $"Estimado {nombreSocio} {apellidoSocio},\n\n" +
