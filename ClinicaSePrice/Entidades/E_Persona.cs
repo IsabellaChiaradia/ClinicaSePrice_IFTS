@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ClinicaSePrice.Entidades
 {
-    internal class E_Persona
+    public class E_Persona
     {
         public int Id { get; set; }
         public string? Nombre { get; set; }

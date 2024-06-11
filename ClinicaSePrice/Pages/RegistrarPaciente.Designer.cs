@@ -295,6 +295,7 @@
             btnRegistrar.TabIndex = 55;
             btnRegistrar.Text = "REGISTRAR";
             btnRegistrar.UseVisualStyleBackColor = false;
+            btnRegistrar.Click += btnRegistrar_Click;
             // 
             // RegistrarPaciente
             // 

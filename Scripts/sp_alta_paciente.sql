@@ -1,6 +1,6 @@
 delimiter // 
  drop procedure if exists sp_alta_paciente//
- create procedure sp_alta_paciente(in i_nombre varchar(50),in i_apellido varchar(50), in i_n_documento varchar(15), in i_correo varchar(50), in i_fecha_nac varchar(15), in i_n_telefono  varchar(15), in i_domicilio varchar(50), in i_obra_social varchar(20), out rta int)
+ create procedure sp_alta_paciente(in i_nombre varchar(50),in i_apellido varchar(50), in i_n_documento varchar(15), in i_correo varchar(50), in i_fecha_nac date, in i_n_telefono  varchar(15), in i_domicilio varchar(50), in i_obra_social varchar(20), out rta int)
  begin
      declare id int default 0;
 	 declare existe int default 0;

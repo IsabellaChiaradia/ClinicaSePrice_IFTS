@@ -15,11 +15,11 @@ namespace ClinicaSePrice.Pages
 {
     public partial class RegistrarPaciente : UserControl
     {
-        //private Miembro miembroDB;
+        private Paciente pacienteDB;
         public RegistrarPaciente()
         {
             InitializeComponent();
-            //this.miembroDB = new Miembro();
+            this.pacienteDB = new Paciente();
         }
 
 
@@ -41,9 +41,8 @@ namespace ClinicaSePrice.Pages
 
         // ---------------------------- EVENTOS DE BOTONES ----------------------------
 
-        private void btnAgregar_Click(object sender, EventArgs e)
+        private void btnRegistrar_Click(object sender, EventArgs e)
         {
-
             //validamos que no existan campos vacíos o sin rellenar antes de generar la inscripción 
             if (string.IsNullOrWhiteSpace(txtNombre.Text) || txtNombre.Text == "Nombre" ||
                 string.IsNullOrWhiteSpace(txtApellido.Text) || txtApellido.Text == "Apellido" ||
@@ -57,21 +56,21 @@ namespace ClinicaSePrice.Pages
                 return;
             }
 
-            string respuesta;
-            //E_Miembro miembro = new E_Miembro();
-
-            //miembro.Nombre = txtNombre.Text;
-            //miembro.Apellido = txtApellido.Text;
-            //miembro.DNI = txtDni.Text;
-            //miembro.Correo = txtCorreo.Text;
-            //miembro.Direccion = txtDomicilio.Text;
-            //miembro.FechaNac = txtFechaNacimiento.Text;
+            E_Paciente paciente = new E_Paciente
+            {
+                Nombre = txtNombre.Text,
+                Apellido = txtApellido.Text,
+                NroDoc = txtDni.Text,
+                Email = txtCorreo.Text,
+                FechaNac = DateTime.Parse(txtFechaNacimiento.Text),
+                Domicilio = txtDomicilio.Text,
+            };
 
 
             //Tener en cuenta que, en base a la respuesta que ejecuta el procedimiento almacenado posteriormente evocado dentro
             //de la clase Miembro, serán las siguientes lineas de código mostrando si fue o no exitosa la carga.
             //respuesta = this.miembroDB.Nuevo_Miembro(miembro);
-            respuesta = "1"; // hice esto para que compile
+            string respuesta = this.pacienteDB.RegistrarPaciente(paciente);
 
             bool esnumero = int.TryParse(respuesta, out int codigo);
             if (esnumero)
@@ -208,12 +207,13 @@ namespace ClinicaSePrice.Pages
             if (txtFechaNacimiento.Text == "")
             {
                 txtFechaNacimiento.Text = "dd/mm/aaaa";
-            }       
+            }
         }
 
         private void bntLimpiarRP_Click(object sender, EventArgs e)
         {
             limpiarCampos();
         }
+
     }
 }
