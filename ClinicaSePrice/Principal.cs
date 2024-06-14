@@ -98,5 +98,11 @@ namespace Dashboard_ClinicaSePrice
             RegistrarPaciente uc = new RegistrarPaciente();
             agregarPaneles(uc);
         }
+
+        private void btnHonorarios_Click(object sender, EventArgs e)
+        {
+            HonorariosMedicos uc = new HonorariosMedicos();
+            agregarPaneles(uc);
+        }
     }
 }

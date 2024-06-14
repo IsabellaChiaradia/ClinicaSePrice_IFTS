@@ -33,6 +33,7 @@
             btnClose2 = new Button();
             btnClose = new Button();
             panel1 = new Panel();
+            btnHonorarios = new Boton();
             btnRegistroPaciente = new Boton();
             btnControlinsumos = new Boton();
             btnPagoEstudio = new Boton();
@@ -98,6 +99,7 @@
             // 
             panel1.BackgroundImage = (Image)resources.GetObject("panel1.BackgroundImage");
             panel1.BackgroundImageLayout = ImageLayout.Center;
+            panel1.Controls.Add(btnHonorarios);
             panel1.Controls.Add(btnRegistroPaciente);
             panel1.Controls.Add(btnControlinsumos);
             panel1.Controls.Add(btnPagoEstudio);
@@ -107,6 +109,25 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(237, 698);
             panel1.TabIndex = 1;
+            // 
+            // btnHonorarios
+            // 
+            btnHonorarios.BackColor = Color.FromArgb(73, 162, 203);
+            btnHonorarios.BackgroundImageLayout = ImageLayout.None;
+            btnHonorarios.Cursor = Cursors.Hand;
+            btnHonorarios.FlatAppearance.BorderSize = 0;
+            btnHonorarios.FlatStyle = FlatStyle.Flat;
+            btnHonorarios.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            btnHonorarios.ForeColor = Color.White;
+            btnHonorarios.Location = new Point(34, 521);
+            btnHonorarios.Name = "btnHonorarios";
+            btnHonorarios.Padding = new Padding(20, 0, 0, 0);
+            btnHonorarios.Size = new Size(203, 52);
+            btnHonorarios.TabIndex = 7;
+            btnHonorarios.Text = "Honorarios Médicos";
+            btnHonorarios.TextAlign = ContentAlignment.MiddleLeft;
+            btnHonorarios.UseVisualStyleBackColor = false;
+            btnHonorarios.Click += btnHonorarios_Click;
             // 
             // btnRegistroPaciente
             // 
@@ -284,5 +305,6 @@
         private CustomPanel customPanel1;
         private Panel pnlContainer;
         private Boton btnRegistroPaciente;
+        private Boton btnHonorarios;
     }
 }
