@@ -32,13 +32,13 @@
             lblHonorarios = new Label();
             btnPrintFactura = new Dashboard_ClinicaSePrice.CustomBotonDos();
             btnCargarFactura = new Dashboard_ClinicaSePrice.CustomBotonDos();
-            dtgvActividad = new DataGridView();
+            dtgvHonorarios = new DataGridView();
             cmbTipoLiquidacion = new ComboBox();
             picFormaPago = new PictureBox();
             lblTipoLiquidacion = new Label();
-            txtDniGestion = new TextBox();
+            txtDNI = new TextBox();
             pictureBox3 = new PictureBox();
-            ((System.ComponentModel.ISupportInitialize)dtgvActividad).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dtgvHonorarios).BeginInit();
             ((System.ComponentModel.ISupportInitialize)picFormaPago).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
             SuspendLayout();
@@ -87,26 +87,26 @@
             btnCargarFactura.TabIndex = 78;
             btnCargarFactura.Text = "CARGAR FACTURA";
             btnCargarFactura.UseVisualStyleBackColor = false;
+            btnCargarFactura.Click += btnCargarFactura_Click;
             // 
-            // dtgvActividad
+            // dtgvHonorarios
             // 
-            dtgvActividad.AllowUserToAddRows = false;
-            dtgvActividad.AllowUserToDeleteRows = false;
-            dtgvActividad.BackgroundColor = Color.White;
-            dtgvActividad.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dtgvActividad.Location = new Point(14, 136);
-            dtgvActividad.Margin = new Padding(3, 2, 3, 2);
-            dtgvActividad.Name = "dtgvActividad";
-            dtgvActividad.ReadOnly = true;
-            dtgvActividad.RowTemplate.Height = 25;
-            dtgvActividad.Size = new Size(738, 238);
-            dtgvActividad.TabIndex = 77;
+            dtgvHonorarios.AllowUserToAddRows = false;
+            dtgvHonorarios.AllowUserToDeleteRows = false;
+            dtgvHonorarios.BackgroundColor = Color.White;
+            dtgvHonorarios.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dtgvHonorarios.Location = new Point(14, 136);
+            dtgvHonorarios.Margin = new Padding(3, 2, 3, 2);
+            dtgvHonorarios.Name = "dtgvHonorarios";
+            dtgvHonorarios.ReadOnly = true;
+            dtgvHonorarios.RowTemplate.Height = 25;
+            dtgvHonorarios.Size = new Size(738, 238);
+            dtgvHonorarios.TabIndex = 77;
             // 
             // cmbTipoLiquidacion
             // 
             cmbTipoLiquidacion.Cursor = Cursors.Hand;
             cmbTipoLiquidacion.DropDownStyle = ComboBoxStyle.DropDownList;
-            cmbTipoLiquidacion.Enabled = false;
             cmbTipoLiquidacion.FlatStyle = FlatStyle.Popup;
             cmbTipoLiquidacion.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point);
             cmbTipoLiquidacion.ForeColor = Color.FromArgb(74, 102, 174);
@@ -115,6 +115,7 @@
             cmbTipoLiquidacion.Name = "cmbTipoLiquidacion";
             cmbTipoLiquidacion.Size = new Size(232, 28);
             cmbTipoLiquidacion.TabIndex = 76;
+            cmbTipoLiquidacion.SelectedIndexChanged += cmbTipoLiquidacion_SelectedIndexChanged;
             // 
             // picFormaPago
             // 
@@ -137,19 +138,22 @@
             lblTipoLiquidacion.TabIndex = 74;
             lblTipoLiquidacion.Text = "Tipo de Liquidación";
             // 
-            // txtDniGestion
+            // txtDNI
             // 
-            txtDniGestion.BackColor = Color.FromArgb(73, 162, 203);
-            txtDniGestion.BorderStyle = BorderStyle.None;
-            txtDniGestion.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            txtDniGestion.ForeColor = Color.White;
-            txtDniGestion.Location = new Point(39, 83);
-            txtDniGestion.Margin = new Padding(3, 2, 3, 2);
-            txtDniGestion.Multiline = true;
-            txtDniGestion.Name = "txtDniGestion";
-            txtDniGestion.Size = new Size(214, 22);
-            txtDniGestion.TabIndex = 81;
-            txtDniGestion.Text = "DNI";
+            txtDNI.BackColor = Color.FromArgb(73, 162, 203);
+            txtDNI.BorderStyle = BorderStyle.None;
+            txtDNI.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            txtDNI.ForeColor = Color.White;
+            txtDNI.Location = new Point(39, 83);
+            txtDNI.Margin = new Padding(3, 2, 3, 2);
+            txtDNI.Multiline = true;
+            txtDNI.Name = "txtDNI";
+            txtDNI.Size = new Size(214, 22);
+            txtDNI.TabIndex = 81;
+            txtDNI.Text = "DNI";
+            txtDNI.Enter += txtDNI_Enter;
+            txtDNI.KeyPress += txtDNI_KeyPress;
+            txtDNI.Leave += txtDNI_Leave;
             // 
             // pictureBox3
             // 
@@ -168,11 +172,11 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(73, 162, 203);
-            Controls.Add(txtDniGestion);
+            Controls.Add(txtDNI);
             Controls.Add(pictureBox3);
             Controls.Add(btnPrintFactura);
             Controls.Add(btnCargarFactura);
-            Controls.Add(dtgvActividad);
+            Controls.Add(dtgvHonorarios);
             Controls.Add(cmbTipoLiquidacion);
             Controls.Add(picFormaPago);
             Controls.Add(lblTipoLiquidacion);
@@ -180,7 +184,7 @@
             Name = "HonorariosMedicos";
             Size = new Size(789, 513);
             Load += HonorariosMedicos_Load;
-            ((System.ComponentModel.ISupportInitialize)dtgvActividad).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dtgvHonorarios).EndInit();
             ((System.ComponentModel.ISupportInitialize)picFormaPago).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
             ResumeLayout(false);
@@ -191,11 +195,11 @@
         private Label lblHonorarios;
         private Dashboard_ClinicaSePrice.CustomBotonDos btnPrintFactura;
         private Dashboard_ClinicaSePrice.CustomBotonDos btnCargarFactura;
-        private DataGridView dtgvActividad;
+        private DataGridView dtgvHonorarios;
         private ComboBox cmbTipoLiquidacion;
         private PictureBox picFormaPago;
         private Label lblTipoLiquidacion;
-        private TextBox txtDniGestion;
+        private TextBox txtDNI;
         private PictureBox pictureBox3;
     }
 }

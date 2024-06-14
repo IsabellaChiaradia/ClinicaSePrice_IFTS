@@ -9,8 +9,8 @@ namespace ClinicaSePrice.Entidades
     internal class E_Medico : E_Persona
     {
         public int DuracionTurno { get; set; }
+        public string NroDoc { get; set; } 
         public E_Especialidad? Especialidad { get; set; }
-
         public E_Medico()
         {
         }
@@ -23,6 +23,7 @@ namespace ClinicaSePrice.Entidades
         {
             DuracionTurno = duracionTurno;
             Especialidad = especialidad;
+            NroDoc = nroDoc;
         }
 
         public string NombreCompleto

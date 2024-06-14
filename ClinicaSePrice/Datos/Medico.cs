@@ -59,5 +59,43 @@ namespace ClinicaSePrice.Datos
 
             return listaMedicos;
         }
+
+        public E_Medico GetMedicoPorDNI(string dni)
+        {
+            E_Medico medico = null;
+            try
+            {
+                var query = "SELECT * FROM Medico WHERE nDocumento = @dni";
+                var command = new MySqlCommand(query, sqlCon);
+                command.Parameters.AddWithValue("@dni", dni);
+
+                sqlCon.Open();
+                using (var reader = command.ExecuteReader())
+                {
+                    if (reader.Read())
+                    {
+                        medico = new E_Medico
+                        {
+                            Id = Convert.ToInt32(reader["idMedico"]),
+                            Nombre = reader["nombre"].ToString(),
+                            Apellido = reader["apellido"].ToString(),
+                            NroDoc = reader["nDocumento"].ToString()
+                        };
+                    }
+                }
+            }
+            catch (Exception error)
+            {
+                MessageBox.Show("Ups! Hubo un error al traer el médico por DNI" + error);
+            }
+            finally
+            {
+                if (sqlCon.State == ConnectionState.Open)
+                {
+                    sqlCon.Close();
+                }
+            }
+            return medico;
+        }
     }
 }

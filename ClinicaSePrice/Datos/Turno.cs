@@ -141,5 +141,39 @@ namespace ClinicaSePrice.Datos
             return "Desconocido";
         }
 
+        public decimal ObtenerHonorariosMedico(string fecha, int idMedico)
+        {
+            decimal honorarios = 0;
+            try
+            {
+                using (MySqlCommand comando = new MySqlCommand("sp_calcula_honorarios", sqlCon))
+                {
+                    comando.CommandType = CommandType.StoredProcedure;
+                    comando.Parameters.AddWithValue("i_dia", fecha);
+                    comando.Parameters.AddWithValue("i_id_medico", idMedico);
+
+                    var rtaParam = new MySqlParameter("rta", MySqlDbType.Decimal);
+                    rtaParam.Direction = ParameterDirection.Output;
+                    comando.Parameters.Add(rtaParam);
+
+                    sqlCon.Open();
+                    comando.ExecuteNonQuery();
+                    honorarios = (decimal)rtaParam.Value;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al obtener los honorarios del médico: " + ex.Message);
+            }
+            finally
+            {
+                if (sqlCon.State == ConnectionState.Open)
+                {
+                    sqlCon.Close();
+                }
+            }
+            return honorarios;
+        }
+
     }
 }
