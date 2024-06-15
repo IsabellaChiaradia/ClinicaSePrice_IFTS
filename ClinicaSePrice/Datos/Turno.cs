@@ -147,7 +147,8 @@ namespace ClinicaSePrice.Datos
             turnosPosiblesDt.Columns.Add("Inicio", typeof(TimeSpan));
             turnosPosiblesDt.Columns.Add("Fin", typeof(TimeSpan));
             turnosPosiblesDt.Columns.Add("Medico", typeof(string));
-            turnosPosiblesDt.Columns.Add("Disponible", typeof(Boolean));
+            turnosPosiblesDt.Columns.Add("Disponible", typeof(string));
+
             // Agrega más columnas según sea necesario
 
             // Copiar datos filtrados
@@ -159,7 +160,7 @@ namespace ClinicaSePrice.Datos
                 newRow["Inicio"] = row["hora_inicio"];
                 newRow["Fin"] = row["hora_fin"];
                 newRow["Medico"] = row["nombre_completo"];
-                newRow["Disponible"] = row["idTurno"] == DBNull.Value;
+                newRow["Disponible"] = row["idTurno"] == DBNull.Value ? "✔️" : "❌";
                 // Asigna más columnas según sea necesario
                 turnosPosiblesDt.Rows.Add(newRow);
             }
@@ -168,6 +169,7 @@ namespace ClinicaSePrice.Datos
 
             // Opcionalmente, configurar la apariencia del DataGridView
             tablaTurno.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            tablaTurno.Columns["Disponible"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
             // Deseleccionar todas las filas
             tablaTurno.ClearSelection();
@@ -177,6 +179,24 @@ namespace ClinicaSePrice.Datos
                 tablaTurno.Rows[i].Tag = dt.Rows[i]; // Guardar la fila original completa en el Tag
             }
 
+            this.agregarColorXDisponibilidad(tablaTurno);
+        }
+
+
+        private void agregarColorXDisponibilidad(DataGridView tablaTurno)
+        {
+            foreach (DataGridViewRow row in tablaTurno.Rows)
+            {
+                DataRow? filaOriginal = row.Tag as DataRow;
+                if (filaOriginal["idTurno"] == DBNull.Value)
+                {
+                    row.DefaultCellStyle.BackColor = Color.LightGreen;
+                }
+                else
+                {
+                    row.DefaultCellStyle.BackColor = Color.LightCoral;
+                }
+            }
         }
 
 
