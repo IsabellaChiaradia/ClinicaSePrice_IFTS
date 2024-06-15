@@ -22,6 +22,7 @@ namespace Dashboard_ClinicaSePrice.pesañas
         private Especialidad especialidadDB;
         private Medico medicoDB;
         private Practica practicaDB;
+        private Paciente pacienteDB;
         private E_Especialidad? especialidadSeleccionada;
         private E_Medico? medicoSeleccionado;
         private E_Paciente? pacienteSeleccionado;
@@ -34,6 +35,7 @@ namespace Dashboard_ClinicaSePrice.pesañas
             this.especialidadDB = new Especialidad();
             this.medicoDB = new Medico();
             this.practicaDB = new Practica();
+            this.pacienteDB = new Paciente();
         }
 
         private void GestionTurnos_Load(object sender, EventArgs e)
@@ -184,24 +186,59 @@ namespace Dashboard_ClinicaSePrice.pesañas
 
         private void btnBuscarPaciente_Click(object sender, EventArgs e)
         {
-            //RegistrarPaciente uc = new RegistrarPaciente();
+            string dni = txtDniGestion.Text;
+
+            if (dni == "DNI" || string.IsNullOrWhiteSpace(dni))
+            {
+                MessageBox.Show("Por favor, ingrese un DNI válido.", "AVISO DEL SISTEMA",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            E_Paciente paciente = pacienteDB.BuscarPacientePorDNI(dni);
+
+            if (paciente == null)
+            {
+                MessageBox.Show("No se encontró el paciente con el DNI ingresado. Regístrelo en Registrar Paciente", "AVISO DEL SISTEMA",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtDniGestion.Text = "DNI";
+            }
+            else
+            {                
+                MessageBox.Show($"Paciente encontrado: {paciente.Nombre} {paciente.Apellido}", "AVISO DEL SISTEMA",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }            
         }
 
         private void btnRegistrarTurno_Click(object sender, EventArgs e)
         {
-            if (dgtvTurnos.SelectedRows.Count > 0)
+            if (dgtvTurnos.SelectedRows.Count > 0 && Convert.ToBoolean(dgtvTurnos.SelectedRows[0].Cells["Disponible"].Value))
             {
-                string? nombreSocio = Convert.ToString(dgtvTurnos.SelectedRows[0].Cells["Nombre"].Value);
-                string? apellidoSocio = Convert.ToString(dgtvTurnos.SelectedRows[0].Cells["Apellido"].Value);
-                string? dniSocio = Convert.ToString(dgtvTurnos.SelectedRows[0].Cells["DNI"].Value);
-                string? idSocio = Convert.ToString(dgtvTurnos.SelectedRows[0].Cells["IDMiembro"].Value);
-                string? correoSocio = Convert.ToString(dgtvTurnos.SelectedRows[0].Cells["Correo"].Value);
-                string? fechaInscripcion = DateTime.Now.ToString("dd/MM/yyyy");
+                try
+                {
+                    int idPaciente = Convert.ToInt32(dgtvTurnos.SelectedRows[0].Cells["IDPaciente"].Value);
+                    int idPractica = Convert.ToInt32(dgtvTurnos.SelectedRows[0].Cells["IDPractica"].Value);
+                    DateTime fechaTurno = Convert.ToDateTime(dgtvTurnos.SelectedRows[0].Cells["Fecha Atencion"].Value);
+                    DateTime horaInicio = Convert.ToDateTime(dgtvTurnos.SelectedRows[0].Cells["Hora de Inicio"].Value);
+                    DateTime horaFin = Convert.ToDateTime(dgtvTurnos.SelectedRows[0].Cells["Hora Fin"].Value);
 
-                bool esSocio = Convert.ToBoolean(dgtvTurnos.SelectedRows[0].Cells["EsSocio"].Value);
+                    //int idTurno = turnoDB.RegistrarTurno(idPaciente, idPractica, fechaTurno, horaInicio, horaFin);
 
-                FormComprobanteTurno comprobanteTurno = new FormComprobanteTurno(nombreSocio, apellidoSocio, dniSocio, idSocio, correoSocio, fechaInscripcion);
-                comprobanteTurno.ShowDialog();
+                    dgtvTurnos.SelectedRows[0].Cells["Disponible"].Value = false;
+
+                    //MessageBox.Show($"Turno registrado correctamente. ID de turno: {idTurno}", "Información",
+                                   // MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error al registrar el turno: " + ex.Message, "Error",
+                                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            else
+            {
+                MessageBox.Show("No se puede registrar el turno seleccionado. Asegúrese de que esté disponible.", "Error",
+                                MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

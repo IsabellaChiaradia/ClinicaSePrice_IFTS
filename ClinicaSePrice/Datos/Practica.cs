@@ -58,5 +58,39 @@ namespace ClinicaSePrice.Datos
 
             return listaPracticas;
         }
+
+        public decimal ObtenerCostoPractica(int idPractica, int idPaciente)
+        {
+            decimal costo = 0;
+
+            try
+            {
+                string query = "SELECT costo FROM Practica WHERE idPractica = @idPractica";
+                using (MySqlCommand comando = new MySqlCommand(query, sqlCon))
+                {
+                    comando.Parameters.AddWithValue("@idPractica", idPractica);
+                    sqlCon.Open();
+                    object result = comando.ExecuteScalar();
+                    if (result != null && result != DBNull.Value)
+                    {
+                        costo = Convert.ToDecimal(result);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al obtener el costo de la práctica: " + ex.Message, "Error",
+                                MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                if (sqlCon.State == ConnectionState.Open)
+                {
+                    sqlCon.Close();
+                }
+            }
+
+            return costo;
+        }
     }
 }

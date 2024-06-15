@@ -56,5 +56,52 @@ namespace ClinicaSePrice.Datos
 
             return salida;
         }
+
+
+        public E_Paciente BuscarPacientePorDNI(string dni)
+        {
+            E_Paciente paciente = null;
+
+            try
+            {
+                sqlCon.Open();
+                string query = "SELECT * FROM paciente WHERE nDocumento = @dni";
+                using (MySqlCommand cmd = new MySqlCommand(query, sqlCon))
+                {
+                    cmd.Parameters.AddWithValue("@dni", dni);
+                    using (MySqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            paciente = new E_Paciente
+                            {
+                                Id = Convert.ToInt32(reader["idPaciente"]),
+                                Nombre = reader["nombre"].ToString(),
+                                Apellido = reader["apellido"].ToString(),
+                                NroDoc = reader["nDocumento"].ToString(),
+                                Email = reader["email"].ToString(),
+                                FechaNac = Convert.ToDateTime(reader["fechaNac"]),
+                                Telefono = reader["telefono"].ToString(),
+                                Domicilio = reader["domicilio"].ToString(),
+                                ObraSocial = reader["obraSocial"].ToString()
+                            };
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al buscar el paciente: " + ex.Message);
+            }
+            finally
+            {
+                if (sqlCon.State == ConnectionState.Open)
+                {
+                    sqlCon.Close();
+                }
+            }
+
+            return paciente;
+        }
     }
 }
