@@ -1,5 +1,6 @@
 ﻿using ClinicaSePrice.Datos;
 using ClinicaSePrice.Entidades;
+using ClinicaSePrice.Comprobantes;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -15,32 +16,20 @@ namespace ClinicaSePrice.Pages
     public partial class HonorariosMedicos : UserControl
     {
         private Medico medicoDatos;
+        private DataTable dtHonorarios;
+        private int idMedico;
 
         public HonorariosMedicos()
         {
             InitializeComponent();
             medicoDatos = new Medico();
+            dtHonorarios = new DataTable();
 
+            dtHonorarios.Columns.Add("Fecha", typeof(string));
+            dtHonorarios.Columns.Add("Honorarios", typeof(decimal));
+            dtHonorarios.Columns.Add("Cantidad de Turnos", typeof(int));
         }
 
-
-        public class TipoLiquidacion
-        {
-            public int Id { get; set; }
-            public string Nombre { get; set; }
-
-            public TipoLiquidacion(int id, string nombre)
-            {
-                Id = id;
-                Nombre = nombre;
-            }
-        }       
-        
-
-        private void btnCargarFactura_Click(object sender, EventArgs e)
-        {
-            string dni = txtDNI.Text;            
-        }
 
         private void txtDNI_Enter(object sender, EventArgs e)
         {
@@ -76,15 +65,17 @@ namespace ClinicaSePrice.Pages
                 MessageBox.Show("Ingrese un DNI válido.", "AVISO DEL SISTEMA",
                 MessageBoxButtons.OK,
                 MessageBoxIcon.Error);
+                txtDNI.Text = "DNI";
                 return;
             }
 
             int idMedico = medicoDatos.ObtenerIdMedicoPorDNI(dni);
             if (idMedico == 0)
             {
-                MessageBox.Show("No se encontró ningún médico con el DNI ingresado.","AVISO DEL SISTEMA",
+                MessageBox.Show("No se encontró ningún médico con el DNI ingresado.", "AVISO DEL SISTEMA",
                 MessageBoxButtons.OK,
                 MessageBoxIcon.Error);
+                txtDNI.Text = "DNI";
                 return;
             }
 
@@ -92,7 +83,7 @@ namespace ClinicaSePrice.Pages
             CargarHonorariosMedicos(idMedico, fecha);
         }
 
-        private void CargarHonorariosMedicos(int idMedico, DateTime fecha)
+        public void CargarHonorariosMedicos(int idMedico, DateTime fecha)
         {
             DataTable dt = new DataTable();
             dt.Columns.Add("Fecha", typeof(string));
@@ -111,7 +102,7 @@ namespace ClinicaSePrice.Pages
                 row["Fecha"] = fecha.ToString("yyyy-MM-dd");
                 row["Cantidad de Turnos"] = cantidadTurnos;
                 row["Honorarios"] = honorarios;
-               
+
                 dt.Rows.Add(row);
 
                 dtgvHonorarios.DataSource = dt;
@@ -122,6 +113,26 @@ namespace ClinicaSePrice.Pages
                 MessageBoxButtons.OK,
                 MessageBoxIcon.Error);
             }
-        }        
+        }
+
+        private void btnCargarFactura_Click(object sender, EventArgs e)
+        {
+            if (dtgvHonorarios.SelectedRows.Count > 0)
+            {
+               
+                frmFacturaHonorarios facturaForm = new frmFacturaHonorarios();
+                               
+                string dni = txtDNI.Text.Trim();                
+                medicoDatos.EmitirFactura(dni, facturaForm);                                
+                facturaForm.ShowDialog();
+                                
+                facturaForm.Dispose();
+            }
+            else
+            {
+                MessageBox.Show("Seleccione una fila válida en la tabla de honorarios.", "AVISO DEL SISTEMA",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
     }
 }

@@ -1,4 +1,5 @@
-﻿using ClinicaSePrice.Entidades;
+﻿using ClinicaSePrice.Comprobantes;
+using ClinicaSePrice.Entidades;
 using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
@@ -158,6 +159,49 @@ namespace ClinicaSePrice.Datos
             }
 
             return cantidadTurnos;
+        }
+
+        public void EmitirFactura(string dni, frmFacturaHonorarios factura)
+        {
+            try
+            {                
+                string query = "SELECT m.idMedico, m.nombre, m.apellido, m.nDocumento, e.tipo AS Especialidad "
+                             + "FROM medico m "
+                             + "INNER JOIN especialidad e ON e.idEspecialidad = m.id_especialidad "
+                             + "WHERE m.nDocumento = @dni;";
+
+                MySqlDataAdapter adapter = new MySqlDataAdapter(query, sqlCon);
+                adapter.SelectCommand.Parameters.AddWithValue("@dni", dni);
+
+                DataTable dt = new DataTable();
+                adapter.Fill(dt);
+
+                if (dt.Rows.Count > 0)
+                {
+                    DataRow row = dt.Rows[0];                                        
+                    int idMedico = Convert.ToInt32(row["idMedico"]);
+                                        
+                    decimal honorarios = CalcularHonorarios(idMedico, DateTime.Now.ToString("yyyy-MM-dd"));
+                    int cantidadTurnos = ObtenerCantidadTurnos(idMedico, DateTime.Now.ToString("yyyy-MM-dd"));
+                                        
+                    if (cantidadTurnos == 0)
+                    {
+                        honorarios = 0;
+                    }
+
+                    factura.nombre = row["nombre"].ToString();
+                    factura.apellido = row["apellido"].ToString();
+                    factura.dni = row["nDocumento"].ToString();
+                    factura.especialidad = row["Especialidad"].ToString();
+                    factura.fechaPago = DateTime.Now.ToString("dd/MM/yyyy");
+                    factura.cantTurnos = cantidadTurnos.ToString();
+                    factura.monto = "$" + honorarios.ToString("F2");
+                }
+            }
+            catch (Exception error)
+            {
+                MessageBox.Show("Ups! Hubo un error al emitir la factura " + error);
+            }
         }
     }
 }

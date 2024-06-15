@@ -30,7 +30,6 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(HonorariosMedicos));
             lblHonorarios = new Label();
-            btnPrintFactura = new Dashboard_ClinicaSePrice.CustomBotonDos();
             btnCargarFactura = new Dashboard_ClinicaSePrice.CustomBotonDos();
             dtgvHonorarios = new DataGridView();
             txtDNI = new TextBox();
@@ -51,23 +50,6 @@
             lblHonorarios.Size = new Size(223, 26);
             lblHonorarios.TabIndex = 70;
             lblHonorarios.Text = "Honorarios Médicos";
-            // 
-            // btnPrintFactura
-            // 
-            btnPrintFactura.BackColor = Color.FromArgb(29, 65, 81);
-            btnPrintFactura.Cursor = Cursors.Hand;
-            btnPrintFactura.Enabled = false;
-            btnPrintFactura.FlatAppearance.BorderSize = 0;
-            btnPrintFactura.FlatStyle = FlatStyle.Flat;
-            btnPrintFactura.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            btnPrintFactura.ForeColor = Color.White;
-            btnPrintFactura.Location = new Point(343, 404);
-            btnPrintFactura.Margin = new Padding(3, 2, 3, 2);
-            btnPrintFactura.Name = "btnPrintFactura";
-            btnPrintFactura.Size = new Size(181, 39);
-            btnPrintFactura.TabIndex = 79;
-            btnPrintFactura.Text = "IMPRIMIR";
-            btnPrintFactura.UseVisualStyleBackColor = false;
             // 
             // btnCargarFactura
             // 
@@ -156,7 +138,6 @@
             Controls.Add(btnBuscarMedico);
             Controls.Add(txtDNI);
             Controls.Add(pictureBox3);
-            Controls.Add(btnPrintFactura);
             Controls.Add(btnCargarFactura);
             Controls.Add(dtgvHonorarios);
             Controls.Add(lblHonorarios);
@@ -170,7 +151,6 @@
 
         #endregion
         private Label lblHonorarios;
-        private Dashboard_ClinicaSePrice.CustomBotonDos btnPrintFactura;
         private Dashboard_ClinicaSePrice.CustomBotonDos btnCargarFactura;
         private DataGridView dtgvHonorarios;
         private TextBox txtDNI;
