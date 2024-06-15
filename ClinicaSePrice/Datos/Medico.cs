@@ -60,33 +60,28 @@ namespace ClinicaSePrice.Datos
             return listaMedicos;
         }
 
-        public E_Medico GetMedicoPorDNI(string dni)
+        public int ObtenerIdMedicoPorDNI(string dni)
         {
-            E_Medico medico = null;
+            int idMedico = 0;
             try
             {
-                var query = "SELECT * FROM Medico WHERE nDocumento = @dni";
-                var command = new MySqlCommand(query, sqlCon);
-                command.Parameters.AddWithValue("@dni", dni);
-
                 sqlCon.Open();
-                using (var reader = command.ExecuteReader())
+                string query = "SELECT idMedico FROM medico WHERE nDocumento = @dni";
+                using (MySqlCommand cmd = new MySqlCommand(query, sqlCon))
                 {
-                    if (reader.Read())
+                    cmd.Parameters.AddWithValue("@dni", dni);
+                    using (MySqlDataReader reader = cmd.ExecuteReader())
                     {
-                        medico = new E_Medico
+                        if (reader.Read())
                         {
-                            Id = Convert.ToInt32(reader["idMedico"]),
-                            Nombre = reader["nombre"].ToString(),
-                            Apellido = reader["apellido"].ToString(),
-                            NroDoc = reader["nDocumento"].ToString()
-                        };
+                            idMedico = Convert.ToInt32(reader["idMedico"]);
+                        }
                     }
                 }
             }
-            catch (Exception error)
+            catch (Exception ex)
             {
-                MessageBox.Show("Ups! Hubo un error al traer el médico por DNI" + error);
+                MessageBox.Show("Error al obtener el ID del médico: " + ex.Message);
             }
             finally
             {
@@ -95,7 +90,74 @@ namespace ClinicaSePrice.Datos
                     sqlCon.Close();
                 }
             }
-            return medico;
+            return idMedico;
+        }
+
+        public decimal CalcularHonorarios(int idMedico, string fecha)
+        {
+            decimal totalHonorarios = 0;
+
+            try
+            {
+                using (MySqlConnection con = Conexion.getInstancia().CrearConexion())
+                {
+                    con.Open();
+
+                    // Consulta para obtener los turnos del médico en la fecha especificada
+                    string query = @"
+                    SELECT t.idTurno, p.costo
+                    FROM turno t
+                    INNER JOIN practica p ON t.id_practica = p.idPractica
+                    WHERE t.id_medico = @idMedico AND t.fechaAtencion = @fecha";
+
+                    MySqlCommand cmd = new MySqlCommand(query, con);
+                    cmd.Parameters.AddWithValue("@idMedico", idMedico);
+                    cmd.Parameters.AddWithValue("@fecha", fecha);
+
+                    using (MySqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            decimal costoPractica = Convert.ToDecimal(reader["costo"]);
+                            totalHonorarios += costoPractica;
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al calcular los honorarios: " + ex.Message);
+            }
+
+            return totalHonorarios;
+        }
+
+        public int ObtenerCantidadTurnos(int idMedico, string fecha)
+        {
+            int cantidadTurnos = 0;
+
+            try
+            {
+                using (MySqlConnection con = Conexion.getInstancia().CrearConexion())
+                {
+                    con.Open();
+                    MySqlCommand cmd = new MySqlCommand("SELECT COUNT(*) FROM turno WHERE id_medico = @idMedico AND fechaAtencion = @fecha", con);
+                    cmd.Parameters.AddWithValue("@idMedico", idMedico);
+                    cmd.Parameters.AddWithValue("@fecha", fecha);
+
+                    object result = cmd.ExecuteScalar();
+                    if (result != DBNull.Value)
+                    {
+                        cantidadTurnos = Convert.ToInt32(result);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al obtener la cantidad de turnos del médico: " + ex.Message);
+            }
+
+            return cantidadTurnos;
         }
     }
 }

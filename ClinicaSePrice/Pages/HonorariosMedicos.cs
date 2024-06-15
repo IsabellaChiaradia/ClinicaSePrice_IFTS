@@ -1,4 +1,4 @@
-﻿using ClinicaSePrice.Controladores;
+﻿using ClinicaSePrice.Datos;
 using ClinicaSePrice.Entidades;
 using System;
 using System.Collections.Generic;
@@ -14,12 +14,12 @@ namespace ClinicaSePrice.Pages
 {
     public partial class HonorariosMedicos : UserControl
     {
-        private ControladorHonorarios controladorHonorarios;
+        private Medico medicoDatos;
 
         public HonorariosMedicos()
         {
             InitializeComponent();
-            controladorHonorarios = new ControladorHonorarios();
+            medicoDatos = new Medico();
 
         }
 
@@ -34,42 +34,12 @@ namespace ClinicaSePrice.Pages
                 Id = id;
                 Nombre = nombre;
             }
-        }
-        private void HonorariosMedicos_Load(object sender, EventArgs e)
-        {
-            cargarTipoLiquidacion();
-        }
-        private void cargarTipoLiquidacion()
-        {
-
-            var tiposLiquidacion = new List<TipoLiquidacion>
-    {
-            new TipoLiquidacion(0, "Seleccione Liquidación"),
-            new TipoLiquidacion(1, "Diaria"),
-            new TipoLiquidacion(2, "Semanal"),
-            new TipoLiquidacion(3, "Mensual")
-    };
-
-            cmbTipoLiquidacion.DisplayMember = "Nombre";
-            cmbTipoLiquidacion.ValueMember = "Id";
-            cmbTipoLiquidacion.DataSource = tiposLiquidacion;
-
-
-        }
+        }       
+        
 
         private void btnCargarFactura_Click(object sender, EventArgs e)
         {
-            string dni = txtDNI.Text;
-            string tipoLiquidacion = cmbTipoLiquidacion.SelectedItem.ToString();
-
-            if (tipoLiquidacion != "Seleccione Liquidación")
-            {
-                controladorHonorarios.CargarHonorariosMedico(dtgvHonorarios, dni, tipoLiquidacion);
-            }
-            else
-            {
-                MessageBox.Show("Por favor, seleccione un tipo de liquidación.");
-            }
+            string dni = txtDNI.Text;            
         }
 
         private void txtDNI_Enter(object sender, EventArgs e)
@@ -97,22 +67,61 @@ namespace ClinicaSePrice.Pages
             }
         }
 
-        private void cmbTipoLiquidacion_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            // Obtener el tipo de liquidación seleccionado
-            TipoLiquidacion tipoSeleccionado = (TipoLiquidacion)cmbTipoLiquidacion.SelectedItem;
 
-            // Validar si se seleccionó un tipo de liquidación válido
-            if (tipoSeleccionado != null && tipoSeleccionado.Id != 0)
+        private void btnBuscarMedico_Click(object sender, EventArgs e)
+        {
+            string dni = txtDNI.Text.Trim();
+            if (string.IsNullOrEmpty(dni))
             {
-                // Aquí puedes proceder con el código que debe ejecutarse cuando se selecciona un tipo válido
-                // Por ejemplo, puedes habilitar otros controles o realizar otras acciones necesarias.
+                MessageBox.Show("Ingrese un DNI válido.", "AVISO DEL SISTEMA",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Error);
+                return;
             }
-            else
+
+            int idMedico = medicoDatos.ObtenerIdMedicoPorDNI(dni);
+            if (idMedico == 0)
             {
-                // Mostrar mensaje de error si no se seleccionó un tipo de liquidación válido
-                MessageBox.Show("Seleccione un tipo de liquidación válida", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("No se encontró ningún médico con el DNI ingresado.","AVISO DEL SISTEMA",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Error);
+                return;
             }
+
+            DateTime fecha = DateTime.Now;
+            CargarHonorariosMedicos(idMedico, fecha);
         }
+
+        private void CargarHonorariosMedicos(int idMedico, DateTime fecha)
+        {
+            DataTable dt = new DataTable();
+            dt.Columns.Add("Fecha", typeof(string));
+            dt.Columns.Add("Honorarios", typeof(decimal));
+            dt.Columns.Add("Cantidad de Turnos", typeof(int));
+
+            decimal honorarios = 0;
+            int cantidadTurnos = 0;
+
+            try
+            {
+                honorarios = medicoDatos.CalcularHonorarios(idMedico, fecha.ToString("yyyy-MM-dd"));
+                cantidadTurnos = medicoDatos.ObtenerCantidadTurnos(idMedico, fecha.ToString("yyyy-MM-dd"));
+
+                DataRow row = dt.NewRow();
+                row["Fecha"] = fecha.ToString("yyyy-MM-dd");
+                row["Cantidad de Turnos"] = cantidadTurnos;
+                row["Honorarios"] = honorarios;
+               
+                dt.Rows.Add(row);
+
+                dtgvHonorarios.DataSource = dt;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al cargar los honorarios y la cantidad de turnos: " + ex.Message, "AVISO DEL SISTEMA",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Error);
+            }
+        }        
     }
 }

@@ -33,13 +33,10 @@
             btnPrintFactura = new Dashboard_ClinicaSePrice.CustomBotonDos();
             btnCargarFactura = new Dashboard_ClinicaSePrice.CustomBotonDos();
             dtgvHonorarios = new DataGridView();
-            cmbTipoLiquidacion = new ComboBox();
-            picFormaPago = new PictureBox();
-            lblTipoLiquidacion = new Label();
             txtDNI = new TextBox();
             pictureBox3 = new PictureBox();
+            btnBuscarMedico = new Dashboard_ClinicaSePrice.CustomBotonDos();
             ((System.ComponentModel.ISupportInitialize)dtgvHonorarios).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)picFormaPago).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
             SuspendLayout();
             // 
@@ -93,50 +90,16 @@
             // 
             dtgvHonorarios.AllowUserToAddRows = false;
             dtgvHonorarios.AllowUserToDeleteRows = false;
+            dtgvHonorarios.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dtgvHonorarios.BackgroundColor = Color.White;
             dtgvHonorarios.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dtgvHonorarios.Location = new Point(14, 136);
+            dtgvHonorarios.Location = new Point(14, 176);
             dtgvHonorarios.Margin = new Padding(3, 2, 3, 2);
             dtgvHonorarios.Name = "dtgvHonorarios";
             dtgvHonorarios.ReadOnly = true;
             dtgvHonorarios.RowTemplate.Height = 25;
-            dtgvHonorarios.Size = new Size(738, 238);
+            dtgvHonorarios.Size = new Size(738, 198);
             dtgvHonorarios.TabIndex = 77;
-            // 
-            // cmbTipoLiquidacion
-            // 
-            cmbTipoLiquidacion.Cursor = Cursors.Hand;
-            cmbTipoLiquidacion.DropDownStyle = ComboBoxStyle.DropDownList;
-            cmbTipoLiquidacion.FlatStyle = FlatStyle.Popup;
-            cmbTipoLiquidacion.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            cmbTipoLiquidacion.ForeColor = Color.FromArgb(74, 102, 174);
-            cmbTipoLiquidacion.FormattingEnabled = true;
-            cmbTipoLiquidacion.Location = new Point(343, 83);
-            cmbTipoLiquidacion.Name = "cmbTipoLiquidacion";
-            cmbTipoLiquidacion.Size = new Size(232, 28);
-            cmbTipoLiquidacion.TabIndex = 76;
-            cmbTipoLiquidacion.SelectedIndexChanged += cmbTipoLiquidacion_SelectedIndexChanged;
-            // 
-            // picFormaPago
-            // 
-            picFormaPago.BackgroundImage = (Image)resources.GetObject("picFormaPago.BackgroundImage");
-            picFormaPago.BackgroundImageLayout = ImageLayout.Stretch;
-            picFormaPago.Location = new Point(329, 75);
-            picFormaPago.Name = "picFormaPago";
-            picFormaPago.Size = new Size(262, 43);
-            picFormaPago.TabIndex = 75;
-            picFormaPago.TabStop = false;
-            // 
-            // lblTipoLiquidacion
-            // 
-            lblTipoLiquidacion.AutoSize = true;
-            lblTipoLiquidacion.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            lblTipoLiquidacion.ForeColor = Color.White;
-            lblTipoLiquidacion.Location = new Point(327, 56);
-            lblTipoLiquidacion.Name = "lblTipoLiquidacion";
-            lblTipoLiquidacion.Size = new Size(164, 20);
-            lblTipoLiquidacion.TabIndex = 74;
-            lblTipoLiquidacion.Text = "Tipo de Liquidación";
             // 
             // txtDNI
             // 
@@ -167,25 +130,39 @@
             pictureBox3.TabIndex = 80;
             pictureBox3.TabStop = false;
             // 
+            // btnBuscarMedico
+            // 
+            btnBuscarMedico.BackColor = Color.FromArgb(29, 65, 81);
+            btnBuscarMedico.Cursor = Cursors.Hand;
+            btnBuscarMedico.FlatAppearance.BorderSize = 0;
+            btnBuscarMedico.FlatStyle = FlatStyle.Flat;
+            btnBuscarMedico.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            btnBuscarMedico.ForeColor = Color.White;
+            btnBuscarMedico.Location = new Point(21, 119);
+            btnBuscarMedico.Margin = new Padding(3, 2, 3, 2);
+            btnBuscarMedico.Name = "btnBuscarMedico";
+            btnBuscarMedico.Size = new Size(255, 39);
+            btnBuscarMedico.TabIndex = 82;
+            btnBuscarMedico.TabStop = false;
+            btnBuscarMedico.Text = "BUSCAR";
+            btnBuscarMedico.UseVisualStyleBackColor = false;
+            btnBuscarMedico.Click += btnBuscarMedico_Click;
+            // 
             // HonorariosMedicos
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(73, 162, 203);
+            Controls.Add(btnBuscarMedico);
             Controls.Add(txtDNI);
             Controls.Add(pictureBox3);
             Controls.Add(btnPrintFactura);
             Controls.Add(btnCargarFactura);
             Controls.Add(dtgvHonorarios);
-            Controls.Add(cmbTipoLiquidacion);
-            Controls.Add(picFormaPago);
-            Controls.Add(lblTipoLiquidacion);
             Controls.Add(lblHonorarios);
             Name = "HonorariosMedicos";
             Size = new Size(789, 513);
-            Load += HonorariosMedicos_Load;
             ((System.ComponentModel.ISupportInitialize)dtgvHonorarios).EndInit();
-            ((System.ComponentModel.ISupportInitialize)picFormaPago).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
             ResumeLayout(false);
             PerformLayout();
@@ -196,10 +173,8 @@
         private Dashboard_ClinicaSePrice.CustomBotonDos btnPrintFactura;
         private Dashboard_ClinicaSePrice.CustomBotonDos btnCargarFactura;
         private DataGridView dtgvHonorarios;
-        private ComboBox cmbTipoLiquidacion;
-        private PictureBox picFormaPago;
-        private Label lblTipoLiquidacion;
         private TextBox txtDNI;
         private PictureBox pictureBox3;
+        private Dashboard_ClinicaSePrice.CustomBotonDos btnBuscarMedico;
     }
 }
