@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ClinicaSePrice.Entidades;
+using System.Windows.Forms;
 
 namespace ClinicaSePrice.Datos
 {
@@ -30,26 +31,26 @@ namespace ClinicaSePrice.Datos
             ejecutarProcedimientoTurnos(tablaTurno, "sp_consulta_turnos_posibles_x_medico", fechaDesde, fechaHasta, null, idMedico);
         }
 
-        public void RegistrarTurno(int idPaciente, int idPractica, DateTime fechaTurno, DateTime horaInicio, DateTime horaFin)
+        public int RegistrarTurno(int idPaciente, int idMedico, int idPractica, DateTime? fechaTurno, TimeSpan? horaInicio, TimeSpan? horaFin)
         {
+            int respuesta = 0;
             try
             {
                 using MySqlCommand comando = new MySqlCommand("sp_alta_turno", sqlCon);
                 comando.CommandType = CommandType.StoredProcedure;
-                comando.Parameters.Add("p_fecha_atencion", MySqlDbType.Date).Value = fechaTurno.Date;
-                comando.Parameters.Add("p_hora_inicio", MySqlDbType.Time).Value = horaInicio.TimeOfDay;
-                comando.Parameters.Add("p_hora_fin", MySqlDbType.Time).Value = horaFin.TimeOfDay;
-                comando.Parameters.Add("p_costo_final", MySqlDbType.Decimal).Value = ObtenerCostoPractica(idPractica, idPaciente);
-                comando.Parameters.Add("p_id_paciente", MySqlDbType.Int32).Value = idPaciente;
-                //comando.Parameters.Add("p_id_medico", MySqlDbType.Int32).Value = idMedico.Value; 
-                comando.Parameters.Add("p_id_practica", MySqlDbType.Int32).Value = idPractica;
+                comando.Parameters.Add("i_fecha_atencion", MySqlDbType.Date).Value = fechaTurno;
+                comando.Parameters.Add("i_hora_inicio", MySqlDbType.Time).Value = horaInicio;
+                comando.Parameters.Add("i_hora_fin", MySqlDbType.Time).Value = horaFin;
+                comando.Parameters.Add("i_id_paciente", MySqlDbType.Int32).Value = idPaciente;
+                comando.Parameters.Add("i_id_medico", MySqlDbType.Int32).Value = idMedico;
+                comando.Parameters.Add("i_id_practica", MySqlDbType.Int32).Value = idPractica;
                 comando.Parameters.Add("rta", MySqlDbType.Int32).Direction = ParameterDirection.Output;
 
                 sqlCon.Open();
                 comando.ExecuteNonQuery();
-                int respuesta = Convert.ToInt32(comando.Parameters["rta"].Value);
+                respuesta = Convert.ToInt32(comando.Parameters["rta"].Value);
 
-                if (respuesta == 1)
+                if (respuesta > -1)
                 {
                     MessageBox.Show("Turno registrado correctamente", "AVISO DEL SISTEMA",
                                     MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -72,6 +73,7 @@ namespace ClinicaSePrice.Datos
                     sqlCon.Close();
                 }
             }
+            return respuesta;
         }
 
         private decimal ObtenerCostoPractica(int idPractica, int idPaciente)
@@ -166,6 +168,15 @@ namespace ClinicaSePrice.Datos
 
             // Opcionalmente, configurar la apariencia del DataGridView
             tablaTurno.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+
+            // Deseleccionar todas las filas
+            tablaTurno.ClearSelection();
+
+            for (int i = 0; i < tablaTurno.Rows.Count; i++)
+            {
+                tablaTurno.Rows[i].Tag = dt.Rows[i]; // Guardar la fila original completa en el Tag
+            }
+
         }
 
 

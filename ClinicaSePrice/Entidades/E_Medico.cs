@@ -15,6 +15,11 @@ namespace ClinicaSePrice.Entidades
         {
         }
 
+        public E_Medico(int id) : base(id)
+        {
+        }
+
+
         public E_Medico(int id, string? nombre, string? apellido) : base(id, nombre, apellido)
         {
         }

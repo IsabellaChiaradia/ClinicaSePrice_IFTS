@@ -69,12 +69,15 @@
             dgtvTurnos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgtvTurnos.Location = new Point(17, 210);
             dgtvTurnos.Margin = new Padding(3, 2, 3, 2);
+            dgtvTurnos.MultiSelect = false;
             dgtvTurnos.Name = "dgtvTurnos";
             dgtvTurnos.ReadOnly = true;
             dgtvTurnos.RowHeadersWidth = 51;
             dgtvTurnos.RowTemplate.Height = 29;
+            dgtvTurnos.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgtvTurnos.Size = new Size(761, 221);
             dgtvTurnos.TabIndex = 23;
+            dgtvTurnos.CellClick += dgtvTurnos_CellClick;
             // 
             // dtpFechaDesde
             // 
@@ -229,7 +232,7 @@
             btnBuscarPaciente.FlatStyle = FlatStyle.Flat;
             btnBuscarPaciente.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Bold, GraphicsUnit.Point);
             btnBuscarPaciente.ForeColor = Color.White;
-            btnBuscarPaciente.Location = new Point(17, 119);
+            btnBuscarPaciente.Location = new Point(17, 139);
             btnBuscarPaciente.Margin = new Padding(3, 2, 3, 2);
             btnBuscarPaciente.Name = "btnBuscarPaciente";
             btnBuscarPaciente.Size = new Size(255, 39);

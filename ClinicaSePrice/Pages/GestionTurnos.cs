@@ -27,6 +27,7 @@ namespace Dashboard_ClinicaSePrice.pesañas
         private E_Medico? medicoSeleccionado;
         private E_Paciente? pacienteSeleccionado;
         private E_Practica? practicaSeleccionada;
+        private E_Turno? turnoSeleccionado;
 
         public GestionTurnos()
         {
@@ -195,55 +196,57 @@ namespace Dashboard_ClinicaSePrice.pesañas
                 return;
             }
 
-            E_Paciente paciente = pacienteDB.BuscarPacientePorDNI(dni);
+            this.pacienteSeleccionado = pacienteDB.BuscarPacientePorDNI(dni);
 
-            if (paciente == null)
+            if (this.pacienteSeleccionado == null)
             {
                 MessageBox.Show("No se encontró el paciente con el DNI ingresado. Regístrelo en Registrar Paciente", "AVISO DEL SISTEMA",
                     MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 txtDniGestion.Text = "DNI";
             }
             else
-            {                
-                MessageBox.Show($"Paciente encontrado: {paciente.Nombre} {paciente.Apellido}", "AVISO DEL SISTEMA",
+            {
+                MessageBox.Show($"Paciente encontrado: {this.pacienteSeleccionado.Nombre} {this.pacienteSeleccionado.Apellido}", "AVISO DEL SISTEMA",
                     MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }            
+            }
         }
 
         private void btnRegistrarTurno_Click(object sender, EventArgs e)
         {
-            if (dgtvTurnos.SelectedRows.Count > 0 && Convert.ToBoolean(dgtvTurnos.SelectedRows[0].Cells["Disponible"].Value))
+            if (pacienteSeleccionado == null || practicaSeleccionada == null || turnoSeleccionado == null)
             {
-                try
-                {
-                    int idPaciente = Convert.ToInt32(dgtvTurnos.SelectedRows[0].Cells["IDPaciente"].Value);
-                    int idPractica = Convert.ToInt32(dgtvTurnos.SelectedRows[0].Cells["IDPractica"].Value);
-                    DateTime fechaTurno = Convert.ToDateTime(dgtvTurnos.SelectedRows[0].Cells["Fecha Atencion"].Value);
-                    DateTime horaInicio = Convert.ToDateTime(dgtvTurnos.SelectedRows[0].Cells["Hora de Inicio"].Value);
-                    DateTime horaFin = Convert.ToDateTime(dgtvTurnos.SelectedRows[0].Cells["Hora Fin"].Value);
-
-                    //int idTurno = turnoDB.RegistrarTurno(idPaciente, idPractica, fechaTurno, horaInicio, horaFin);
-
-                    dgtvTurnos.SelectedRows[0].Cells["Disponible"].Value = false;
-
-                    //MessageBox.Show($"Turno registrado correctamente. ID de turno: {idTurno}", "Información",
-                                   // MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Error al registrar el turno: " + ex.Message, "Error",
-                                    MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
+                MessageBox.Show("Para registrar un turno debe seleccionar un paciente, una practica y un turno disponible", "AVISO DEL SISTEMA",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
             }
-            else
+
+            if (turnoSeleccionado.IdTurno == -1)
             {
-                MessageBox.Show("No se puede registrar el turno seleccionado. Asegúrese de que esté disponible.", "Error",
-                                MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("El turno seleccionado no está disponible", "AVISO DEL SISTEMA",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            var respuesta = this.turnoDB.RegistrarTurno(pacienteSeleccionado.Id,
+                turnoSeleccionado.Medico.Id,
+                practicaSeleccionada.IdPractica,
+                turnoSeleccionado.FechaAtencion,
+                turnoSeleccionado.HoraInicio,
+                turnoSeleccionado.HoraFin);
+            if (respuesta > 0)
+            {
+                this.buscarPosiblesTurnos();
             }
         }
 
         private void btnBuscarTurno_Click(object sender, EventArgs e)
         {
+            this.buscarPosiblesTurnos();
+        }
+
+        private void buscarPosiblesTurnos()
+        {
+            this.turnoSeleccionado = null;
             var fechaActual = DateTime.Now.Date;
             var fechaDesde = dtpFechaDesde.Value.Date;
             var fechaHasta = dtpFechaHasta.Value.Date;
@@ -284,6 +287,37 @@ namespace Dashboard_ClinicaSePrice.pesañas
                                 MessageBoxIcon.Warning);
             }
         }
+
+        private void dgtvTurnos_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                DataGridViewRow filaSeleccionada = this.dgtvTurnos.Rows[e.RowIndex];
+                DataRow? filaOriginal = filaSeleccionada.Tag as DataRow;
+
+
+                if (filaOriginal != null)
+                {
+                    this.turnoSeleccionado = new E_Turno();
+                    Boolean isTurnoDisponible = filaOriginal["idTurno"] == DBNull.Value;
+                    if (isTurnoDisponible)
+                    {
+                        // Obtener los valores de la fila original
+                        this.turnoSeleccionado.FechaAtencion = Convert.ToDateTime(filaOriginal["fecha"]);
+                        this.turnoSeleccionado.HoraInicio = (TimeSpan)filaOriginal["hora_inicio"];
+                        this.turnoSeleccionado.HoraFin = (TimeSpan)filaOriginal["hora_fin"];
+                        this.turnoSeleccionado.Medico = new E_Medico(Convert.ToInt32(filaOriginal["id_medico"]));
+                    }
+                    else
+                    {
+                        this.turnoSeleccionado.IdTurno = -1; // esto significa que el turno seleccionado está reservado
+                    }
+
+
+                }
+            }
+        }
+
 
 
     }

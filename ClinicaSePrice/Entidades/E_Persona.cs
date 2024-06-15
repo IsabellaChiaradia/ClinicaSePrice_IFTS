@@ -21,6 +21,11 @@ namespace ClinicaSePrice.Entidades
         {
         }
 
+        public E_Persona(int id)
+        {
+            Id = id;
+        }
+
         public E_Persona(int id, string? nombre, string? apellido)
         {
             Id = id;
