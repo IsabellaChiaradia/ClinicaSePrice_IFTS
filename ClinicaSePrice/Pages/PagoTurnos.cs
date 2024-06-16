@@ -21,82 +21,49 @@ namespace ClinicaSePrice.Pages
         //private List<E_Actividad> actividades;
         private frmFactura factura;
 
+        //---------------------
+        private Turno turnoDB;
+        private Paciente pacienteDB;
+        private E_Turno? turnoSeleccionado;
+        private E_Paciente? pacienteSeleccionado;
+
         public PagoTurnos()
         {
             InitializeComponent();
+            this.turnoDB = new Turno();
+            this.pacienteDB = new Paciente();
         }
 
 
         // ---------------------------- FUNCIONES ----------------------------
 
-        //private void cargarActividades()
-        //{
-        //    this.actividades = actividadBD.traerActividades();
-
-        //    cboActividad.Items.Add("Seleccionar Forma de Pago");
-        //    foreach (E_Actividad a in actividades)
-        //    {
-        //        cboActividad.Items.Add(a.Nombre);
-        //    }
-        //    cboActividad.SelectedIndex = 0;
-        //}
 
 
-        private void cargarCuotas()
+        private void cargarFormaDePago()
         {
-            cboActividad.Items.Add("Forma de Pago");
-            cboActividad.Items.Add("Particular");
-            cboActividad.Items.Add("Obra Social");
-            cboActividad.SelectedIndex = 0;
+            cboFormaPago.Items.Add("Seleccionar forma de pago");
+            cboFormaPago.Items.Add("Particular");
+            cboFormaPago.Items.Add("Obra Social");
+            cboFormaPago.SelectedIndex = 0;
         }
 
-      
+
         private double calcularDescuento()
         {
-            string formaPagoSeleccionada = cboActividad.SelectedItem.ToString();
+            string formaPagoSeleccionada = cboFormaPago.SelectedItem.ToString();
 
-            if (formaPagoSeleccionada == "ObraSocial")
+            if (formaPagoSeleccionada == "Obra Social")
             {
-                return (double)InteresesCuotasEnum.obraSocial / 100.00;
+                return (double)DescuentoFormaDePagoEnum.obraSocial / 100.00;
 
             }
             else
             {
                 return 0;
             }
-            
-        }
-        private void cargarFactura()
-        {
-            factura.actividad = cboActividad.SelectedItem.ToString();
-            factura.interes = (calcularDescuento() * 100).ToString() + "%";
-            factura.formaDePago = cboActividad.SelectedItem.ToString();
-                       
 
-            //cuotaDB.emitirFactura(dniMiembro, factura);
         }
 
-        private double capturarCostoActivSeleccionada()
-        {
-            string actSeleccionada = cboActividad.SelectedItem.ToString();
-            double costo = 0;
-
-            //foreach (E_Actividad a in actividades)
-            //{
-            //    if (actSeleccionada == "Seleccionar Actividad")
-            //    {
-            //        costo = -1;
-            //        break;
-            //    }
-            //    else if (actSeleccionada == a.Nombre)
-            //    {
-            //        costo = a.Costo;
-            //        break;
-            //    }
-            //}
-
-            return costo;
-        }
 
         private void aplicarInteresCuotas(double costo)
         {
@@ -110,10 +77,9 @@ namespace ClinicaSePrice.Pages
 
         // ---------------------------- EVENTOS DEL FORMULARIO ----------------------------
 
-        private void PagoActividad_Load(object sender, EventArgs e)
+        private void PagoTurno_Load(object sender, EventArgs e)
         {
-            //cargarActividades();
-            cargarCuotas();
+            cargarFormaDePago();
         }
 
 
@@ -121,7 +87,7 @@ namespace ClinicaSePrice.Pages
 
         private void btnPagarPA_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(txtDocumentoPA.Text) || txtDocumentoPA.Text == "Documento" ||
+            if (string.IsNullOrWhiteSpace(txtDniPaciente.Text) || txtDniPaciente.Text == "Documento" ||
                 string.IsNullOrWhiteSpace(txtMontoPA.Text) || txtMontoPA.Text == "Monto")
             {
                 MessageBox.Show("Por favor, complete todos los campos obligatorios.", "AVISO DEL SISTEMA",
@@ -134,8 +100,9 @@ namespace ClinicaSePrice.Pages
 
             string monto = txtMontoPA.Text;
             //cuota.Monto = Math.Round(double.Parse(monto), 2);
-            /*cuota.FechaPago = dtpPA.Value*/;
-            dniMiembro = txtDocumentoPA.Text;
+            /*cuota.FechaPago = dtpPA.Value*/
+            ;
+            dniMiembro = txtDniPaciente.Text;
 
 
             // respuesta = cuotaDB.Pagar(cuota, dniMiembro, 2);  el parametro 2 indica que el pago es de tipo actividad
@@ -152,7 +119,7 @@ namespace ClinicaSePrice.Pages
                     //Cargamos los datos del pago en la grilla
                     //cuotaDB.mostrarPagoExitoso(dtgvActividad, dniMiembro);
                     this.factura = new frmFactura(); // cada vez que pagamos generamos una nueva factura
-                    cargarFactura();
+                    //cargarFactura();
                     btnComprobantePA.Enabled = true;
                 }
                 else if (codigo == 0)
@@ -184,38 +151,19 @@ namespace ClinicaSePrice.Pages
 
         // ---------------------------- EVENTOS DE COMBOBOX ----------------------------
 
-        private void cboActividad_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            double costo = capturarCostoActivSeleccionada();
-            if (costo == -1)
-            {
-                txtMontoPA.Text = "Monto";
-            }
-            else if (costo >= 0)
-            {
-                // Antes de colocar el monto final llamo a la siguiente funcion por si ya han seleccionado pago en tarjeta
-                aplicarInteresCuotas(costo);
-            }
-        }
 
-        private void cboCuotasPA_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            double costo = capturarCostoActivSeleccionada();
-            aplicarInteresCuotas(costo);
-        }
-               
 
         // ---------------------------- EVENTOS DE TEXTBOX ----------------------------
 
-        private void txtDocumentoPA_Enter(object sender, EventArgs e)
+        private void txtDniPaciente_Enter(object sender, EventArgs e)
         {
-            if (txtDocumentoPA.Text == "Documento")
+            if (txtDniPaciente.Text == "DNI")
             {
-                txtDocumentoPA.Text = "";
+                txtDniPaciente.Text = "";
             }
         }
 
-        private void txtDocumentoPA_KeyPress(object sender, KeyPressEventArgs e)
+        private void txtDniPaciente_KeyPress(object sender, KeyPressEventArgs e)
         {
             // Permite solo números (0-9), teclas de control (como borrar, copiar, pegar), y la tecla de retroceso
             if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
@@ -224,11 +172,11 @@ namespace ClinicaSePrice.Pages
             }
         }
 
-        private void txtDocumentoPA_Leave(object sender, EventArgs e)
+        private void txtDniPaciente_Leave(object sender, EventArgs e)
         {
-            if (txtDocumentoPA.Text == "")
+            if (txtDniPaciente.Text == "")
             {
-                txtDocumentoPA.Text = "Documento";
+                txtDniPaciente.Text = "DNI";
             }
         }
 

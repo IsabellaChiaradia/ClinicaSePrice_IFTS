@@ -29,10 +29,10 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PagoTurnos));
-            txtDocumentoPA = new TextBox();
+            txtDniPaciente = new TextBox();
             picDocPA = new PictureBox();
             lblPA = new Label();
-            cboActividad = new ComboBox();
+            cboFormaPago = new ComboBox();
             picFormaPago = new PictureBox();
             lblFormaPagoPA = new Label();
             btnComprobantePA = new Dashboard_ClinicaSePrice.CustomBotonDos();
@@ -40,28 +40,29 @@
             dtgvActividad = new DataGridView();
             txtMontoPA = new TextBox();
             picMontoPMC = new PictureBox();
+            btnBuscarPaciente = new Dashboard_ClinicaSePrice.CustomBotonDos();
             ((System.ComponentModel.ISupportInitialize)picDocPA).BeginInit();
             ((System.ComponentModel.ISupportInitialize)picFormaPago).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dtgvActividad).BeginInit();
             ((System.ComponentModel.ISupportInitialize)picMontoPMC).BeginInit();
             SuspendLayout();
             // 
-            // txtDocumentoPA
+            // txtDniPaciente
             // 
-            txtDocumentoPA.BackColor = Color.FromArgb(73, 162, 203);
-            txtDocumentoPA.BorderStyle = BorderStyle.None;
-            txtDocumentoPA.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            txtDocumentoPA.ForeColor = Color.White;
-            txtDocumentoPA.Location = new Point(51, 81);
-            txtDocumentoPA.Margin = new Padding(3, 2, 3, 2);
-            txtDocumentoPA.Multiline = true;
-            txtDocumentoPA.Name = "txtDocumentoPA";
-            txtDocumentoPA.Size = new Size(176, 22);
-            txtDocumentoPA.TabIndex = 15;
-            txtDocumentoPA.Text = "Documento";
-            txtDocumentoPA.Enter += txtDocumentoPA_Enter;
-            txtDocumentoPA.KeyPress += txtDocumentoPA_KeyPress;
-            txtDocumentoPA.Leave += txtDocumentoPA_Leave;
+            txtDniPaciente.BackColor = Color.FromArgb(73, 162, 203);
+            txtDniPaciente.BorderStyle = BorderStyle.None;
+            txtDniPaciente.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            txtDniPaciente.ForeColor = Color.White;
+            txtDniPaciente.Location = new Point(51, 81);
+            txtDniPaciente.Margin = new Padding(3, 2, 3, 2);
+            txtDniPaciente.Multiline = true;
+            txtDniPaciente.Name = "txtDniPaciente";
+            txtDniPaciente.Size = new Size(176, 22);
+            txtDniPaciente.TabIndex = 15;
+            txtDniPaciente.Text = "DNI";
+            txtDniPaciente.Enter += txtDniPaciente_Enter;
+            txtDniPaciente.KeyPress += txtDniPaciente_KeyPress;
+            txtDniPaciente.Leave += txtDniPaciente_Leave;
             // 
             // picDocPA
             // 
@@ -86,20 +87,19 @@
             lblPA.TabIndex = 13;
             lblPA.Text = "Pago de Turnos";
             // 
-            // cboActividad
+            // cboFormaPago
             // 
-            cboActividad.Cursor = Cursors.Hand;
-            cboActividad.DropDownStyle = ComboBoxStyle.DropDownList;
-            cboActividad.Enabled = false;
-            cboActividad.FlatStyle = FlatStyle.Popup;
-            cboActividad.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            cboActividad.ForeColor = Color.FromArgb(74, 102, 174);
-            cboActividad.FormattingEnabled = true;
-            cboActividad.Location = new Point(322, 78);
-            cboActividad.Name = "cboActividad";
-            cboActividad.Size = new Size(176, 28);
-            cboActividad.TabIndex = 31;
-            cboActividad.SelectedIndexChanged += cboCuotasPA_SelectedIndexChanged;
+            cboFormaPago.Cursor = Cursors.Hand;
+            cboFormaPago.DropDownStyle = ComboBoxStyle.DropDownList;
+            cboFormaPago.Enabled = false;
+            cboFormaPago.FlatStyle = FlatStyle.Popup;
+            cboFormaPago.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            cboFormaPago.ForeColor = Color.FromArgb(74, 102, 174);
+            cboFormaPago.FormattingEnabled = true;
+            cboFormaPago.Location = new Point(322, 78);
+            cboFormaPago.Name = "cboFormaPago";
+            cboFormaPago.Size = new Size(176, 28);
+            cboFormaPago.TabIndex = 31;
             // 
             // picFormaPago
             // 
@@ -131,7 +131,7 @@
             btnComprobantePA.FlatStyle = FlatStyle.Flat;
             btnComprobantePA.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Bold, GraphicsUnit.Point);
             btnComprobantePA.ForeColor = Color.White;
-            btnComprobantePA.Location = new Point(588, 402);
+            btnComprobantePA.Location = new Point(589, 444);
             btnComprobantePA.Margin = new Padding(3, 2, 3, 2);
             btnComprobantePA.Name = "btnComprobantePA";
             btnComprobantePA.Size = new Size(181, 39);
@@ -148,7 +148,7 @@
             btnPagarPA.FlatStyle = FlatStyle.Flat;
             btnPagarPA.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Bold, GraphicsUnit.Point);
             btnPagarPA.ForeColor = Color.White;
-            btnPagarPA.Location = new Point(361, 402);
+            btnPagarPA.Location = new Point(367, 444);
             btnPagarPA.Margin = new Padding(3, 2, 3, 2);
             btnPagarPA.Name = "btnPagarPA";
             btnPagarPA.Size = new Size(181, 39);
@@ -163,7 +163,7 @@
             dtgvActividad.AllowUserToDeleteRows = false;
             dtgvActividad.BackgroundColor = Color.White;
             dtgvActividad.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dtgvActividad.Location = new Point(32, 134);
+            dtgvActividad.Location = new Point(32, 185);
             dtgvActividad.Margin = new Padding(3, 2, 3, 2);
             dtgvActividad.Name = "dtgvActividad";
             dtgvActividad.ReadOnly = true;
@@ -198,25 +198,42 @@
             picMontoPMC.TabIndex = 41;
             picMontoPMC.TabStop = false;
             // 
+            // btnBuscarPaciente
+            // 
+            btnBuscarPaciente.BackColor = Color.FromArgb(29, 65, 81);
+            btnBuscarPaciente.Cursor = Cursors.Hand;
+            btnBuscarPaciente.FlatAppearance.BorderSize = 0;
+            btnBuscarPaciente.FlatStyle = FlatStyle.Flat;
+            btnBuscarPaciente.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            btnBuscarPaciente.ForeColor = Color.White;
+            btnBuscarPaciente.Location = new Point(38, 132);
+            btnBuscarPaciente.Margin = new Padding(3, 2, 3, 2);
+            btnBuscarPaciente.Name = "btnBuscarPaciente";
+            btnBuscarPaciente.Size = new Size(212, 39);
+            btnBuscarPaciente.TabIndex = 49;
+            btnBuscarPaciente.Text = "BUSCAR PACIENTE";
+            btnBuscarPaciente.UseVisualStyleBackColor = false;
+            // 
             // PagoTurnos
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(73, 162, 203);
+            Controls.Add(btnBuscarPaciente);
             Controls.Add(txtMontoPA);
             Controls.Add(picMontoPMC);
             Controls.Add(btnComprobantePA);
             Controls.Add(btnPagarPA);
             Controls.Add(dtgvActividad);
-            Controls.Add(cboActividad);
+            Controls.Add(cboFormaPago);
             Controls.Add(picFormaPago);
             Controls.Add(lblFormaPagoPA);
-            Controls.Add(txtDocumentoPA);
+            Controls.Add(txtDniPaciente);
             Controls.Add(picDocPA);
             Controls.Add(lblPA);
             Name = "PagoTurnos";
             Size = new Size(789, 513);
-            Load += PagoActividad_Load;
+            Load += PagoTurno_Load;
             ((System.ComponentModel.ISupportInitialize)picDocPA).EndInit();
             ((System.ComponentModel.ISupportInitialize)picFormaPago).EndInit();
             ((System.ComponentModel.ISupportInitialize)dtgvActividad).EndInit();
@@ -227,10 +244,10 @@
 
         #endregion
 
-        private TextBox txtDocumentoPA;
+        private TextBox txtDniPaciente;
         private PictureBox picDocPA;
         private Label lblPA;
-        private ComboBox cboActividad;
+        private ComboBox cboFormaPago;
         private PictureBox picFormaPago;
         private Label lblFormaPagoPA;
         private Dashboard_ClinicaSePrice.CustomBotonDos btnComprobantePA;
@@ -238,5 +255,6 @@
         private DataGridView dtgvActividad;
         private TextBox txtMontoPA;
         private PictureBox picMontoPMC;
+        private Dashboard_ClinicaSePrice.CustomBotonDos btnBuscarPaciente;
     }
 }

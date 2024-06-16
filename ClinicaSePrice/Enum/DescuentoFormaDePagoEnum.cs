@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ClinicaSePrice.Enum
 {
-    public enum InteresesCuotasEnum
+    public enum DescuentoFormaDePagoEnum
     {
         obraSocial = 50
     }

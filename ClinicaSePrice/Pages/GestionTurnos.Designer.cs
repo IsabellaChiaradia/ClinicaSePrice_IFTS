@@ -235,7 +235,7 @@
             btnBuscarPaciente.Location = new Point(17, 139);
             btnBuscarPaciente.Margin = new Padding(3, 2, 3, 2);
             btnBuscarPaciente.Name = "btnBuscarPaciente";
-            btnBuscarPaciente.Size = new Size(255, 39);
+            btnBuscarPaciente.Size = new Size(212, 39);
             btnBuscarPaciente.TabIndex = 48;
             btnBuscarPaciente.Text = "BUSCAR PACIENTE";
             btnBuscarPaciente.UseVisualStyleBackColor = false;
@@ -249,10 +249,10 @@
             btnRegistrarTurno.FlatStyle = FlatStyle.Flat;
             btnRegistrarTurno.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Bold, GraphicsUnit.Point);
             btnRegistrarTurno.ForeColor = Color.White;
-            btnRegistrarTurno.Location = new Point(361, 440);
+            btnRegistrarTurno.Location = new Point(342, 440);
             btnRegistrarTurno.Margin = new Padding(3, 2, 3, 2);
             btnRegistrarTurno.Name = "btnRegistrarTurno";
-            btnRegistrarTurno.Size = new Size(192, 39);
+            btnRegistrarTurno.Size = new Size(211, 39);
             btnRegistrarTurno.TabIndex = 49;
             btnRegistrarTurno.Text = "REGISTRAR TURNO";
             btnRegistrarTurno.UseVisualStyleBackColor = false;
