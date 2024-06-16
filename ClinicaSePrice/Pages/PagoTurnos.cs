@@ -65,13 +65,15 @@ namespace ClinicaSePrice.Pages
         }
 
 
-        private void aplicarInteresCuotas(double costo)
+        private void calcularMontoFinalDelTurnoSeleccionado(double? costo)
         {
-            if (costo >= 0)
+            if (costo != null)
             {
-                double interes = calcularDescuento();
-                txtMontoPA.Text = Math.Round((costo * (1 + interes)), 2).ToString();
+                double descuento = calcularDescuento();
+                txtMontoFinal.Text = Math.Round((double)(costo * (1 - descuento)), 2).ToString();
             }
+
+
         }
 
 
@@ -85,62 +87,32 @@ namespace ClinicaSePrice.Pages
 
         // ---------------------------- EVENTOS DE BOTONES ----------------------------
 
-        private void btnPagarPA_Click(object sender, EventArgs e)
+        private void btnPagar_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(txtDniPaciente.Text) || txtDniPaciente.Text == "Documento" ||
-                string.IsNullOrWhiteSpace(txtMontoPA.Text) || txtMontoPA.Text == "Monto")
+            if (this.turnoSeleccionado == null)
             {
-                MessageBox.Show("Por favor, complete todos los campos obligatorios.", "AVISO DEL SISTEMA",
+                MessageBox.Show("Debe seleccionar el turno que quiere pagar", "AVISO DEL SISTEMA",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
-            string respuesta;
-            E_Practica cuota = new E_Practica();
-
-            string monto = txtMontoPA.Text;
-            //cuota.Monto = Math.Round(double.Parse(monto), 2);
-            /*cuota.FechaPago = dtpPA.Value*/
-            ;
-            dniMiembro = txtDniPaciente.Text;
-
-
-            // respuesta = cuotaDB.Pagar(cuota, dniMiembro, 2);  el parametro 2 indica que el pago es de tipo actividad
-            respuesta = "1"; // hice esto solo para que compile
-
-            bool esnumero = int.TryParse(respuesta, out int codigo);
-            if (esnumero)
+            if(this.turnoSeleccionado.IdTurno == -1)
             {
-                if (codigo == 1)
-                {
-                    MessageBox.Show("Se realizó el pago correctamente", "AVISO DEL SISTEMA",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Information);
-                    //Cargamos los datos del pago en la grilla
-                    //cuotaDB.mostrarPagoExitoso(dtgvActividad, dniMiembro);
-                    this.factura = new frmFactura(); // cada vez que pagamos generamos una nueva factura
-                    //cargarFactura();
-                    btnComprobantePA.Enabled = true;
-                }
-                else if (codigo == 0)
-                {
-                    MessageBox.Show("Sólo los NO socios deben pagar por la actividad a realizar", "AVISO DEL SISTEMA",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Error);
-                }
-                else
-                {
-                    MessageBox.Show("El miembro no está registrado en el sistema ", "AVISO DEL SISTEMA",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Error);
-                }
+                MessageBox.Show("El turno seleccionado ya ha sido acreditado", "AVISO DEL SISTEMA",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
             }
-            else
-            {
-                MessageBox.Show("Ups! Hubo un error en el pago: " + respuesta, "AVISO DEL SISTEMA",
-                MessageBoxButtons.OK,
-                MessageBoxIcon.Error);
-            }
+
+            var montoFinal = Convert.ToDouble(txtMontoFinal.Text);
+
+            turnoDB.PagarTurno(this.turnoSeleccionado.IdTurno, montoFinal);
+            
+            MessageBox.Show("Se realizó el pago correctamente", "AVISO DEL SISTEMA",
+            MessageBoxButtons.OK,
+            MessageBoxIcon.Information);
+
+
+            
         }
 
         private void btnComprobantePA_Click(object sender, EventArgs e)
@@ -209,6 +181,7 @@ namespace ClinicaSePrice.Pages
         private void btnBuscarTurno_Click(object sender, EventArgs e)
         {
             this.turnoSeleccionado = null;
+            txtMontoFinal.Text = "Monto";
 
             if (this.pacienteSeleccionado == null)
             {
@@ -221,6 +194,49 @@ namespace ClinicaSePrice.Pages
 
 
             turnoDB.ObtenerTurnosAPagar(this.pacienteSeleccionado.Id, dtgvTurnos);
+        }
+
+        private void dtgvTurnos_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                DataGridViewRow filaSeleccionada = this.dtgvTurnos.Rows[e.RowIndex];
+                DataRow? filaOriginal = filaSeleccionada.Tag as DataRow;
+
+
+                if (filaOriginal != null)
+                {
+                    this.turnoSeleccionado = new E_Turno();
+                    Boolean isTurnoAcreditado = (bool)filaOriginal["acreditado"];
+                    if (!isTurnoAcreditado)
+                    {
+                        // Obtener los valores de la fila original
+                        this.turnoSeleccionado.IdTurno = (int)filaOriginal["idTurno"];
+                        this.turnoSeleccionado.Practica = new E_Practica();
+                        this.turnoSeleccionado.Practica.Costo = Convert.ToDouble(filaOriginal["costo"]);
+                        calcularMontoFinalDelTurnoSeleccionado(this.turnoSeleccionado.Practica.Costo);
+
+                    }
+                    else
+                    {
+                        this.turnoSeleccionado.IdTurno = -1; // esto significa que el turno seleccionado está acreditado
+                        txtMontoFinal.Text = "Monto";
+
+                    }
+
+
+                }
+            }
+        }
+
+        private void cboFormaPago_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string formaPagoSeleccionada = cboFormaPago.SelectedItem.ToString();
+
+            if (this.turnoSeleccionado != null)
+            {
+                calcularMontoFinalDelTurnoSeleccionado(this.turnoSeleccionado.Practica.Costo);
+            }
         }
     }
 }

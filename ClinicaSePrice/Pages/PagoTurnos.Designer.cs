@@ -36,9 +36,9 @@
             picFormaPago = new PictureBox();
             lblFormaPagoPA = new Label();
             btnComprobantePA = new Dashboard_ClinicaSePrice.CustomBotonDos();
-            btnPagarPA = new Dashboard_ClinicaSePrice.CustomBotonDos();
+            btnPagar = new Dashboard_ClinicaSePrice.CustomBotonDos();
             dtgvTurnos = new DataGridView();
-            txtMontoPA = new TextBox();
+            txtMontoFinal = new TextBox();
             picMontoPMC = new PictureBox();
             btnBuscarPaciente = new Dashboard_ClinicaSePrice.CustomBotonDos();
             btnBuscarTurno = new Dashboard_ClinicaSePrice.CustomBotonDos();
@@ -100,6 +100,7 @@
             cboFormaPago.Name = "cboFormaPago";
             cboFormaPago.Size = new Size(176, 28);
             cboFormaPago.TabIndex = 31;
+            cboFormaPago.SelectedIndexChanged += cboFormaPago_SelectedIndexChanged;
             // 
             // picFormaPago
             // 
@@ -140,22 +141,22 @@
             btnComprobantePA.UseVisualStyleBackColor = false;
             btnComprobantePA.Click += btnComprobantePA_Click;
             // 
-            // btnPagarPA
+            // btnPagar
             // 
-            btnPagarPA.BackColor = Color.FromArgb(29, 65, 81);
-            btnPagarPA.Cursor = Cursors.Hand;
-            btnPagarPA.FlatAppearance.BorderSize = 0;
-            btnPagarPA.FlatStyle = FlatStyle.Flat;
-            btnPagarPA.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            btnPagarPA.ForeColor = Color.White;
-            btnPagarPA.Location = new Point(367, 444);
-            btnPagarPA.Margin = new Padding(3, 2, 3, 2);
-            btnPagarPA.Name = "btnPagarPA";
-            btnPagarPA.Size = new Size(181, 39);
-            btnPagarPA.TabIndex = 37;
-            btnPagarPA.Text = "PAGAR";
-            btnPagarPA.UseVisualStyleBackColor = false;
-            btnPagarPA.Click += btnPagarPA_Click;
+            btnPagar.BackColor = Color.FromArgb(29, 65, 81);
+            btnPagar.Cursor = Cursors.Hand;
+            btnPagar.FlatAppearance.BorderSize = 0;
+            btnPagar.FlatStyle = FlatStyle.Flat;
+            btnPagar.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            btnPagar.ForeColor = Color.White;
+            btnPagar.Location = new Point(367, 444);
+            btnPagar.Margin = new Padding(3, 2, 3, 2);
+            btnPagar.Name = "btnPagar";
+            btnPagar.Size = new Size(181, 39);
+            btnPagar.TabIndex = 37;
+            btnPagar.Text = "PAGAR";
+            btnPagar.UseVisualStyleBackColor = false;
+            btnPagar.Click += btnPagar_Click;
             // 
             // dtgvTurnos
             // 
@@ -165,26 +166,29 @@
             dtgvTurnos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dtgvTurnos.Location = new Point(32, 185);
             dtgvTurnos.Margin = new Padding(3, 2, 3, 2);
+            dtgvTurnos.MultiSelect = false;
             dtgvTurnos.Name = "dtgvTurnos";
             dtgvTurnos.ReadOnly = true;
             dtgvTurnos.RowTemplate.Height = 25;
+            dtgvTurnos.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dtgvTurnos.Size = new Size(738, 238);
             dtgvTurnos.TabIndex = 36;
+            dtgvTurnos.CellClick += dtgvTurnos_CellClick;
             // 
-            // txtMontoPA
+            // txtMontoFinal
             // 
-            txtMontoPA.BackColor = Color.FromArgb(73, 162, 203);
-            txtMontoPA.BorderStyle = BorderStyle.None;
-            txtMontoPA.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            txtMontoPA.ForeColor = Color.White;
-            txtMontoPA.Location = new Point(574, 81);
-            txtMontoPA.Margin = new Padding(3, 2, 3, 2);
-            txtMontoPA.Multiline = true;
-            txtMontoPA.Name = "txtMontoPA";
-            txtMontoPA.ReadOnly = true;
-            txtMontoPA.Size = new Size(176, 22);
-            txtMontoPA.TabIndex = 42;
-            txtMontoPA.Text = "Monto";
+            txtMontoFinal.BackColor = Color.FromArgb(73, 162, 203);
+            txtMontoFinal.BorderStyle = BorderStyle.None;
+            txtMontoFinal.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            txtMontoFinal.ForeColor = Color.White;
+            txtMontoFinal.Location = new Point(574, 81);
+            txtMontoFinal.Margin = new Padding(3, 2, 3, 2);
+            txtMontoFinal.Multiline = true;
+            txtMontoFinal.Name = "txtMontoFinal";
+            txtMontoFinal.ReadOnly = true;
+            txtMontoFinal.Size = new Size(176, 22);
+            txtMontoFinal.TabIndex = 42;
+            txtMontoFinal.Text = "Monto";
             // 
             // picMontoPMC
             // 
@@ -239,10 +243,10 @@
             BackColor = Color.FromArgb(73, 162, 203);
             Controls.Add(btnBuscarTurno);
             Controls.Add(btnBuscarPaciente);
-            Controls.Add(txtMontoPA);
+            Controls.Add(txtMontoFinal);
             Controls.Add(picMontoPMC);
             Controls.Add(btnComprobantePA);
-            Controls.Add(btnPagarPA);
+            Controls.Add(btnPagar);
             Controls.Add(dtgvTurnos);
             Controls.Add(cboFormaPago);
             Controls.Add(picFormaPago);
@@ -270,9 +274,9 @@
         private PictureBox picFormaPago;
         private Label lblFormaPagoPA;
         private Dashboard_ClinicaSePrice.CustomBotonDos btnComprobantePA;
-        private Dashboard_ClinicaSePrice.CustomBotonDos btnPagarPA;
+        private Dashboard_ClinicaSePrice.CustomBotonDos btnPagar;
         private DataGridView dtgvTurnos;
-        private TextBox txtMontoPA;
+        private TextBox txtMontoFinal;
         private PictureBox picMontoPMC;
         private Dashboard_ClinicaSePrice.CustomBotonDos btnBuscarPaciente;
         private Dashboard_ClinicaSePrice.CustomBotonDos btnBuscarTurno;

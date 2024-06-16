@@ -152,6 +152,49 @@ namespace ClinicaSePrice.Datos
                                 MessageBoxButtons.OK,
                                 MessageBoxIcon.Information);
             }
+            if (sqlCon.State == ConnectionState.Open)
+            {
+                sqlCon.Close();
+            }
+
+        }
+
+        public void PagarTurno(int idTurno, double costoFinal)
+        {
+            
+            try
+            {
+                sqlCon.Open();
+
+                using (MySqlCommand cmd = new MySqlCommand("sp_pagar_turno", sqlCon))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    // Añadir los parámetros de entrada
+                    cmd.Parameters.AddWithValue("@i_idTurno", idTurno);
+                    cmd.Parameters.AddWithValue("@i_costoFinal", costoFinal);
+
+                    // Ejecutar el procedimiento almacenado
+                    cmd.ExecuteNonQuery();
+                }
+            }
+            catch (MySqlException ex)
+            {
+                // Manejar errores aquí
+                Console.WriteLine("MySQL Error: " + ex.Message);
+            }
+            catch (Exception ex)
+            {
+                // Manejar errores generales aquí
+                Console.WriteLine("Error: " + ex.Message);
+            }
+            finally
+            {
+                if (sqlCon.State == ConnectionState.Open)
+                {
+                    sqlCon.Close();
+                }
+            }
 
         }
 
