@@ -180,6 +180,30 @@ namespace ClinicaSePrice.Pages
             }
         }
 
+        private void btnBuscarPaciente_Click(object sender, EventArgs e)
+        {
+            string dni = txtDniPaciente.Text;
 
+            if (dni == "DNI" || string.IsNullOrWhiteSpace(dni))
+            {
+                MessageBox.Show("Por favor, ingrese un DNI válido.", "AVISO DEL SISTEMA",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            this.pacienteSeleccionado = pacienteDB.BuscarPacientePorDNI(dni);
+
+            if (this.pacienteSeleccionado == null)
+            {
+                MessageBox.Show("No se encontró el paciente con el DNI ingresado. Regístrelo en Registrar Paciente", "AVISO DEL SISTEMA",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtDniPaciente.Text = "DNI";
+            }
+            else
+            {
+                MessageBox.Show($"Paciente encontrado: {this.pacienteSeleccionado.Nombre} {this.pacienteSeleccionado.Apellido}", "AVISO DEL SISTEMA",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
     }
 }

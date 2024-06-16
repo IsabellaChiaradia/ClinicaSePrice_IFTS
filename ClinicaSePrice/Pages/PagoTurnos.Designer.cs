@@ -91,7 +91,6 @@
             // 
             cboFormaPago.Cursor = Cursors.Hand;
             cboFormaPago.DropDownStyle = ComboBoxStyle.DropDownList;
-            cboFormaPago.Enabled = false;
             cboFormaPago.FlatStyle = FlatStyle.Popup;
             cboFormaPago.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point);
             cboFormaPago.ForeColor = Color.FromArgb(74, 102, 174);
@@ -213,6 +212,7 @@
             btnBuscarPaciente.TabIndex = 49;
             btnBuscarPaciente.Text = "BUSCAR PACIENTE";
             btnBuscarPaciente.UseVisualStyleBackColor = false;
+            btnBuscarPaciente.Click += btnBuscarPaciente_Click;
             // 
             // PagoTurnos
             // 
