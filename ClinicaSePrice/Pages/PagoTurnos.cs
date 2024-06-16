@@ -233,7 +233,7 @@ namespace ClinicaSePrice.Pages
         {
             string formaPagoSeleccionada = cboFormaPago.SelectedItem.ToString();
 
-            if (this.turnoSeleccionado != null)
+            if (this.turnoSeleccionado != null && this.turnoSeleccionado.IdTurno != -1)
             {
                 calcularMontoFinalDelTurnoSeleccionado(this.turnoSeleccionado.Practica.Costo);
             }
