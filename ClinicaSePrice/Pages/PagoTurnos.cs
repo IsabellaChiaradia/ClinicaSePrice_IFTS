@@ -105,13 +105,26 @@ namespace ClinicaSePrice.Pages
 
             var montoFinal = Convert.ToDouble(txtMontoFinal.Text);
 
-            turnoDB.PagarTurno(this.turnoSeleccionado.IdTurno, montoFinal);
-            
-            MessageBox.Show("Se realizó el pago correctamente", "AVISO DEL SISTEMA",
-            MessageBoxButtons.OK,
-            MessageBoxIcon.Information);
+            int resultado = turnoDB.PagarTurno(this.turnoSeleccionado.IdTurno, montoFinal);
 
-
+            if (resultado == 1)
+            {
+                MessageBox.Show("Se realizó el pago correctamente", "AVISO DEL SISTEMA",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Information);
+            }
+            else if (resultado == 0)
+            {
+                MessageBox.Show("El turno ya estaba acreditado", "AVISO DEL SISTEMA",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Error);
+            }
+            else
+            {
+                MessageBox.Show("Hubo un error al procesar el pago del turno", "AVISO DEL SISTEMA",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Error);
+            }
             
         }
 

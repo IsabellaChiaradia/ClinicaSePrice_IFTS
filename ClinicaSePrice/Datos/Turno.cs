@@ -159,9 +159,9 @@ namespace ClinicaSePrice.Datos
 
         }
 
-        public void PagarTurno(int idTurno, double costoFinal)
+        public int PagarTurno(int idTurno, double costoFinal)
         {
-            
+            int result = -1; 
             try
             {
                 sqlCon.Open();
@@ -174,8 +174,12 @@ namespace ClinicaSePrice.Datos
                     cmd.Parameters.AddWithValue("@i_idTurno", idTurno);
                     cmd.Parameters.AddWithValue("@i_costoFinal", costoFinal);
 
-                    // Ejecutar el procedimiento almacenado
+                    cmd.Parameters.Add(new MySqlParameter("@o_result", MySqlDbType.Int32));
+                    cmd.Parameters["@o_result"].Direction = ParameterDirection.Output;
+
+                    
                     cmd.ExecuteNonQuery();
+                    result = (int)cmd.Parameters["@o_result"].Value;
                 }
             }
             catch (MySqlException ex)
@@ -195,6 +199,7 @@ namespace ClinicaSePrice.Datos
                     sqlCon.Close();
                 }
             }
+            return result;
 
         }
 
