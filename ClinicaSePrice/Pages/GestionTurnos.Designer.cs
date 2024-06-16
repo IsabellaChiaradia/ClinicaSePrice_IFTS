@@ -308,7 +308,7 @@
             btnBuscarTurno.Name = "btnBuscarTurno";
             btnBuscarTurno.Size = new Size(202, 39);
             btnBuscarTurno.TabIndex = 53;
-            btnBuscarTurno.Text = "BUSCAR TURNO";
+            btnBuscarTurno.Text = "BUSCAR TURNOS";
             btnBuscarTurno.UseVisualStyleBackColor = false;
             btnBuscarTurno.Click += btnBuscarTurno_Click;
             // 

@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using ClinicaSePrice.Entidades;
 using System.Windows.Forms;
+using Org.BouncyCastle.Utilities;
 
 namespace ClinicaSePrice.Datos
 {
@@ -136,6 +137,68 @@ namespace ClinicaSePrice.Datos
         }
 
 
+        public void ObtenerTurnosAPagar(int idPaciente, DataGridView tablaTurno)
+        {
+            tablaTurno.DataSource = null;
+            var resultado = GetTurnosAPagarDelDia(idPaciente);
+            if (resultado.HasRows)
+            {
+                procesarConsultaTurnosAPagar(tablaTurno, resultado);
+            }
+            else
+            {
+                MessageBox.Show("No existen turnos a pagar para el paciente seleccionado",
+                                "AVISO DEL SISTEMA",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Information);
+            }
+
+        }
+
+
+        public MySqlDataReader GetTurnosAPagarDelDia(int idPaciente)
+        {
+            MySqlDataReader reader = null;
+            try
+            {
+                sqlCon.Open();
+                string query = @"
+                SELECT 
+                    t.idTurno, 
+                    t.fechaAtencion, 
+                    t.horaInicio, 
+                    t.horaFin, 
+                    t.acreditado, 
+                    t.costoFinal, 
+                    CONCAT(m.nombre, ' ', m.apellido) as medico, 
+                    p.descripcion as practica, 
+                    p.costo
+                FROM 
+                    turno t
+                INNER JOIN 
+                    medico m ON t.id_medico = m.idMedico
+                INNER JOIN 
+                    practica p ON t.id_practica = p.idPractica
+                WHERE 
+                    t.id_paciente = @idPaciente 
+                    AND t.fechaAtencion = CURDATE() 
+                    AND t.fechaBaja IS NULL";
+
+                using (MySqlCommand cmd = new MySqlCommand(query, sqlCon))
+                {
+                    cmd.Parameters.AddWithValue("@idPaciente", idPaciente);
+                    reader = cmd.ExecuteReader(CommandBehavior.CloseConnection);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al buscar los turnos a pagar: " + ex.Message);
+            }
+            return reader;
+        }
+
+
+
         private void procesarConsultaTurnos(DataGridView tablaTurno, MySqlDataReader resultado, DataTable dt)
         {
             dt.Load(resultado);
@@ -180,6 +243,55 @@ namespace ClinicaSePrice.Datos
             }
 
             this.agregarColorXDisponibilidad(tablaTurno);
+        }
+
+        private void procesarConsultaTurnosAPagar(DataGridView tablaTurno, MySqlDataReader resultado)
+        {
+            var dtOriginal = new DataTable();
+            dtOriginal.Load(resultado);
+            DataTable dtTurnosAPagar = new DataTable();
+
+            // Añadimos las columnas que queremos mostrar el usuario
+            dtTurnosAPagar.Columns.Add("Fecha Atencion", typeof(DateTime));
+            dtTurnosAPagar.Columns.Add("Inicio", typeof(TimeSpan));
+            dtTurnosAPagar.Columns.Add("Fin", typeof(TimeSpan));
+            dtTurnosAPagar.Columns.Add("Medico", typeof(string));
+            dtTurnosAPagar.Columns.Add("Practica", typeof(string));
+            dtTurnosAPagar.Columns.Add("Acreditado", typeof(Boolean));
+            dtTurnosAPagar.Columns.Add("Costo final", typeof(string));
+
+
+
+            // Copiar datos filtrados
+            foreach (DataRow row in dtOriginal.Rows)
+            {
+                DataRow newRow = dtTurnosAPagar.NewRow();
+                newRow["Fecha Atencion"] = row["fechaAtencion"];
+                newRow["Inicio"] = row["horaInicio"];
+                newRow["Fin"] = row["horaFin"];
+                newRow["Medico"] = row["medico"];
+                newRow["Practica"] = row["practica"];
+                newRow["Acreditado"] = row["acreditado"];
+
+                decimal costoFinal = row["costoFinal"] != DBNull.Value ? (decimal)row["costoFinal"] : 0;
+                newRow["Costo final"] = costoFinal == 0 ? "" : Math.Round(costoFinal, 2).ToString();
+
+                dtTurnosAPagar.Rows.Add(newRow);
+            }
+
+            tablaTurno.DataSource = dtTurnosAPagar;
+
+            // Opcionalmente, configurar la apariencia del DataGridView
+            tablaTurno.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+
+            // Deseleccionar todas las filas
+            tablaTurno.ClearSelection();
+
+            for (int i = 0; i < tablaTurno.Rows.Count; i++)
+            {
+                tablaTurno.Rows[i].Tag = dtOriginal.Rows[i]; // Guardar la fila original completa en el Tag
+            }
+
         }
 
 

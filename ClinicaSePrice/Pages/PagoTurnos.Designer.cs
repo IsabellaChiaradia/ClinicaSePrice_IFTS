@@ -37,13 +37,14 @@
             lblFormaPagoPA = new Label();
             btnComprobantePA = new Dashboard_ClinicaSePrice.CustomBotonDos();
             btnPagarPA = new Dashboard_ClinicaSePrice.CustomBotonDos();
-            dtgvActividad = new DataGridView();
+            dtgvTurnos = new DataGridView();
             txtMontoPA = new TextBox();
             picMontoPMC = new PictureBox();
             btnBuscarPaciente = new Dashboard_ClinicaSePrice.CustomBotonDos();
+            btnBuscarTurno = new Dashboard_ClinicaSePrice.CustomBotonDos();
             ((System.ComponentModel.ISupportInitialize)picDocPA).BeginInit();
             ((System.ComponentModel.ISupportInitialize)picFormaPago).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)dtgvActividad).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dtgvTurnos).BeginInit();
             ((System.ComponentModel.ISupportInitialize)picMontoPMC).BeginInit();
             SuspendLayout();
             // 
@@ -156,19 +157,19 @@
             btnPagarPA.UseVisualStyleBackColor = false;
             btnPagarPA.Click += btnPagarPA_Click;
             // 
-            // dtgvActividad
+            // dtgvTurnos
             // 
-            dtgvActividad.AllowUserToAddRows = false;
-            dtgvActividad.AllowUserToDeleteRows = false;
-            dtgvActividad.BackgroundColor = Color.White;
-            dtgvActividad.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dtgvActividad.Location = new Point(32, 185);
-            dtgvActividad.Margin = new Padding(3, 2, 3, 2);
-            dtgvActividad.Name = "dtgvActividad";
-            dtgvActividad.ReadOnly = true;
-            dtgvActividad.RowTemplate.Height = 25;
-            dtgvActividad.Size = new Size(738, 238);
-            dtgvActividad.TabIndex = 36;
+            dtgvTurnos.AllowUserToAddRows = false;
+            dtgvTurnos.AllowUserToDeleteRows = false;
+            dtgvTurnos.BackgroundColor = Color.White;
+            dtgvTurnos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dtgvTurnos.Location = new Point(32, 185);
+            dtgvTurnos.Margin = new Padding(3, 2, 3, 2);
+            dtgvTurnos.Name = "dtgvTurnos";
+            dtgvTurnos.ReadOnly = true;
+            dtgvTurnos.RowTemplate.Height = 25;
+            dtgvTurnos.Size = new Size(738, 238);
+            dtgvTurnos.TabIndex = 36;
             // 
             // txtMontoPA
             // 
@@ -214,17 +215,35 @@
             btnBuscarPaciente.UseVisualStyleBackColor = false;
             btnBuscarPaciente.Click += btnBuscarPaciente_Click;
             // 
+            // btnBuscarTurno
+            // 
+            btnBuscarTurno.BackColor = Color.FromArgb(29, 65, 81);
+            btnBuscarTurno.Cursor = Cursors.Hand;
+            btnBuscarTurno.FlatAppearance.BorderSize = 0;
+            btnBuscarTurno.FlatStyle = FlatStyle.Flat;
+            btnBuscarTurno.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            btnBuscarTurno.ForeColor = Color.White;
+            btnBuscarTurno.Location = new Point(38, 444);
+            btnBuscarTurno.Margin = new Padding(3, 2, 3, 2);
+            btnBuscarTurno.Name = "btnBuscarTurno";
+            btnBuscarTurno.Size = new Size(202, 39);
+            btnBuscarTurno.TabIndex = 54;
+            btnBuscarTurno.Text = "BUSCAR TURNOS";
+            btnBuscarTurno.UseVisualStyleBackColor = false;
+            btnBuscarTurno.Click += btnBuscarTurno_Click;
+            // 
             // PagoTurnos
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(73, 162, 203);
+            Controls.Add(btnBuscarTurno);
             Controls.Add(btnBuscarPaciente);
             Controls.Add(txtMontoPA);
             Controls.Add(picMontoPMC);
             Controls.Add(btnComprobantePA);
             Controls.Add(btnPagarPA);
-            Controls.Add(dtgvActividad);
+            Controls.Add(dtgvTurnos);
             Controls.Add(cboFormaPago);
             Controls.Add(picFormaPago);
             Controls.Add(lblFormaPagoPA);
@@ -236,7 +255,7 @@
             Load += PagoTurno_Load;
             ((System.ComponentModel.ISupportInitialize)picDocPA).EndInit();
             ((System.ComponentModel.ISupportInitialize)picFormaPago).EndInit();
-            ((System.ComponentModel.ISupportInitialize)dtgvActividad).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dtgvTurnos).EndInit();
             ((System.ComponentModel.ISupportInitialize)picMontoPMC).EndInit();
             ResumeLayout(false);
             PerformLayout();
@@ -252,9 +271,10 @@
         private Label lblFormaPagoPA;
         private Dashboard_ClinicaSePrice.CustomBotonDos btnComprobantePA;
         private Dashboard_ClinicaSePrice.CustomBotonDos btnPagarPA;
-        private DataGridView dtgvActividad;
+        private DataGridView dtgvTurnos;
         private TextBox txtMontoPA;
         private PictureBox picMontoPMC;
         private Dashboard_ClinicaSePrice.CustomBotonDos btnBuscarPaciente;
+        private Dashboard_ClinicaSePrice.CustomBotonDos btnBuscarTurno;
     }
 }

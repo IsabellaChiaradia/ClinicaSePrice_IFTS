@@ -205,5 +205,22 @@ namespace ClinicaSePrice.Pages
                     MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
+
+        private void btnBuscarTurno_Click(object sender, EventArgs e)
+        {
+            this.turnoSeleccionado = null;
+
+            if (this.pacienteSeleccionado == null)
+            {
+                MessageBox.Show("Debe seleccionar un paciente para traer los turnos asociados",
+                                "AVISO DEL SISTEMA",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Warning);
+                return;
+            }
+
+
+            turnoDB.ObtenerTurnosAPagar(this.pacienteSeleccionado.Id, dtgvTurnos);
+        }
     }
 }
