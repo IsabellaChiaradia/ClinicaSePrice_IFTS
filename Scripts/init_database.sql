@@ -66,7 +66,7 @@ CREATE TABLE turno (
     idTurno INT AUTO_INCREMENT PRIMARY KEY,
     fechaAtencion DATE NOT NULL,
     fechaBaja DATE,
-    acreditado BOOLEAN NOT NULL,
+    acreditado BOOLEAN NOT NULL DEFAULT 0,
     horaInicio TIME NOT NULL,
     horaFin TIME NOT NULL,
 	costoFinal DECIMAL,
@@ -241,9 +241,9 @@ INSERT INTO practica (codigo, costo, descripcion, id_especialidad) VALUES
 
 -- Insertar turnos para los pacientes registrados
 INSERT INTO Turno (fechaAtencion, horaInicio, horaFin, id_paciente, id_medico, acreditado, id_practica)
-VALUES ('2024-05-17', '11:00:00', '11:30:00', 1001, 1, 0, 1),
- ('2024-05-17', '11:00:00', '11:30:00', 1011, 1, 0, 2),
- ('2024-05-17', '11:00:00', '11:30:00', 1011, 1, 0, 5);
+VALUES ('2024-06-17', '11:00:00', '11:30:00', 1001, 1, 0, 1),
+ ('2024-06-17', '10:00:00', '10:30:00', 1011, 1, 0, 2),
+ ('2024-06-17', '09:00:00', '09:30:00', 1011, 1, 0, 5);
 
 -- Relacionar prácticas con insumos y sus cantidades
 INSERT INTO practica_insumo (id_practica, id_insumo, id_especialidad, cantidad) VALUES
