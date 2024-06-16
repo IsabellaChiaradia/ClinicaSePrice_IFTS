@@ -106,10 +106,9 @@ namespace ClinicaSePrice.Datos
 
                     // Consulta para obtener los turnos del médico en la fecha especificada
                     string query = @"
-                    SELECT t.idTurno, p.costo
-                    FROM turno t
-                    INNER JOIN practica p ON t.id_practica = p.idPractica
-                    WHERE t.id_medico = @idMedico AND t.fechaAtencion = @fecha";
+                    SELECT t.idTurno, t.costoFinal
+                    FROM turno t                  
+                    WHERE t.id_medico = @idMedico AND t.fechaAtencion = @fecha AND t.acreditado = 1";
 
                     MySqlCommand cmd = new MySqlCommand(query, con);
                     cmd.Parameters.AddWithValue("@idMedico", idMedico);
@@ -119,7 +118,7 @@ namespace ClinicaSePrice.Datos
                     {
                         while (reader.Read())
                         {
-                            decimal costoPractica = Convert.ToDecimal(reader["costo"]);
+                            decimal costoPractica = Convert.ToDecimal(reader["costoFinal"]);
                             totalHonorarios += costoPractica;
                         }
                     }
@@ -142,7 +141,7 @@ namespace ClinicaSePrice.Datos
                 using (MySqlConnection con = Conexion.getInstancia().CrearConexion())
                 {
                     con.Open();
-                    MySqlCommand cmd = new MySqlCommand("SELECT COUNT(*) FROM turno WHERE id_medico = @idMedico AND fechaAtencion = @fecha", con);
+                    MySqlCommand cmd = new MySqlCommand("SELECT COUNT(*) FROM turno tu WHERE id_medico = @idMedico AND fechaAtencion = @fecha AND tu.acreditado = 1", con);
                     cmd.Parameters.AddWithValue("@idMedico", idMedico);
                     cmd.Parameters.AddWithValue("@fecha", fecha);
 
